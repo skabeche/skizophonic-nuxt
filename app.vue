@@ -1,6 +1,9 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtLoadingIndicator />
+    <AppHeader />
+    <NuxtPage :page-key="route => route.fullPath" />
+    <AppFooter />
   </div>
 </template>
