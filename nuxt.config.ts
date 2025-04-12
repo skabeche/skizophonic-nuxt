@@ -17,7 +17,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/scripts'
+    '@nuxt/scripts',
+    'lenis/nuxt'
   ],
   fonts: {
     defaults: {
