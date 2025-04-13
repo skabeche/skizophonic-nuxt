@@ -1,7 +1,6 @@
 <template>
   <div>
     <HeroHypnotic>
-      <span class="sr-only">Skizophonic</span>
       <AppLogo class="fill-white" />
     </HeroHypnotic>
 

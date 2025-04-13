@@ -3,8 +3,8 @@ export const albums = [
     id: 1,
     title: 'Video Rock',
     cover: 'https://f4.bcbits.com/img/a3192429037_10.jpg',
-    year: 2013,
-    releaseDate: '2013-01-01',
+    year: 2017,
+    releaseDate: '2017-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'video-rock',
     tracks: [

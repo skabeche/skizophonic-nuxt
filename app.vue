@@ -1,13 +1,11 @@
 <template>
-  <VueLenis ref="lenisRef" :auto-raf="false" root>
-    <NuxtRouteAnnouncer />
-    <NuxtLoadingIndicator />
-    <AppHeader />
-    <main>
+  <NuxtRouteAnnouncer />
+  <NuxtLoadingIndicator />
+  <NuxtLayout>
+    <VueLenis ref="lenisRef" :auto-raf="false" root>
       <NuxtPage :page-key="route => route.fullPath" />
-    </main>
-    <AppFooter />
-  </VueLenis>
+    </VueLenis>
+  </NuxtLayout>
 </template>
 
 <script setup>

@@ -1,11 +1,30 @@
 <template>
-  <section>
-    <div class="grid lg:grid-cols-2 gap-18">
-      <div v-for="album in albums" :key="album.name" class="relative border-20">
-        <h2 class="text-white bg-black text-5xl">{{ album.title }}</h2>
-        <a :href="`/music/${album.slug}`">
-          <img :src="album.cover" :alt="album.title">
-        </a>
+  <section class="flex items-center gap-4 h-screen">
+    <div class="controls relative z-10 flex flex-col gap-4 mix-blend-difference text-white text-6xl xl:text-9xl">
+      <Icon name="ion:arrow-up-a" class="prev-slide cursor-pointer hover:text-red-500" />
+      <Icon name="ion:arrow-down-a" class="next-slide cursor-pointer hover:text-red-500" />
+    </div>
+    <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform">
+      <div class="outer w-full h-full overflow-y-hidden will-change-transform">
+        <div class="inner w-full h-full overflow-y-hidden will-change-transform">
+          <div :class="`bg absolute top-0 left-0 grid grid-cols-2 place-items-center gap-4 w-full h-full bg-cover bg-center bg-[url(${album.cover})]`" :style="`background-image:var(--bg-gradient), url(${album.cover});`">
+            <div class="absolute -z-10 top-0 left-0 w-full h-full">
+              <video ref="videoRef" class="w-full h-full object-cover" src="/public/videos/spiral.mp4" autoplay muted loop playsinline />
+            </div>
+            <div class="w-2/3">
+              <a :href="`/music/${album.slug}`">
+                <img :src="album.cover" :alt="album.title">
+              </a>
+            </div>
+            <div class="1/3">
+              <h2 class="section-heading text-8xl text-white mix-blend-difference">
+                <a :href="`/music/${album.slug}`">
+                  {{ album.title }}
+                </a>
+              </h2>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -13,4 +32,194 @@
 
 <script setup>
   import { albums } from "~/data/albums";
+
+  import gsap from "gsap";
+  import SplitType from "split-type";
+
+  onMounted(() => {
+    const slides = document.querySelectorAll(".slide");
+    const images = document.querySelectorAll(".bg");
+    const prevSlide = document.querySelector(".prev-slide");
+    const nextSlide = document.querySelector(".next-slide");
+    const headings = gsap.utils.toArray(".section-heading");
+    const outerWrappers = gsap.utils.toArray(".outer");
+    const innerWrappers = gsap.utils.toArray(".inner");
+
+    document.addEventListener("wheel", handleWheel);
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchend", handleTouchEnd);
+    prevSlide.addEventListener("click", handlePrevSlide);
+    nextSlide.addEventListener("click", handleNextSlide);
+
+    let listening = false;
+    let direction = "down";
+    let current;
+    let next = 0;
+
+    const touch = {
+      startX: 0,
+      startY: 0,
+      dx: 0,
+      dy: 0,
+      startTime: 0,
+      dt: 0
+    };
+
+    const tlDefaults = {
+      ease: "power4.inOut",
+      duration: 1.2
+    };
+
+    const splitHeadings = headings.map((heading) => {
+      return new SplitType(heading, {
+        types: "chars, words, lines",
+        lineClass: "line overflow-hidden"
+      });
+    });
+
+    function revealSectionHeading() {
+      return gsap.to(splitHeadings[next].chars, {
+        autoAlpha: 1,
+        yPercent: 0,
+        duration: 1.2,
+        ease: "power4.inOut",
+        stagger: 0.02
+      });
+    }
+
+    gsap.set(outerWrappers, { yPercent: 100 });
+    gsap.set(innerWrappers, { yPercent: -100 });
+
+    // Slides a section in on scroll down
+    function slideIn() {
+      // The first time this function runs, current is undefined
+      if (current !== undefined) gsap.set(slides[current], { zIndex: 0 });
+
+      gsap.set(slides[next], { autoAlpha: 1, zIndex: 1 });
+      gsap.set(images[next], { yPercent: 0 });
+      gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
+
+      const tl = gsap
+        .timeline({
+          paused: true,
+          defaults: tlDefaults,
+          onComplete: () => {
+            listening = true;
+            current = next;
+          }
+        })
+        .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
+        .from(images[next], { yPercent: 15 }, 0)
+        .add(revealSectionHeading(), 0);
+
+      if (current !== undefined) {
+        tl.add(
+          gsap.to(images[current], {
+            yPercent: -15,
+            ...tlDefaults
+          }),
+          0
+        ).add(
+          gsap
+            .timeline()
+            .set(outerWrappers[current], { yPercent: 100 })
+            .set(innerWrappers[current], { yPercent: -100 })
+            .set(images[current], { yPercent: 0 })
+            .set(slides[current], { autoAlpha: 0 })
+        );
+      }
+
+      tl.play(0);
+    }
+
+    // Slides a section out on scroll up
+    function slideOut() {
+      gsap.set(slides[current], { zIndex: 1 });
+      gsap.set(slides[next], { autoAlpha: 1, zIndex: 0 });
+      gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
+      gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
+      gsap.set(images[next], { yPercent: 0 });
+
+      gsap
+        .timeline({
+          defaults: tlDefaults,
+          onComplete: () => {
+            listening = true;
+            current = next;
+          }
+        })
+        .to(outerWrappers[current], { yPercent: 100 }, 0)
+        .to(innerWrappers[current], { yPercent: -100 }, 0)
+        .to(images[current], { yPercent: 15 }, 0)
+        .from(images[next], { yPercent: -15 }, 0)
+        .add(revealSectionHeading(), ">-1")
+        .set(images[current], { yPercent: 0 });
+    }
+
+    function handleDirection() {
+      listening = false;
+
+      if (direction === "down") {
+        next = current + 1;
+        if (next >= slides.length) next = 0;
+        slideIn();
+      }
+
+      if (direction === "up") {
+        next = current - 1;
+        if (next < 0) next = slides.length - 1;
+        slideOut();
+      }
+    }
+
+    function handleWheel(e) {
+      if (!listening) return;
+      direction = e.wheelDeltaY < 0 ? "down" : "up";
+      handleDirection();
+    }
+
+    function handleTouchStart(e) {
+      if (!listening) return;
+      const t = e.changedTouches[0];
+      touch.startX = t.pageX;
+      touch.startY = t.pageY;
+    }
+
+    function handleTouchMove(e) {
+      if (!listening) return;
+      e.preventDefault();
+    }
+
+    function handleTouchEnd(e) {
+      if (!listening) return;
+      const t = e.changedTouches[0];
+      touch.dx = t.pageX - touch.startX;
+      touch.dy = t.pageY - touch.startY;
+      if (touch.dy > 10) direction = "up";
+      if (touch.dy < -10) direction = "down";
+      handleDirection();
+    }
+
+    function handlePrevSlide() {
+      if (!listening) return;
+      direction = "up";
+      handleDirection();
+    }
+
+    function handleNextSlide() {
+      if (!listening) return;
+      direction = "down";
+      handleDirection();
+    }
+
+    slideIn();
+
+  })
 </script>
+
+<style>
+  :root {
+    --bg-gradient: linear-gradient(0deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 50%) 100%);
+  }
+</style>

@@ -18,6 +18,8 @@
   --color-gray-700: #616161;
   --color-gray-800: #424242;
   --color-gray-900: #212121;
+
+  --text-8xl: clamp(2rem, 5vw, 6rem);
 }
 
 @utility container {
@@ -41,9 +43,14 @@
 
 @layer base {
   body {
-    @apply font-bold overflow-x-hidden;
+    @apply bg-white font-bold overflow-x-hidden;
   }
-   h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-poppins font-extrabold uppercase;
   }
   h1 {

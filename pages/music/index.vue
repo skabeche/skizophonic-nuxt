@@ -1,8 +1,9 @@
 <template>
-  <section>
-    <HeroHypnotic>Music</HeroHypnotic>
-    <div class="container">
-      <AlbumsList />
-    </div>
-  </section>
+  <AlbumsList />
 </template>
+
+<script setup>
+  definePageMeta({
+    layout: 'full-screen'
+  })
+</script>
