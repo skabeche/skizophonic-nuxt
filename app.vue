@@ -14,9 +14,9 @@
 
   const lenisRef = ref()
 
-  const lenis = useLenis(({ scroll }) => {
-    // console.log(scroll)
-  })
+  // const lenis = useLenis(({ scroll }) => {
+  //   // console.log(scroll)
+  // })
 
   watchEffect((onInvalidate) => {
     function update(time) {

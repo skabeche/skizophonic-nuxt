@@ -13,7 +13,7 @@
             </div>
             <div class="w-2/3">
               <a :href="`/music/${album.slug}`">
-                <img :src="album.cover" :alt="album.title">
+                <img :src="album.cover" :alt="album.title" class="border-20">
               </a>
             </div>
             <div class="1/3">

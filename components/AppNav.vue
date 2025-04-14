@@ -11,10 +11,10 @@
         <NuxtLink to="/">Home</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/music">Music</NuxtLink>
+        <NuxtLink to="/band">Band</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/band">Band</NuxtLink>
+        <NuxtLink to="/music">Music</NuxtLink>
       </li>
     </ul>
     <SocialLinks class="text-5xl" />
@@ -66,7 +66,6 @@
       if (isOpen.value) {
         tl.play(0)
       } else {
-        console.log('reverse')
         // tl.reverse()
         tl.revert()
       }
