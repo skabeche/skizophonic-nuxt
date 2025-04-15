@@ -92,8 +92,16 @@ export const images = [
     alt: 'Skizophonic 2013',
   },
   {
+    src: '/images/band/gascon_trombon_fib.jpg',
+    alt: 'Gascón - FIB',
+  },
+  {
     src: '/images/band/skizophonic_fecstival2016.jpg',
-    alt: 'Skiphonetic - Fecstival',
+    alt: 'Skizophonic - Fecstival',
+  },
+  {
+    src: '/images/band/promo_sala_blood.jpg',
+    alt: 'Skizophonic 2006 - Sala Blood',
   },
   {
     src: '/images/band/skizophonic_photocall_fib2014.jpg',
