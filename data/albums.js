@@ -7,6 +7,7 @@ export const albums = [
     releaseDate: '2017-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'video-rock',
+    bgVideo: 'vhs.mp4',
     tracks: [
       'Me aburrís todos con la misma mierda',
       'Coco loco',
@@ -26,6 +27,7 @@ export const albums = [
     releaseDate: '2017-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'velodrome',
+    bgVideo: 'woman_dancing.mp4',
     tracks: [
       'How Would You Say I Love You?',
       'Clockwork',
@@ -47,6 +49,7 @@ export const albums = [
     releaseDate: '2011-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'gossip',
+    bgVideo: 'woman_finger.mp4',
     tracks: [
       'I Must Doubt',
       'I Wait',
@@ -67,6 +70,7 @@ export const albums = [
     releaseDate: '2009-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'living-room',
+    bgVideo: 'factories.mp4',
     tracks: [
       'Shut Up',
       'Today: Save Your Weekend (Tomorrow: Save Your Soul)',
@@ -84,6 +88,7 @@ export const albums = [
     releaseDate: '2008-01-01',
     playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
     slug: 'rollo-y-cana',
+    bgVideo: 'subway.mp4',
     tracks: [
       'Exhibitionist',
       'The Last Stupid Rock Project',

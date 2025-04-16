@@ -1,7 +1,7 @@
 <template>
   <div class="hero-hypnotic relative w-screen h-screen">
     <div class="absolute top-0 left-0 w-full h-full">
-      <video ref="videoRef" class="w-full h-full object-cover" src="/public/videos/spiral.mp4" autoplay muted loop playsinline />
+      <video ref="videoRef" class="w-full h-full object-cover" src="/public/videos/spiral.mp4" autoplay muted loop playsinline disableremoteplayback />
     </div>
     <h1 ref="headerRef" class="relative z-10 flex justify-center items-center w-full h-full text-9xl bg-black text-white mix-blend-differencex">
       <slot />
