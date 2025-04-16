@@ -29,6 +29,7 @@ export default defineNuxtConfig({
         'Poppins': [600, 700, 800, 900],
         'Lato': [700, 800, 900],
         'League Spartan': [700, 800, 900],
+        'Public Sans': [700, 800, 900],
       },
       display: 'swap'
     },

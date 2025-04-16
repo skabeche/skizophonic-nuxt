@@ -27,9 +27,6 @@
   import pageTransitionConfig from '~/helpers/transitionConfig';
 
   import gsap from "gsap";
-  import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-  gsap.registerPlugin(ScrollTrigger);
 
   definePageMeta({
     pageTransition: pageTransitionConfig,

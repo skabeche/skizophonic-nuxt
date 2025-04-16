@@ -6,6 +6,7 @@
   --font-poppins: "Poppins", "sans-serif";
   --font-lato: "Lato", "sans-serif";
   --font-leagueSpartan: "League Spartan", "sans-serif";
+  --font-publicSans: "Public Sans", "sans-serif";
 
   --color-gray: #9e9e9e;
   --color-gray-50: #f9f9f9;
@@ -60,7 +61,7 @@
     @apply text-6xl;
   }
   p {
-    @apply leading-18;
+    @apply leading-20;
   }
 }
 
