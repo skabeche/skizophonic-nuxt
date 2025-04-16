@@ -1,36 +1,39 @@
 <template>
-  <div>
-    <section class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
-      <div class="flex-auto">
-        <ul class="members flex flex-col gap-3 p-8 text-xl">
-          <li><span>Vocals & Guitar: Nacho Galí</span></li>
-          <li><span>Guitar: Dan Alcaide</span></li>
-          <li><span>Guitar: Fede Trillo</span></li>
-          <li><span>Keyboards: Eloy Alcaide</span></li>
-          <li><span>Bass & Trombone: Javier Gascón</span></li>
-          <li><span>Bass: Carlos Sánchez</span></li>
-          <li><span>Drums: Carlos Cruz</span></li>
-          <li><span>Drums: Deed Marc</span></li>
-          <li><span>Skizonettes:<br> Sofía Royo & Nuria Pallares & Sol González</span></li>
-        </ul>
+  <section class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
+    <div class="flex-auto">
+      <ul class="members flex flex-col gap-3 p-8 text-xl">
+        <li><span>Vocals & Guitar: Nacho Galí</span></li>
+        <li><span>Guitar: Dan Alcaide</span></li>
+        <li><span>Guitar: Fede Trillo</span></li>
+        <li><span>Keyboards: Eloy Alcaide</span></li>
+        <li><span>Bass & Trombone: Javier Gascón</span></li>
+        <li><span>Bass: Carlos Sánchez</span></li>
+        <li><span>Drums: Carlos Cruz</span></li>
+        <li><span>Drums: Deed Marc</span></li>
+        <li><span>Skizonettes:<br> Sofía Royo & Nuria Pallares & Sol González</span></li>
+      </ul>
+    </div>
+    <figure v-for="image in images" :key="image.src" class="relative flex-auto overflow-hidden">
+      <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
+        <img class="h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" loading="lazy" :alt="image.alt" :src="image.src" @click="handleClick" @mousemove="handleMouseMove">
       </div>
-      <figure v-for="image in images" :key="image.src" class="relative flex-auto overflow-hidden">
-        <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
-          <img class="h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" loading="lazy" :alt="image.alt" :src="image.src" @click="handleClick" @mousemove="handleMouseMove">
-        </div>
-        <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
-      </figure>
-    </section>
-  </div>
+      <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
+    </figure>
+  </section>
 </template>
 
 <script setup>
   import { images } from "~/data/media";
+  import pageTransitionConfig from '~/helpers/transitionConfig';
 
   import gsap from "gsap";
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
   gsap.registerPlugin(ScrollTrigger);
+
+  definePageMeta({
+    pageTransition: pageTransitionConfig,
+  });
 
   const prevImage = ref(null)
   const currentImage = ref(null)
@@ -74,25 +77,39 @@
     });
   }
 
+  const main = ref();
+  let ctx;
   onMounted(() => {
-    const tl = gsap.timeline();
+    ctx = gsap.context((self) => {
+      const tl = gsap.timeline();
 
-    tl.fromTo('figure', {
-      clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-    }, {
-      duration: 1,
-      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-      stagger: 0.25,
-      ease: 'power4.inOut',
-    });
+      tl.fromTo('section', {
+        clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+      }, {
+        duration: 1.4,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power4.inOut',
+      });
+      tl.fromTo('figure', {
+        clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+      }, {
+        duration: 1,
+        delay: 0.5,
+        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+        stagger: 0.25,
+        ease: 'power4.inOut',
+      });
+      tl.from('.members li span', {
+        y: 70,
+        duration: 1.4,
+        ease: 'power4.inOut',
+      }, '<0.5');
+    })
+  }, main.value); // <- Scope!
 
-    tl.from('.members li span', {
-      y: 60,
-      duration: 1.4,
-      ease: 'power4.inOut',
-    }, '<0.5');
-  })
-
+  onUnmounted(() => {
+    ctx.revert(); // <- Easy Cleanup!
+  });
 </script>
 
 <style scoped>

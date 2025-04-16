@@ -18,3 +18,11 @@
     </section>
   </div>
 </template>
+
+<script setup>
+  import pageTransitionConfig from '~/helpers/transitionConfig';
+
+  definePageMeta({
+    pageTransition: pageTransitionConfig,
+  });
+</script>

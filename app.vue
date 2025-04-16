@@ -11,8 +11,16 @@
 <script setup>
   import { VueLenis, useLenis } from 'lenis/vue';
   import gsap from "gsap";
+  import { useTransition } from "#imports";
 
   const lenisRef = ref()
+
+
+  const { toggleTransitionComplete } = useTransition();
+
+  onMounted(() => {
+    toggleTransitionComplete(true);
+  });
 
   // const lenis = useLenis(({ scroll }) => {
   //   // console.log(scroll)

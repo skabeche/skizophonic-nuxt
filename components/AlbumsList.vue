@@ -5,8 +5,8 @@
       <Icon name="ion:arrow-down-a" class="next-slide cursor-pointer hover:text-red-500" />
     </div>
     <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform">
-      <div class="outer w-full h-full overflow-y-hidden will-change-transform">
-        <div class="inner w-full h-full overflow-y-hidden will-change-transform">
+      <div class="outer-wrapper w-full h-full overflow-y-hidden will-change-transform">
+        <div class="inner-wrapper w-full h-full overflow-y-hidden will-change-transform">
           <div :class="`bg absolute top-0 left-0 grid grid-cols-2 place-items-center gap-4 w-full h-full bg-cover bg-center bg-[url(${album.cover})]`" :style="`background-image:var(--bg-gradient), url(${album.cover});`">
             <div class="absolute -z-10 top-0 left-0 w-full h-full">
               <video ref="videoRef" class="w-full h-full object-cover" src="/public/videos/spiral.mp4" autoplay muted loop playsinline />
@@ -17,7 +17,7 @@
               </a>
             </div>
             <div class="1/3">
-              <h2 class="section-heading text-8xl text-white mix-blend-difference">
+              <h2 class="heading text-8xl text-white mix-blend-difference">
                 <a :href="`/music/${album.slug}`">
                   {{ album.title }}
                 </a>
@@ -41,9 +41,9 @@
     const images = document.querySelectorAll(".bg");
     const prevSlide = document.querySelector(".prev-slide");
     const nextSlide = document.querySelector(".next-slide");
-    const headings = gsap.utils.toArray(".section-heading");
-    const outerWrappers = gsap.utils.toArray(".outer");
-    const innerWrappers = gsap.utils.toArray(".inner");
+    const headings = gsap.utils.toArray(".heading");
+    const outerWrappers = gsap.utils.toArray(".outer-wrapper");
+    const innerWrappers = gsap.utils.toArray(".inner-wrapper");
 
     document.addEventListener("wheel", handleWheel);
     document.addEventListener("touchstart", handleTouchStart);

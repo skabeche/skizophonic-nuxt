@@ -11,38 +11,42 @@
 
 <script setup>
   import { gsap } from 'gsap'
+
   const video = useTemplateRef('videoRef')
   const header = useTemplateRef('headerRef')
 
+  const main = ref();
+  let ctx;
+
   onMounted(() => {
-    gsap
-      .timeline({
-        defaults: {
-          delay: .4
-        },
-      })
-      .fromTo(video.value, {
-        clipPath: 'circle(0% at 50% 50%)',
-      }, {
-        duration: 2,
-        clipPath: 'circle(100% at 50% 50%)',
-      })
-      .fromTo(header.value, {
-        opacity: 0,
-        scale: 1.1,
-        filter: 'blur(5px)',
-      }, {
-        opacity: 1,
-        duration: .5,
-        scale: 1,
-        filter: 'blur(0px)',
-      }, '<')
+    ctx = gsap.context((self) => {
+      gsap
+        .timeline({
+          defaults: {
+            delay: .4
+          },
+        })
+        .fromTo(video.value, {
+          clipPath: 'circle(0% at 50% 50%)',
+        }, {
+          duration: 2,
+          clipPath: 'circle(100% at 50% 50%)',
+        })
+        .fromTo(header.value, {
+          opacity: 0,
+          scale: 1.1,
+          filter: 'blur(5px)',
+        }, {
+          opacity: 1,
+          duration: .5,
+          scale: 1,
+          filter: 'blur(0px)',
+        }, '<')
+    }, main.value); // <- Scope!
 
   })
-</script>
 
-<style scoped>
-  /* .hero-hypnotic {
-  clip-path: circle(0% at 50% 50%);
-} */
-</style>
+  onUnmounted(() => {
+    ctx.revert(); // <- Easy Cleanup!
+  });
+</script>
