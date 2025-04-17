@@ -5,7 +5,7 @@
     </button>
   </div>
 
-  <nav class="fixed flex flex-col justify-center items-center w-full h-full top-0 right-0 z-40 bg-black text-white text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
+  <nav class="fixed flex flex-col justify-center items-center w-full h-full top-0 right-0 z-40 bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
     <ul class="relative z-50 flex flex-col gap-4 p-12 uppercase">
       <li>
         <NuxtLink to="/">Home</NuxtLink>
@@ -17,7 +17,7 @@
         <NuxtLink to="/music">Music</NuxtLink>
       </li>
     </ul>
-    <SocialLinks class="text-5xl" />
+    <SocialLinks class="text-4xl sm:text-5xl" />
   </nav>
 </template>
 

@@ -19,7 +19,7 @@
     gsap.from(paragraphSplit.words, {
       duration: 1,
       stagger: 0.02,
-      yPercent: 100,
+      y: 130,
       ease: 'power4.inOut',
       scrollTrigger: {
         trigger: paragraph.value,

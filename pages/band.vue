@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
-      <ul class="members flex flex-col gap-3 p-8 text-xl">
+      <ul class="members flex flex-col gap-3 p-8 text-lg sm:text-xl">
         <li><span>Vocals & Guitar: Nacho Galí</span></li>
         <li><span>Guitar: Dan Alcaide</span></li>
         <li><span>Guitar: Fede Trillo</span></li>
@@ -97,7 +97,7 @@
         ease: 'power4.inOut',
       });
       tl.from('.members li span', {
-        y: 70,
+        y: 100,
         duration: 1.4,
         ease: 'power4.inOut',
       }, '<0.5');

@@ -60,9 +60,9 @@
   h2 {
     @apply text-6xl;
   }
-  p {
+  /* p {
     @apply leading-20;
-  }
+  } */
 }
 
 /* Lenis */
