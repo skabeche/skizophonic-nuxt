@@ -5,7 +5,9 @@ export const albums = [
     cover: 'https://f4.bcbits.com/img/a3192429037_10.jpg',
     year: 2017,
     releaseDate: '2017-01-01',
-    playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
+    player: {
+      spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+    },
     slug: 'video-rock',
     bgVideo: 'vhs.mp4',
     tracks: [
@@ -25,7 +27,9 @@ export const albums = [
     cover: 'https://f4.bcbits.com/img/a0013403382_10.jpg',
     year: 2013,
     releaseDate: '2017-01-01',
-    playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
+    player: {
+      spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+    },
     slug: 'velodrome',
     bgVideo: 'woman_dancing.mp4',
     tracks: [
@@ -47,7 +51,9 @@ export const albums = [
     cover: 'https://f4.bcbits.com/img/a0791107616_10.jpg',
     year: 2011,
     releaseDate: '2011-01-01',
-    playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
+    player: {
+      spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+    },
     slug: 'gossip',
     bgVideo: 'woman_finger.mp4',
     tracks: [
@@ -68,7 +74,9 @@ export const albums = [
     cover: 'https://f4.bcbits.com/img/a1382940548_10.jpg',
     year: 2009,
     releaseDate: '2009-01-01',
-    playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
+    player: {
+      spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+    },
     slug: 'living-room',
     bgVideo: 'factories.mp4',
     tracks: [
@@ -82,12 +90,14 @@ export const albums = [
   },
   {
     id: 5,
-    title: 'Rollo y caña',
+    title: 'One',
     cover: 'https://f4.bcbits.com/img/a3976118818_10.jpg',
     year: 2008,
     releaseDate: '2008-01-01',
-    playerUrl: 'https://open.spotify.com/embed/album/0L2g6L2NfzvQK8w9R7Z1t4',
-    slug: 'rollo-y-cana',
+    player: {
+      spotify: '',
+    },
+    slug: 'one',
     bgVideo: 'subway.mp4',
     tracks: [
       'Exhibitionist',

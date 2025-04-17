@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: "Poppins", "sans-serif";
@@ -46,6 +47,11 @@
   body {
     @apply bg-white font-bold overflow-x-hidden;
   }
+
+  main a {
+    @apply text-gray-600 hover:underline;
+  }
+
   h1,
   h2,
   h3,
@@ -53,6 +59,10 @@
   h5,
   h6 {
     @apply font-poppins font-extrabold uppercase;
+
+    a {
+      @apply text-white hover:no-underline;
+    }
   }
   h1 {
     @apply text-7xl mix-blend-difference;
@@ -60,9 +70,6 @@
   h2 {
     @apply text-6xl;
   }
-  /* p {
-    @apply leading-20;
-  } */
 }
 
 /* Lenis */

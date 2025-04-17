@@ -1,26 +1,31 @@
 <template>
-  <div>
-    <h1 class="text-black mix-blend-normal">Album</h1>
-
-    <section class="flex flex-col justify-center gap-24 w-screen min-h-screen p-40 text-6xl text-white bg-black text-pretty">
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas maxime eveniet molestias incidunt totam quos eligendi itaque blanditiis veniam. Possimus facere nobis neque debitis libero ad voluptates dolor minus illum?
-      </p>
-    </section>
-
-    <section class="flex flex-col justify-center gap-24 w-screen min-h-screen p-40 text-6xl text-black bg-white text-pretty">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit mollitia quam illum, praesentium quos nesciunt quod ipsa eum commodi laudantium porro alias quidem minima nisi modi optio! Ipsa, illo praesentium.
-      </p>
-    </section>
+  <div class="container grid grid-cols-1 sm:grid-cols-2 gap-8">
+    <div>
+      <img :src="content.cover" :alt="content.title" loading="lazy">
+    </div>
+    <div class="lg:prose-xl">
+      <h1 class="mix-blend-normal">{{ content.title }}</h1>
+      <iframe v-if="content.player.spotify" style="border-radius:12px" :src="`${content.player.spotify}?utm_source=generator&theme=0`" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
+      <ContentRenderer :value="post" />
+    </div>
   </div>
 </template>
 
 <script setup>
   import pageTransitionConfig from '~/helpers/transitionConfig';
+  import { albums } from "~/data/albums";
 
   definePageMeta({
     key: route => route.fullPath,
     pageTransition: pageTransitionConfig,
   });
+
+  const slug = useRoute().params.slug
+  const { data: post } = await useAsyncData(slug, () => {
+    return queryCollection('music').path(`/music/${slug}`).first()
+  })
+
+  const content = albums.find(album => album.slug === slug)
+  console.log(content.title)
+
 </script>
