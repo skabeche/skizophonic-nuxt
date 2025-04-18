@@ -1,12 +1,12 @@
 <template>
-  <div class="fixed top-0 right-0 z-50 m-8 mix-blend-difference">
-    <button class="focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
+  <div class="fixed top-0 right-0 z-100 m-8 mix-blend-difference">
+    <button class="nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
       <NavIcon :is-open="isOpen" />
     </button>
   </div>
 
-  <nav class="fixed flex flex-col justify-center items-center w-full h-full top-0 right-0 z-40 bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
-    <ul class="relative z-50 flex flex-col gap-4 p-12 uppercase">
+  <nav class="fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
+    <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
       <li>
         <NuxtLink to="/">Home</NuxtLink>
       </li>
@@ -80,6 +80,34 @@
 
     &.open {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+
+  .nav-icon:hover {
+    :deep(.line:nth-child(1)) {
+      animation: anim-icon-line 1.2s ease-in-out infinite;
+    }
+
+    :deep(.line:nth-child(2)) {
+      animation: anim-icon-line 1s ease-in-out infinite;
+    }
+
+    :deep(.line:nth-child(3)) {
+      animation: anim-icon-line 1.35s ease-in-out infinite;
+    }
+  }
+
+  @keyframes anim-icon-line {
+    0% {
+      transform: scaleX(1);
+    }
+
+    50% {
+      transform: scaleX(1.2);
+    }
+
+    100% {
+      transform: scaleX(1);
     }
   }
 </style>

@@ -45,7 +45,7 @@
 
 @layer base {
   body {
-    @apply bg-white font-bold overflow-x-hidden;
+    @apply bg-white font-bold;
   }
 
   main a {
@@ -59,16 +59,21 @@
   h5,
   h6 {
     @apply font-poppins font-extrabold uppercase;
+    font-kerning: none;
 
     a {
       @apply text-white hover:no-underline;
     }
   }
   h1 {
-    @apply text-7xl mix-blend-difference;
+    @apply text-7xl;
   }
   h2 {
     @apply text-6xl;
+  }
+
+  p {
+    font-kerning: none;
   }
 }
 
