@@ -2,11 +2,21 @@ export const albums = [
   {
     id: 1,
     title: 'Video Rock',
-    cover: 'https://f4.bcbits.com/img/a3192429037_10.jpg',
+    images: {
+      cover: 'cover.jpg',
+      back: 'back.jpg',
+      galleta: 'galleta.png',
+    },
     year: 2017,
     releaseDate: '2017-01-01',
+    recordLabel: 'Ventilador Music',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+      bandcamp: {
+        id: 4201147038,
+        width: '100%',
+        height: '406px'
+      }
     },
     slug: 'video-rock',
     bgVideo: 'vhs.mp4',
@@ -24,11 +34,21 @@ export const albums = [
   {
     id: 2,
     title: 'Velodrome',
-    cover: 'https://f4.bcbits.com/img/a0013403382_10.jpg',
+    images: {
+      cover: 'cover.jpg',
+      back: 'back.jpg',
+      galleta: 'galleta.png',
+    },
     year: 2013,
     releaseDate: '2017-01-01',
+    recordLabel: 'Lemon Songs',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+      bandcamp: {
+        id: 1275914599,
+        width: '100%',
+        height: '472px'
+      }
     },
     slug: 'velodrome',
     bgVideo: 'woman_dancing.mp4',
@@ -48,11 +68,21 @@ export const albums = [
   {
     id: 3,
     title: 'Gossip',
-    cover: 'https://f4.bcbits.com/img/a0791107616_10.jpg',
+    images: {
+      cover: 'cover.jpg',
+      back: 'back.jpg',
+      galleta: 'galleta.png',
+    },
     year: 2011,
     releaseDate: '2011-01-01',
+    recordLabel: '',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+      bandcamp: {
+        id: 3447235156,
+        width: '100%',
+        height: '439px'
+      }
     },
     slug: 'gossip',
     bgVideo: 'woman_finger.mp4',
@@ -71,11 +101,21 @@ export const albums = [
   {
     id: 4,
     title: 'Living room',
-    cover: 'https://f4.bcbits.com/img/a1382940548_10.jpg',
+    images: {
+      cover: 'cover.jpg',
+      back: 'back.jpg',
+      galleta: 'galleta.png',
+    },
     year: 2009,
     releaseDate: '2009-01-01',
+    recordLabel: '',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
+      bandcamp: {
+        id: 2081532899,
+        width: '100%',
+        height: '340px'
+      }
     },
     slug: 'living-room',
     bgVideo: 'factories.mp4',
@@ -91,11 +131,21 @@ export const albums = [
   {
     id: 5,
     title: 'One',
-    cover: 'https://f4.bcbits.com/img/a3976118818_10.jpg',
+    images: {
+      cover: 'cover.jpg',
+      back: 'back.jpg',
+      galleta: 'galleta.png',
+    },
     year: 2008,
     releaseDate: '2008-01-01',
+    recordLabel: '',
     player: {
       spotify: '',
+      bandcamp: {
+        id: '',
+        width: '',
+        height: ''
+      }
     },
     slug: 'one',
     bgVideo: 'subway.mp4',

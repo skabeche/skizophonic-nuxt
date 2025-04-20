@@ -7,18 +7,18 @@
     <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform">
       <div class="outer-wrapper w-full h-full overflow-y-hidden will-change-transform">
         <div class="inner-wrapper w-full h-full overflow-y-hidden will-change-transform">
-          <div :class="`bg absolute top-0 left-0 grid grid-cols-1 sm:grid-cols-2 place-items-center content-center gap-4 w-full h-full bg-cover bg-center bg-[url(${album.cover})]`" :style="`background-image:var(--bg-gradient), url(${album.cover});`">
+          <div :class="`bg absolute top-0 left-0 grid grid-cols-1 sm:grid-cols-2 place-items-center content-center gap-4 w-full h-full bg-cover bg-center bg-[url(${album.images.cover})]`" :style="`background-image:var(--bg-gradient), url(${album.cover});`">
             <div class="absolute -z-10 top-0 left-0 w-full h-full">
               <video ref="videoRef" class="w-full h-full object-cover rotate-180" :src="`/videos/${album.bgVideo}`" autoplay muted loop playsinline disableremoteplayback />
             </div>
             <div class="w-2/3">
               <NuxtLink :to="`/music/${album.slug}`">
-                <img :src="album.cover" :alt="album.title">
+                <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" loading="lazy">
               </NuxtLink>
             </div>
             <div class="1/3">
               <h2 class="slide-heading text-8xl text-white">
-                <NuxtLink :to="`/music/${album.slug}`">
+                <NuxtLink :to="`/music/${album.slug}`" class="text-white">
                   {{ album.title }}
                 </NuxtLink>
               </h2>

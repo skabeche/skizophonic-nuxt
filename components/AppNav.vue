@@ -5,7 +5,7 @@
     </button>
   </div>
 
-  <nav class="fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
+  <nav class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
     <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
       <li>
         <NuxtLink to="/">Home</NuxtLink>
@@ -43,17 +43,17 @@
           ease: 'power1.inOut'
         },
       })
-      .fromTo('nav', {
+      .fromTo('.main-navigation', {
         clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
       }, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
-      .set('nav ul li', {
+      .set('.main-navigation ul li', {
         opacity: 0,
         y: 30,
       })
-      .to('nav ul li', {
+      .to('.main-navigation ul li', {
         duration: 0.4,
         opacity: 1,
         y: 0,
@@ -75,7 +75,7 @@
 </script>
 
 <style scoped>
-  nav {
+  .main-navigation {
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
     &.open {

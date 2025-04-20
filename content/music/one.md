@@ -2,4 +2,10 @@
 title: One
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit harum odio nam eius, deserunt praesentium et! Eos, quia repellendus? Molestias laborum vitae quidem quas fuga, nulla corrupti. In, modi tenetur.
+Grabado en los estudios Bubble de Castellón en algún momento de 2008 mientras tomábamos un carajillo.
+
+Productor: Nacho Fandós<br>
+Fotografía: Iván Dabón<br>
+Artwork: Dan Alcaide - www.danalcaide.com<br>
+
+Álbum descatalogado. No disponible para descarga o escucha.

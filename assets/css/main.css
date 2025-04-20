@@ -45,9 +45,12 @@
 
 @layer base {
   body {
-    @apply bg-white font-bold;
+    @apply bg-white font-bold scroll-smooth overflow-x-hidden;
   }
 
+  a {
+    @apply transition-all;
+  }
   main a {
     @apply text-gray-600 hover:underline;
   }
@@ -62,7 +65,7 @@
     font-kerning: none;
 
     a {
-      @apply text-white hover:no-underline;
+      @apply hover:no-underline;
     }
   }
   h1 {
@@ -74,6 +77,10 @@
 
   p {
     font-kerning: none;
+  }
+
+  iframe {
+    @apply border-none border-0;
   }
 }
 

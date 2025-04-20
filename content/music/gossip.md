@@ -2,4 +2,33 @@
 title: Gossip
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit harum odio nam eius, deserunt praesentium et! Eos, quia repellendus? Molestias laborum vitae quidem quas fuga, nulla corrupti. In, modi tenetur.
+Grabado, mezclado y masterizado en los estudios APK de Valencia en enero y febrero de 2011.
+
+Productor: Octavio Hidalgo<br>
+Fotografía: Pablo Serrano<br>
+Artwork: Dan Alcaide - www.danalcaide.com<br>
+
+## Instrumentos utilizados
+
+- Guitarra Rickenbacker 330
+- Guitarra Fender Stratocaster
+- Guitarra acústica Takamine
+- Bajo Epiphone Thunderbird
+- Batería Ludwig
+- Teclado Korg CX3
+- Teclado Moog Little Phatty Stage II
+- Teclado Nord Electro 3
+- Teclado Arp Solina
+
+## Amplificadores:
+
+- Orange Rocker 30C
+- Marshall JCM900
+- Cabezal Ampeg en pantalla SBL
+
+## Pedales de efectos
+
+- Wah-Wah Cry Baby
+- Delay Danelectro Pork Chop
+- Phaser Electro Harmonix Small Stone
+- Fuzz Electro Harmonix Bass Big Muff Pi
