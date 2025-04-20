@@ -1,13 +1,13 @@
 <template>
-  <section class="flex items-center gap-4 h-screen">
-    <div class="controls relative z-10 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-9xl">
-      <Icon name="ion:arrow-up-a" class="prev-slide cursor-pointer hover:text-black" />
-      <Icon name="ion:arrow-down-a" class="next-slide cursor-pointer hover:text-red-600" />
+  <section class="flex items-center gap-4 h-dvh">
+    <div class="controls relative z-20 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-9xl">
+      <Icon name="ion:arrow-up-a" class="prev-slide cursor-pointer hover:text-black transition-all" />
+      <Icon name="ion:arrow-down-a" class="next-slide cursor-pointer hover:text-red-600 transition-all" />
     </div>
     <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform">
       <div class="outer-wrapper w-full h-full overflow-y-hidden will-change-transform">
         <div class="inner-wrapper w-full h-full overflow-y-hidden will-change-transform">
-          <div :class="`bg absolute top-0 left-0 grid grid-cols-1 sm:grid-cols-2 place-items-center content-center gap-4 w-full h-full bg-cover bg-center bg-[url(${album.images.cover})]`" :style="`background-image:var(--bg-gradient), url(${album.cover});`">
+          <div :class="`bg absolute top-0 left-0 grid grid-cols-1 sm:grid-cols-2 place-items-center content-center gap-4 w-full h-full bg-cover bg-center`" :style="`background-image: linear-gradient(0deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 50%) 100%), url(albums/${album.slug}/${album.images.cover});`">
             <div class="absolute -z-10 top-0 left-0 w-full h-full">
               <video ref="videoRef" class="w-full h-full object-cover rotate-180" :src="`/videos/${album.bgVideo}`" autoplay muted loop playsinline disableremoteplayback />
             </div>
@@ -91,12 +91,11 @@
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
 
-    // Slides a section in on scroll down
     function slideIn() {
       // The first time this function runs, current is undefined
       if (current !== undefined) gsap.set(slides[current], { zIndex: 0 });
 
-      gsap.set(slides[next], { autoAlpha: 1, zIndex: 1 });
+      gsap.set(slides[next], { autoAlpha: 1, zIndex: 1, pointerEvents: "auto" });
       gsap.set(images[next], { yPercent: 0 });
       gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
 
@@ -133,9 +132,8 @@
       tl.play(0);
     }
 
-    // Slides a section out on scroll up
     function slideOut() {
-      gsap.set(slides[current], { zIndex: 1 });
+      gsap.set(slides[current], { zIndex: 1, pointerEvents: "none" });
       gsap.set(slides[next], { autoAlpha: 1, zIndex: 0 });
       gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
       gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
@@ -180,6 +178,13 @@
     }
 
     function handleTouchStart(e) {
+      // Navigate if the user touched a link.
+      const touchedLink = e.target.closest('a');
+      if (touchedLink) {
+        window.location.href = touchedLink.href;
+        return;
+      }
+
       if (!listening) return;
       const t = e.changedTouches[0];
       touch.startX = t.pageX;
@@ -217,9 +222,3 @@
 
   })
 </script>
-
-<style>
-  :root {
-    --bg-gradient: linear-gradient(0deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 50%) 100%);
-  }
-</style>
