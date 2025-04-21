@@ -32,3 +32,14 @@
     },
   ]
 </script>
+
+<style scoped>
+  a {
+    filter: drop-shadow(0 0 0 transparent);
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      filter: drop-shadow(-3px -3px 1px rgb(0, 255, 199)) drop-shadow(3px 3px 1px rgb(255, 0, 71));
+    }
+  }
+</style>

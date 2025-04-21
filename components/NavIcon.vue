@@ -14,5 +14,5 @@
     }
   })
 
-  const commonStyle = 'line relative block h-1 w-12 bg-white transition-all duration-300 ease-out'
+  const commonStyle = 'line relative block h-1 w-12 bg-white transition-all duration-300 ease-out rounded-full'
 </script>

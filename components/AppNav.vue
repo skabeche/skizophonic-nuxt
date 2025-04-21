@@ -81,6 +81,17 @@
     &.open {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     }
+
+    a {
+      text-shadow: 0 0 0 transparent;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        text-shadow:
+          -4px -4px 1px rgb(0, 255, 199),
+          4px 4px 1px rgb(255, 0, 71);
+      }
+    }
   }
 
   .nav-icon:hover {
