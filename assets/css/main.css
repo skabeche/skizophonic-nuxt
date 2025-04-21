@@ -69,7 +69,9 @@
     }
   }
   h1 {
-    @apply text-7xl;
+    /* @apply text-7xl; */
+    @apply text-[clamp(3rem,_10vw,_4.6rem)] leading-none overflow-y-hidden;
+    
   }
   h2 {
     @apply text-6xl;

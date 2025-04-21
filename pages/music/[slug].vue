@@ -1,6 +1,6 @@
 <template>
   <article class="container grid grid-cols-1 xl:grid-cols-2 gap-12 min-h-screen mt-[120px]">
-    <aside class="relative ">
+    <aside class="relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] [perspective:1000px] group cursor-pointer">
         <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] ">
           <div class="cover relative w-full top-0 left-0 [backface-visibility:hidden] overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
@@ -11,12 +11,12 @@
           </div>
         </div>
       </div>
-      <div ref="galletaRef" class="galleta absolute top-6 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
+      <div ref="galletaRef" class="galleta absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
         <img class="[clip-path:_circle(50%_at_50%_50%)] cursor-pointer" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @mouseenter="handleMouseEnterGalleta" @mouseleave="handleMouseLeaveGalleta">
       </div>
     </aside>
     <div>
-      <NuxtLink to="/music">back to music</NuxtLink>
+      <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
       <h1>{{ content.title }}</h1>
       <span class="text-2xl">{{ content.year }}</span>
       <nav class="album-navigation my-4 text-2xl up [&_a]:hover:text-black [&_a]:hover:no-underline" aria-label="Album navigation">
@@ -67,7 +67,7 @@
       })
       .to(caseRef.value, {
         duration: 0.6,
-        opacity: 0.7,
+        opacity: 0.6,
         zIndex: -1,
         x: -100,
         rotation: -10,
