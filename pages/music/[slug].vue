@@ -11,14 +11,14 @@
           </div>
         </div>
       </div>
-      <div ref="galletaRef" class="galleta absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
-        <img class="[clip-path:_circle(50%_at_50%_50%)] cursor-pointer" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @mouseenter="handleMouseEnterGalleta" @mouseleave="handleMouseLeaveGalleta">
+      <div class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
+        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)] cursor-pointer" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @mouseenter="handleMouseEnterGalleta" @mouseleave="handleMouseLeaveGalleta">
       </div>
     </aside>
     <div>
       <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
       <h1>{{ content.title }}</h1>
-      <span class="text-2xl">{{ content.year }}</span>
+      <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
       <nav class="album-navigation my-4 text-2xl up [&_a]:hover:text-black [&_a]:hover:no-underline" aria-label="Album navigation">
         <ul class="flex gap-4">
           <li><a href="#">Music</a></li>
@@ -27,7 +27,7 @@
         </ul>
       </nav>
       <section class="prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl">
-        <iframe v-if="content.player.bandcamp.id" :style="`width: ${content.player.bandcamp.width}; height: ${content.player.bandcamp.height};`" :src="`https://bandcamp.com/EmbeddedPlayer/album=${content.player.bandcamp.id}/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/`" seamless><a href="https://skizophonic.bandcamp.com/album/living-room">{{ content.title }} by Skizophonic</a></iframe>
+        <iframe v-if="content.player.bandcamp.id" :style="`width: ${content.player.bandcamp.width}; height: ${content.player.bandcamp.height};`" :src="`https://bandcamp.com/EmbeddedPlayer/album=${content.player.bandcamp.id}/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/`" seamless />
         <!-- <iframe v-if="content.player.spotify" style="border-radius:12px" :src="`${content.player.spotify}?utm_source=generator&theme=0`" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" /> -->
         <ContentRenderer :value="post" />
       </section>
