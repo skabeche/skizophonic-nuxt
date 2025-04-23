@@ -88,8 +88,8 @@
 
       &:hover {
         text-shadow:
-          -4px -4px 1px rgb(0, 255, 199),
-          4px 4px 1px rgb(255, 0, 71);
+        4px 4px 1px rgb(255, 0, 71),
+          -4px -4px 1px rgb(0, 255, 199);
       }
     }
   }
