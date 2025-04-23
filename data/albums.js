@@ -1,6 +1,7 @@
 export const albums = [
   {
     id: 1,
+    slug: 'video-rock',
     title: 'Video Rock',
     images: {
       cover: 'cover.jpg',
@@ -18,7 +19,22 @@ export const albums = [
         height: '406px'
       }
     },
-    slug: 'video-rock',
+    videos: {
+      youtube: [
+        {
+          id: 'XWjLfY-i1AE',
+          title: 'Me aburrís todos con la misma mierda',
+        },
+        {
+          id: '-C71_XDxNwc',
+          title: '¿Quién será Aaron Woodman?',
+        },
+        {
+          id: '6zND644fWAc',
+          title: 'Making of Video Rock',
+        },
+      ],
+    },
     bgVideo: 'vhs.mp4',
     tracks: [
       'Me aburrís todos con la misma mierda',
@@ -33,6 +49,7 @@ export const albums = [
   },
   {
     id: 2,
+    slug: 'velodrome',
     title: 'Velodrome',
     images: {
       cover: 'cover.jpg',
@@ -50,7 +67,22 @@ export const albums = [
         height: '472px'
       }
     },
-    slug: 'velodrome',
+    videos: {
+      youtube: [
+        {
+          id: 'gkLqopaEHpU',
+          title: 'Oh Oh Oh (Do Not Skip Any Detail)',
+        },
+        {
+          id: '6SJUCnURxx0',
+          title: 'Queen of Photoshop',
+        },
+        {
+          id: 'hWqCkjQP8G0',
+          title: 'Clockwork - Benicàssim.pop',
+        },
+      ],
+    },
     bgVideo: 'woman_dancing.mp4',
     tracks: [
       'How Would You Say I Love You?',
@@ -67,6 +99,7 @@ export const albums = [
   },
   {
     id: 3,
+    slug: 'gossip',
     title: 'Gossip',
     images: {
       cover: 'cover.jpg',
@@ -84,7 +117,18 @@ export const albums = [
         height: '439px'
       }
     },
-    slug: 'gossip',
+    videos: {
+      youtube: [
+        {
+          id: 'EgaE34PJiFc',
+          title: 'I’m Gonna Get Rid Of You',
+        },
+        {
+          id: 'wi6xNiO0xZQ',
+          title: 'Annie -  Conciertos de Radio 3 - TVE',
+        },
+      ],
+    },
     bgVideo: 'woman_finger.mp4',
     tracks: [
       'I Must Doubt',
@@ -100,6 +144,7 @@ export const albums = [
   },
   {
     id: 4,
+    slug: 'living-room',
     title: 'Living room',
     images: {
       cover: 'cover.jpg',
@@ -117,7 +162,18 @@ export const albums = [
         height: '340px'
       }
     },
-    slug: 'living-room',
+    videos: {
+      youtube: [
+        {
+          id: 'Thhr_smM1YE',
+          title: 'Living Room - Conciertos de Radio 3 - TVE',
+        },
+        // {
+        //   id: 'pWc9u1KQ2ms',
+        //   title: 'Living Room',
+        // },
+      ],
+    },
     bgVideo: 'factories.mp4',
     tracks: [
       'Shut Up',
@@ -130,6 +186,7 @@ export const albums = [
   },
   {
     id: 5,
+    slug: 'one',
     title: 'One',
     images: {
       cover: 'cover.jpg',
@@ -147,7 +204,18 @@ export const albums = [
         height: ''
       }
     },
-    slug: 'one',
+    videos: {
+      youtube: [
+        {
+          id: 'srcpryXQHXo',
+          title: 'Sweating Blood',
+        },
+        // {
+        //   id: 'YmKeR4UfhOA',
+        //   title: 'Smiles & Clouds',
+        // },
+      ],
+    },
     bgVideo: 'subway.mp4',
     tracks: [
       'Exhibitionist',

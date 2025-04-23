@@ -1,36 +1,37 @@
 <template>
-  <article class="container grid grid-cols-1 xl:grid-cols-2 gap-12 min-h-screen mt-[120px]">
+  <article class="container grid grid-cols-1 xl:grid-cols-2 gap-12 min-h-[calc(100dvh-120px)] mt-[120px]">
     <aside class="relative h-fit">
-      <div ref="caseRef" class="case relative z-10 w-[80%] [perspective:1000px] group cursor-pointer">
-        <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] ">
-          <div class="cover relative w-full top-0 left-0 [backface-visibility:hidden] overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
-          </div>
-          <div class="back absolute w-full top-0 left-0 [transform:rotateY(180deg)] [backface-visibility:hidden] will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title}`">
-          </div>
-        </div>
-      </div>
-      <div class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
-        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)] cursor-pointer" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @mouseenter="handleMouseEnterGalleta" @mouseleave="handleMouseLeaveGalleta">
-      </div>
+      <AlbumArtwork :content="content" />
     </aside>
     <div>
       <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
       <h1>{{ content.title }}</h1>
       <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
-      <nav class="album-navigation my-4 text-2xl up [&_a]:hover:text-black [&_a]:hover:no-underline" aria-label="Album navigation">
-        <ul class="flex gap-4">
-          <li><a href="#">Music</a></li>
-          <li><a href="#">Info</a></li>
-          <li><a href="#">Tracks</a></li>
-        </ul>
-      </nav>
-      <section class="prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl">
-        <iframe v-if="content.player.bandcamp.id" :style="`width: ${content.player.bandcamp.width}; height: ${content.player.bandcamp.height};`" :src="`https://bandcamp.com/EmbeddedPlayer/album=${content.player.bandcamp.id}/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/`" seamless />
-        <!-- <iframe v-if="content.player.spotify" style="border-radius:12px" :src="`${content.player.spotify}?utm_source=generator&theme=0`" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" /> -->
-        <ContentRenderer :value="post" />
-      </section>
+
+      <AlbumNav @active-section-id="setActiveSectionId" />
+      <div ref="contentRef" class="prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl prose-h2:text-2xl prose-h2:normal-case prose-ol:list-decimal prose-img:m-0 text-pretty">
+        <article id="music" class="active flex flex-col gap-4">
+          <div class="player">
+            <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
+          </div>
+          <div class="videos">
+            <div v-for="video in content.videos.youtube" :key="video.id">
+              <h2>{{ video.title }}</h2>
+              <YoutubeEmbed :video-id="video.id" :alt="video.title" />
+            </div>
+          </div>
+        </article>
+        <article id="info">
+          <div v-if="content.recordLabel" class="text-xl">Sello discográfico: {{ content.recordLabel }}</div>
+          <ContentRenderer :value="post" />
+        </article>
+        <article id="tracks">
+          <ol>
+            <li v-for="track in content.tracks" :key="track">{{ track }}</li>
+          </ol>
+        </article>
+      </div>
+
     </div>
   </article>
 </template>
@@ -52,61 +53,43 @@
   })
 
   const content = albums.find(album => album.slug === slug)
-  const galletaRef = ref(null)
-  const caseRef = ref(null)
+  const contentRef = ref(null)
 
-  const handleMouseEnterGalleta = () => {
-    gsap.
-      timeline()
-      .to(galletaRef.value, {
-        duration: 1,
-        scale: 1.3,
-        rotate: 0,
-        xPercent: -14,
-        ease: 'power4.out',
+  const activeSectionId = ref('#music')
+
+  const setActiveSectionId = (id) => {
+    gsap.timeline()
+      .to(activeSectionId.value, {
+        display: "none",
+        duration: 0.5,
+        autoAlpha: 0,
+        y: 40,
+        // filter: "blur(3px)",
+        ease: "power4.inOut",
       })
-      .to(caseRef.value, {
-        duration: 0.6,
-        opacity: 0.6,
-        zIndex: -1,
-        x: -100,
-        rotation: -10,
-        scale: 0.8,
-        filter: "blur(5px)",
-        ease: "power4.out",
-      }, '<')
-  }
-
-  const handleMouseLeaveGalleta = () => {
-    gsap.
-      timeline()
-      .to(galletaRef.value, {
-        duration: 1,
-        scale: 1,
-        rotate: 30,
-        xPercent: 0,
-        ease: 'power4.out',
-      }).to(caseRef.value, {
-        duration: 0.6,
-        opacity: 1,
-        zIndex: 10,
-        x: 0,
-        rotation: 0,
-        scale: 1,
-        filter: "blur(0px)",
-        ease: "power4.out"
-      }, '<')
+      .to(id, {
+        display: "block",
+        duration: 0.5,
+        autoAlpha: 1,
+        y: 0,
+        // filter: "blur(0)",
+        ease: "power4.inOut",
+        onComplete: () => {
+          activeSectionId.value = id
+        }
+      })
   }
 
   onMounted(() => {
-    gsap.fromTo(galletaRef.value, {
-      x: -200,
-      rotate: -90,
-    }, {
-      duration: 1,
-      x: 0,
-      rotate: 30,
-      ease: 'power4.out',
+    const contentArticles = contentRef.value.querySelectorAll('article')
+    const articlesInactiveId = [...contentArticles].filter((article) => `#${article.id}` !== activeSectionId.value);
+    gsap.utils.toArray(articlesInactiveId).forEach((article) => {
+      gsap.set(article, {
+        display: "none",
+        autoAlpha: 0,
+        y: 50,
+        // filter: "blur(3px)",
+      })
     })
   })
 </script>

@@ -6,7 +6,7 @@ Grabado, mezclado y masterizado en los estudios APK de Valencia en enero y febre
 
 Productor: Octavio Hidalgo<br>
 Fotografía: Pablo Serrano<br>
-Artwork: Dan Alcaide - www.danalcaide.com<br>
+Diseño gráfico: [Dan Alcaide](https://www.danalcaide.com)<br>
 
 ## Instrumentos utilizados
 

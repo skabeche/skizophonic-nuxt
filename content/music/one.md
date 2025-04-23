@@ -6,6 +6,4 @@ Grabado en los estudios Bubble de Castellón en algún momento de 2008 mientras 
 
 Productor: Nacho Fandós<br>
 Fotografía: Iván Dabón<br>
-Artwork: Dan Alcaide - www.danalcaide.com<br>
-
-Álbum descatalogado. No disponible para descarga o escucha.
+Diseño gráfico: [Dan Alcaide](https://www.danalcaide.com)<br>

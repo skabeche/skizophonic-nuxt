@@ -1,0 +1,23 @@
+<template>
+  <div class="bandcamp-embed">
+    <iframe v-if="playerId" :style="`width: ${width}; height: ${height};`" :src="`https://bandcamp.com/EmbeddedPlayer/album=${playerId}/size=large/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/`" seamless />
+    <p v-if="!playerId">Álbum descatalogado. No disponible para descarga o escucha.</p>
+  </div>
+</template>
+
+<script setup>
+  defineProps({
+    playerId: {
+      type: String,
+      required: true
+    },
+    width: {
+      type: String,
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '100%'
+    },
+  });
+</script>
