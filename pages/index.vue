@@ -124,7 +124,7 @@
           trigger: '.content3',
           start: 'top center',
           end: '+=100%',
-          markers: true,
+          // markers: true,
           toggleActions: 'play none none reverse',
         }
       })
