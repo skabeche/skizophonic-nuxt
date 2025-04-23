@@ -4,27 +4,26 @@
       <AppLogo class="fill-white" />
     </HeroHypnotic>
 
-    <section class="content1 flex flex-col justify-center w-screen min-h-screen p-4 lg:p-40 text-2xl lg:text-6xl text-black bg-white prose prose-p:leading-normal text-pretty">
+    <section class="content1 flex flex-col justify-center w-screen min-h-screen p-4 lg:p-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
       <div class="container">
-        <p>
-          La banda más lenta de la historia se creó entre Castellón y Benicasim a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.
-        </p>
+        <p>La banda más lenta de la historia se formó entre Castellón y Benicasim a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.</p>
       </div>
     </section>
 
     <section class="content2 flex flex-col justify-center relative w-screen min-h-dvh text-white bg-black">
-      <div ref="videoRef" class="absolute -top-22 left-0 w-screen min-h-dvh aspect-video">
-        <video src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop playsinline />
+      <div ref="videoRef" class="absolute -top-10 lg:-top-18 2xl:-top-28 left-0 w-screen min-h-dvh aspect-video">
+        <video src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full object-cover" autoplay muted loop playsinline />
       </div>
 
-      <div class="container py-12 lg:py-40 text-2xl lg:text-6xl prose-black prose-p:leading-normal text-pretty">
-        <p>
-          No obstante, en proceso de reestructuración musical y en la búsqueda inquieta de nuevos sonidos, los miembros de la banda dieron un giro a sonidos más garageros, indies y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.
-        </p>
+      <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
+        <p>No obstante, en la búsqueda inquieta de nuevos sonidos, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.</p>
       </div>
     </section>
 
-    <section class="flex items-center justify-center p-4 sm:p-12">
+    <section class="content3 flex flex-col items-center justify-center gap-18 p-4 sm:p-12">
+      <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
+        <p>Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y se los encuentra quizá pueda escucharlos.</p>
+      </div>
       <ButtonHypnotic>Listen to their music</ButtonHypnotic>
     </section>
 
@@ -50,8 +49,9 @@
   onMounted(() => {
     const content1Split = new SplitType('.content1 p', { types: 'lines, words' })
     const content2Split = new SplitType('.content2 p', { types: 'lines, words' })
+    const content3Split = new SplitType('.content3 p', { types: 'lines, words' })
 
-    gsap.set([content1Split.lines, content2Split.lines], {
+    gsap.set([content1Split.lines, content2Split.lines, content3Split.lines], {
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
     })
 
@@ -78,7 +78,7 @@
       .from(content1Split.words, {
         stagger: 0.025,
         y: 200,
-      }, '<-=0.2')
+      }, '<-=0.25')
       .to('.content1', {
         scrollTrigger: {
           trigger: '.content1',
@@ -107,9 +107,28 @@
         color: 'black',
       }, '<')
       .to(video.value, {
+        duration: .5,
         autoAlpha: 0,
+        // rotate: 30,
+        yPercent: 15,
+        ease: 'power2.in',
       }, '<')
       .from(content2Split.words, {
+        stagger: 0.015,
+        y: 200,
+      }, '<')
+
+      gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.content3',
+          start: 'top center',
+          end: '+=100%',
+          markers: true,
+          toggleActions: 'play none none reverse',
+        }
+      })
+      .from(content3Split.words, {
         stagger: 0.015,
         y: 200,
       }, '<')
