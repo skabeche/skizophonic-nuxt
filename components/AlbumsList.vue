@@ -178,13 +178,6 @@
     }
 
     function handleTouchStart(e) {
-      // Navigate if the user touched a link.
-      const touchedLink = e.target.closest('a');
-      if (touchedLink) {
-        window.location.href = touchedLink.href;
-        return;
-      }
-
       if (!listening) return;
       const t = e.changedTouches[0];
       touch.startX = t.pageX;
@@ -201,6 +194,16 @@
       const t = e.changedTouches[0];
       touch.dx = t.pageX - touch.startX;
       touch.dy = t.pageY - touch.startY;
+
+      if (touch.dy >= -10 && touch.dy <= 10) {
+        // Navigate if the user touched a link.
+        const touchedLink = e.target.closest('a');
+        if (touchedLink) {
+          window.location.href = touchedLink.href;
+          return;
+        }
+      }
+
       if (touch.dy > 10) direction = "up";
       if (touch.dy < -10) direction = "down";
       handleDirection();
