@@ -85,6 +85,10 @@
   iframe {
     @apply border-none border-0;
   }
+
+  button {
+    @apply cursor-pointer transition-all;
+  }
 }
 
 /* Lenis */

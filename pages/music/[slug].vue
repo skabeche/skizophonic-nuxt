@@ -1,9 +1,9 @@
 <template>
   <article class="container grid grid-cols-1 xl:grid-cols-2 gap-12 min-h-[calc(100dvh-120px)] mt-[120px]">
-    <aside class="relative h-fit">
+    <aside>
       <AlbumArtwork :content="content" />
     </aside>
-    <div>
+    <section>
       <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
       <h1>{{ content.title }}</h1>
       <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
@@ -31,8 +31,7 @@
           </ol>
         </article>
       </div>
-
-    </div>
+    </section>
   </article>
 </template>
 

@@ -1,18 +1,24 @@
 <template>
-  <div ref="caseRef" class="case relative z-10 w-[80%] [perspective:1000px] cursor-pointer">
-    <div ref="caseInnerRef" class="relative w-full h-full [transform-style:preserve-3d]" @click="handleClickCase">
-      <div class="cover relative w-full top-0 left-0 rounded-sm [backface-visibility:hidden] overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-        <img class="object-cover rounded-sm" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
+  <div class="artwork-controls mb-2">
+    <ButtonExpand v-if="!expandedArtwork" ref="buttonExpandRef" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
+    <ButtonExpand v-if="expandedArtwork" ref="buttonCollapseRef" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
+  </div>
+    <div class="artwork relative h-fit">
+      <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
+        <div ref="caseInnerRef" class="relative w-full h-full transform-3d" @click="handleClickCase">
+          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
+          </div>
+          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title} - back`">
+          </div>
+        </div>
       </div>
-      <div class="back absolute w-full top-0 left-0 [transform:rotateY(180deg)] [backface-visibility:hidden] will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-        <img class="object-cover rounded-sm" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title}`">
+
+      <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
+        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @click="handleClickGalleta">
       </div>
     </div>
-  </div>
-
-  <div class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
-    <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)] cursor-pointer" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @click="handleClickGalleta">
-  </div>
 </template>
 
 <script setup>
@@ -26,35 +32,168 @@
   })
 
   const caseRef = useTemplateRef('caseRef')
+  const back = useTemplateRef('backRef')
+  const disc = useTemplateRef('discRef')
   const caseInner = useTemplateRef('caseInnerRef')
   const galleta = useTemplateRef('galletaRef')
+  const buttonExpand = useTemplateRef('buttonExpandRef')
+  const buttonCollapse = useTemplateRef('buttonCollapseRef')
+  const expandedArtwork = ref(false);
   const flippedCase = ref(false);
   const zoomedGalleta = ref(false);
+  const buttonDisabled = ref(false);
 
   onMounted(() => {
     gsap.fromTo(galleta.value, {
-      x: -200,
+      xPercent: -50,
       rotate: -90,
     }, {
       duration: 1,
-      x: 0,
+      xPercent: 0,
       rotate: 30,
       ease: 'power4.out',
     })
   })
 
+  const handleExpandArtwork = () => {
+    expandedArtwork.value = true
+
+    gsap
+      .timeline({
+        onStart: () => {
+          buttonDisabled.value = true
+        },
+        onComplete: () => {
+          buttonDisabled.value = false
+        }
+      })
+      .set([buttonExpand.value, buttonCollapse.value], {
+        disabled: true
+      })
+      .to(galleta.value, {
+        xPercent: -50,
+        rotate: 0,
+        duration: 0.7,
+        ease: "power4.in",
+        onComplete: () => {
+          gsap.set(disc.value, {
+            opacity: 0,
+            translateY: '50%',
+            width: "90%",
+          })
+        }
+      })
+      .to(caseRef.value, {
+        width: '90%',
+        duration: 0.6,
+        ease: "power4.inOut",
+      })
+      .to(back.value, {
+        position: "relative",
+        opacity: 1,
+        left: 0,
+        rotateY: 0,
+        duration: 0.7,
+        marginTop: '1rem',
+        ease: "power4.inOut"
+      })
+      .fromTo(disc.value, {
+        marginTop: 0,
+      }, {
+
+        position: "relative",
+        opacity: 1,
+        duration: 0.6,
+        marginTop: '1.2rem',
+        ease: "power4.out",
+        onStart: () => {
+          gsap.set(galleta.value, {
+            xPercent: 0,
+          })
+        },
+      })
+
+  }
+
+  const handleCollapseArtwork = () => {
+    expandedArtwork.value = false
+
+    gsap
+      .timeline({
+        onStart: () => {
+          buttonDisabled.value = true
+        },
+        onComplete: () => {
+          buttonDisabled.value = false
+        }
+      })
+      .to(disc.value, {
+        opacity: 0,
+        marginTop: 0,
+        duration: 0.6,
+        width: "65%",
+        ease: "power4.inOut",
+        onComplete: () => {
+          gsap.set(disc.value, {
+            position: "absolute",
+            top: '50%',
+            translateY: '-50%',
+          })
+        }
+      })
+      .to(caseRef.value, {
+        width: '80%',
+        duration: 0.6,
+        ease: "power4.inOut",
+      }, '<')
+      .to(back.value, {
+        y: 0,
+        rotateY: 180,
+        duration: 0.6,
+        marginTop: 0,
+        ease: "power4.inOut",
+        onComplete: () => {
+          gsap.set(back.value, {
+            position: "absolute",
+          })
+        }
+      })
+      .to(galleta.value, {
+        xPercent: -50,
+        rotate: -90,
+      })
+      .to(galleta.value, {
+        xPercent: 0,
+        rotate: 30,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power4.out",
+        onStart: () => {
+          gsap.set(disc.value, {
+            y: 0,
+            opacity: 1,
+          })
+        }
+      })
+  }
+
   const handleClickCase = () => {
+    if (expandedArtwork.value) return
+
     flippedCase.value = !flippedCase.value;
+
     gsap.to(caseInner.value, {
       rotateY: flippedCase.value ? 180 : 0,
       duration: 0.7,
       ease: 'power4.inOut',
     });
-
   }
 
   const handleClickGalleta = () => {
+    if (expandedArtwork.value) return
+
     zoomedGalleta.value = !zoomedGalleta.value;
+
     if (zoomedGalleta.value) {
       gsap.
         timeline()
