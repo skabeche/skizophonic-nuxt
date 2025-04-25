@@ -3,22 +3,21 @@
     <ButtonExpand v-if="!expandedArtwork" ref="buttonExpandRef" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
     <ButtonExpand v-if="expandedArtwork" ref="buttonCollapseRef" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
   </div>
-    <div class="artwork relative h-fit">
-      <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
-        <div ref="caseInnerRef" class="relative w-full h-full transform-3d" @click="handleClickCase">
-          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
-          </div>
-          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
-            <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title} - back`">
-          </div>
+  <div class="artwork relative h-fit">
+    <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
+      <div ref="caseInnerRef" class="relative w-full h-full transform-3d" @click="handleClickCase">
+        <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+          <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
+        </div>
+        <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+          <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title} - back`">
         </div>
       </div>
-
-      <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
-        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @click="handleClickGalleta">
-      </div>
     </div>
+    <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
+      <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" @click="handleClickGalleta">
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -58,6 +57,37 @@
   const handleExpandArtwork = () => {
     expandedArtwork.value = true
 
+    // Reset animations.
+    if (flippedCase.value) {
+      gsap.to(caseInner.value, {
+        rotateY: 0,
+        duration: 0.7,
+        ease: 'power4.inOut',
+      })
+    }
+    // Reset animations.
+    if (zoomedGalleta.value) {
+      gsap.
+        timeline()
+        .to(galleta.value, {
+          duration: 0.7,
+          scale: 1,
+          rotate: 30,
+          xPercent: 0,
+          ease: 'power4.out',
+        }).to(caseRef.value, {
+          duration: 0.6,
+          opacity: 1,
+          zIndex: 10,
+          x: 0,
+          rotation: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          ease: "power4.out"
+        }, '<')
+    }
+
+    // Start animations.
     gsap
       .timeline({
         onStart: () => {
