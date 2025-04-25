@@ -88,6 +88,10 @@
 
   button {
     @apply cursor-pointer transition-all;
+
+    &:disabled {
+      @apply opacity-50 pointer-events-none;
+    }
   }
 }
 

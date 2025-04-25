@@ -1,8 +1,8 @@
 <template>
-  <button class="cursor-pointer flex gap-1 group">
+  <button class="cursor-pointer flex group">
     [
-    <span class="inline-block">{{ preffix }}</span>
-    <span class="hidden opacity-0 transition-all duration-300 ease-in-out [transition-behavior:_allow-discrete] group-hover:inline-block group-hover:opacity-100">
+    <span class="inline-block mx-1">{{ preffix }}</span>
+    <span class="w-0 group-hover:w-full transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap">
       <slot />
     </span>
     ]
