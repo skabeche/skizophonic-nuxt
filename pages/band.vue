@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
+  <section ref="bandRef" class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
       <ul class="members flex flex-col gap-3 p-8 text-lg sm:text-xl">
         <li><span>Vocals & Guitar: Nacho Galí</span></li>
@@ -29,9 +29,11 @@
   import gsap from "gsap";
 
   definePageMeta({
+    pageTransition: false,
     pageTransition: pageTransitionConfig,
   });
 
+  const bandRef = useTemplateRef('bandRef')
   const prevImage = ref(null)
   const currentImage = ref(null)
 
@@ -74,35 +76,35 @@
     });
   }
 
-  const main = ref();
   let ctx;
   onMounted(() => {
     ctx = gsap.context((self) => {
-      const tl = gsap.timeline();
-
-      tl.fromTo('section', {
-        clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-      }, {
-        duration: 1.4,
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        ease: 'power4.inOut',
-      });
-      tl.fromTo('figure', {
-        clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-      }, {
-        duration: 1,
-        delay: 0.5,
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-        stagger: 0.25,
-        ease: 'power4.inOut',
-      });
-      tl.from('.members li span', {
-        y: 100,
-        duration: 1.4,
-        ease: 'power4.inOut',
-      }, '<0.5');
+      gsap
+        .timeline()
+        .fromTo('section', {
+          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+        }, {
+          duration: 1.4,
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          ease: 'power4.inOut',
+        })
+        .fromTo('figure', {
+          clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+        }, {
+          duration: 1,
+          delay: 0.5,
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+          stagger: 0.25,
+          ease: 'power4.inOut',
+        })
+        .from('.members li span', {
+          y: 100,
+          duration: 1.4,
+          ease: 'power4.inOut',
+        }, '<0.5');
     })
-  }, main.value); // <- Scope!
+    // }, bandRef.value); // <- Scope!
+  }); // <- Scope!
 
   onUnmounted(() => {
     ctx.revert(); // <- Easy Cleanup!

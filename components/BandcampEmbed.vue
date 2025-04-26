@@ -8,7 +8,7 @@
 <script setup>
   defineProps({
     playerId: {
-      type: String,
+      type: Number,
       required: true
     },
     width: {

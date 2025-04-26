@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHeader />
-    <main>
+    <main class="overflow-x-hidden">
       <slot />
     </main>
     <AppFooter />

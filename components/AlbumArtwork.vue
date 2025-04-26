@@ -47,6 +47,7 @@
       xPercent: -50,
       rotate: -90,
     }, {
+      delay: 0.6, // Delay to align with transition page.
       duration: 1,
       xPercent: 0,
       rotate: 30,
@@ -108,7 +109,7 @@
         onComplete: () => {
           gsap.set(disc.value, {
             opacity: 0,
-            translateY: '50%',
+            translate: '0 0',
             width: "90%",
           })
         }
@@ -130,7 +131,6 @@
       .fromTo(disc.value, {
         marginTop: 0,
       }, {
-
         position: "relative",
         opacity: 1,
         duration: 0.6,
@@ -166,8 +166,7 @@
         onComplete: () => {
           gsap.set(disc.value, {
             position: "absolute",
-            top: '50%',
-            translateY: '-50%',
+            translate: '0 -50%',
           })
         }
       })
@@ -200,7 +199,6 @@
         ease: "power4.out",
         onStart: () => {
           gsap.set(disc.value, {
-            y: 0,
             opacity: 1,
           })
         }

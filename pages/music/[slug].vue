@@ -8,8 +8,8 @@
       <h1>{{ content.title }}</h1>
       <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
 
-      <AlbumNav @active-section-id="setActiveSectionId" />
-      <div ref="contentRef" class="prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl prose-h2:text-2xl prose-h2:normal-case prose-ol:list-decimal prose-img:m-0 text-pretty">
+      <AlbumNav @active-section-id="setCurrentActiveSectionId" />
+      <div ref="contentRef" class="content prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl prose-h2:text-2xl prose-h2:normal-case prose-ol:list-decimal prose-img:m-0 text-pretty">
         <article id="music" class="active flex flex-col gap-4">
           <div class="player">
             <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
@@ -42,7 +42,6 @@
   import gsap from "gsap";
 
   definePageMeta({
-    key: route => route.fullPath,
     pageTransition: pageTransitionConfig,
   });
 
@@ -53,12 +52,48 @@
 
   const content = albums.find(album => album.slug === slug)
   const contentRef = ref(null)
+  const currentActiveSectionId = ref('#music')
+  let ctx;
 
-  const activeSectionId = ref('#music')
+  onMounted(() => {
+    const contentArticles = contentRef.value.querySelectorAll('.content article')
+    const articlesInactiveId = [...contentArticles].filter((article) => `#${article.id}` !== currentActiveSectionId.value);
+    gsap.utils.toArray(articlesInactiveId).forEach((article) => {
+      gsap.set(article, {
+        display: "none",
+        autoAlpha: 0,
+        y: 40,
+        // filter: "blur(3px)",
+      })
+    })
 
-  const setActiveSectionId = (id) => {
-    gsap.timeline()
-      .to(activeSectionId.value, {
+    ctx = gsap.context((self) => {
+      gsap.set('article, section, aside, .videos', {
+        opacity: 0,
+        y: -30,
+        // clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+      })
+      gsap
+        .timeline()
+        .to('article, section, aside, .videos', {
+          opacity: 1,
+          y: 0,
+          // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          duration: 0.6,
+          stagger: 0.2,
+          ease: "power4.inOut",
+        })
+    }); // <- Scope!
+  })
+
+  onUnmounted(() => {
+    ctx.revert(); // <- Easy Cleanup!
+  });
+
+  const setCurrentActiveSectionId = (nextId) => {
+    gsap
+      .timeline()
+      .to(currentActiveSectionId.value, {
         display: "none",
         duration: 0.5,
         autoAlpha: 0,
@@ -66,7 +101,7 @@
         // filter: "blur(3px)",
         ease: "power4.inOut",
       })
-      .to(id, {
+      .to(nextId, {
         display: "block",
         duration: 0.5,
         autoAlpha: 1,
@@ -74,21 +109,8 @@
         // filter: "blur(0)",
         ease: "power4.inOut",
         onComplete: () => {
-          activeSectionId.value = id
+          currentActiveSectionId.value = nextId
         }
       })
   }
-
-  onMounted(() => {
-    const contentArticles = contentRef.value.querySelectorAll('article')
-    const articlesInactiveId = [...contentArticles].filter((article) => `#${article.id}` !== activeSectionId.value);
-    gsap.utils.toArray(articlesInactiveId).forEach((article) => {
-      gsap.set(article, {
-        display: "none",
-        autoAlpha: 0,
-        y: 50,
-        // filter: "blur(3px)",
-      })
-    })
-  })
 </script>

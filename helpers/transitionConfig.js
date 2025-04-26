@@ -8,29 +8,31 @@ const pageTransitionConfig = {
   name: 'page-transition',
   mode: 'out-in',
   appear: true,
-  // onEnter: (el, done) => {
+  onEnter: (el, done) => {
 
-  //   console.log('----')
-  //   console.log('transition enter')
-  //   gsap.set(el, {
-  //     clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-  //   });
-  //   gsap
-  //     .timeline({
-  //       paused: true,
-  //       onComplete() {
-  //         toggleTransitionComplete(true);
-  //         done();
-  //         console.log('transition enter complete');
-  //       },
-  //     })
-  //     .to(el, {
-  //       duration: 1.2,
-  //       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-  //       ease: 'power4.inOut',
-  //     })
-  //     .play();
-  // },
+    console.log('----')
+    console.log('transition enter')
+    gsap.set(el, {
+      // clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+      opacity: 0,
+    });
+    gsap
+      .timeline({
+        paused: true,
+        onComplete() {
+          toggleTransitionComplete(true);
+          done();
+          console.log('transition enter complete');
+        },
+      })
+      .to(el, {
+        duration: 0.6,
+        opacity: 1,
+        // clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power4.inOut',
+      })
+      .play();
+  },
   onLeave: (el, done) => {
     toggleTransitionComplete(false);
     gsap
@@ -42,7 +44,7 @@ const pageTransitionConfig = {
         },
       })
       .to(el, {
-        duration: 2,
+        duration: 1.6,
         clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
         ease: 'power4.inOut',
       })
