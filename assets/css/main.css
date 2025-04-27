@@ -87,7 +87,7 @@
   }
 
   button {
-    @apply cursor-pointer transition-all;
+    @apply cursor-pointer transition-all duration-500 ease-in-out;
 
     &:disabled {
       @apply opacity-50 pointer-events-none;

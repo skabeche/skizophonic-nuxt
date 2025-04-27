@@ -1,7 +1,7 @@
 <template>
-  <div ref="wrapperRef" class="wrapper relative w-fit will-change-transform
-    before:absolute before:z-70 before:top-0 before:left-0 before:w-full before:h-full before:bg-black
-    after:absolute after:z-60 after:top-0 after:-left-0 after:w-full after:h-full after:bg-white">
+  <div ref="wrapperRef" class="wrapper relative w-fit
+    before:absolute before:z-70 before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:will-change-transform
+    after:absolute after:z-60 after:top-0 after:-left-4 after:w-[calc(100%+1rem)] after:h-[calc(100%+1rem)] after:bg-white">
     <slot class="w-full" />
   </div>
 </template>
@@ -48,16 +48,11 @@
           }
         })
         .to(wrapper.value, {
-          delay: .3,
+          delay: 0.3,
           '--scaleBefore': 0,
           '--scaleAfter': 0,
           duration: 0.7,
           ease: "power4.inOut",
-          onComplete: () => {
-            gsap.set(wrapper.value, {
-              background: "transparent",
-            })
-          }
         })
 
     }, wrapper.value); // <- Scope!

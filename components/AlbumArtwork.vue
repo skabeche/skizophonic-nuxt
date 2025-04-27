@@ -1,16 +1,18 @@
 <template>
-  <div class="artwork-controls mb-2">
-    <ButtonExpand v-if="!expandedArtwork" ref="buttonExpandRef" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
-    <ButtonExpand v-if="expandedArtwork" ref="buttonCollapseRef" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
-  </div>
   <AnimationReveal>
+    <div class="artwork-controls mb-2">
+      <ButtonExpand v-if="!expandedArtwork" ref="buttonExpandRef" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
+      <ButtonExpand v-if="expandedArtwork" ref="buttonCollapseRef" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
+    </div>
+  </AnimationReveal>
+  <AnimationReveal :delay="0.3">
     <div class="artwork relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
         <div ref="caseInnerRef" class="relative w-full h-full transform-3d" @click="handleClickCase">
-          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]">
             <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
           </div>
-          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_15px_-3px_rgba(0,_0,_0,_.7)]">
+          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]">
             <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title} - back`">
           </div>
         </div>
@@ -50,9 +52,9 @@
       xPercent: -50,
       rotate: -90,
     }, {
-      opacity: 1,
-      delay: 1.6, // Delay to align with animation reveal.
+      delay: 2, // Delay to align with animation reveal.
       duration: 1,
+      opacity: 1,
       xPercent: 0,
       rotate: 30,
       ease: 'power4.out',
@@ -114,12 +116,12 @@
           gsap.set(disc.value, {
             opacity: 0,
             translate: '0 0',
-            width: "90%",
+            width: "95%",
           })
         }
       })
       .to(caseRef.value, {
-        width: '90%',
+        width: '95%',
         duration: 0.6,
         ease: "power4.inOut",
       })
