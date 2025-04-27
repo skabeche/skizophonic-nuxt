@@ -4,22 +4,31 @@
       <AlbumArtwork :content="content" />
     </aside>
     <section>
-      <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
-      <h1>{{ content.title }}</h1>
-      <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
-
-      <AlbumNav @active-section-id="setCurrentActiveSectionId" />
+      <AnimationReveal delay="0.2">
+        <header>
+          <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
+          <h1>{{ content.title }}</h1>
+          <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
+        </header>
+      </AnimationReveal>
+      <AnimationReveal delay="0.3">
+        <AlbumNav class="album-nav" @active-section-id="setCurrentActiveSectionId" />
+      </AnimationReveal>
       <div ref="contentRef" class="content prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl prose-h2:text-2xl prose-h2:normal-case prose-ol:list-decimal prose-img:m-0 text-pretty">
         <article id="music" class="active flex flex-col gap-4">
-          <div class="player">
-            <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
-          </div>
-          <div class="videos">
-            <div v-for="video in content.videos.youtube" :key="video.id">
-              <h2>{{ video.title }}</h2>
-              <YoutubeEmbed :video-id="video.id" :alt="video.title" />
+          <AnimationReveal class="w-full" delay="0.5">
+            <div class="player">
+              <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
             </div>
-          </div>
+          </AnimationReveal>
+          <AnimationReveal class="w-full" delay="0.6">
+            <div class="videos">
+              <div v-for="video in content.videos.youtube" :key="video.id">
+                <h2>{{ video.title }}</h2>
+                <YoutubeEmbed :video-id="video.id" :alt="video.title" />
+              </div>
+            </div>
+          </AnimationReveal>
         </article>
         <article id="info">
           <div v-if="content.recordLabel" class="text-xl">Sello discográfico: {{ content.recordLabel }}</div>
@@ -36,13 +45,14 @@
 </template>
 
 <script setup>
-  import pageTransitionConfig from '~/helpers/transitionConfig';
+  // import pageTransitionConfig from '~/helpers/transitionConfig';
   import { albums } from "~/data/albums";
 
   import gsap from "gsap";
 
   definePageMeta({
-    pageTransition: pageTransitionConfig,
+    // pageTransition: pageTransitionConfig,
+    pageTransition: false,
   });
 
   const slug = useRoute().params.slug
@@ -53,7 +63,6 @@
   const content = albums.find(album => album.slug === slug)
   const contentRef = ref(null)
   const currentActiveSectionId = ref('#music')
-  let ctx;
 
   onMounted(() => {
     const contentArticles = contentRef.value.querySelectorAll('.content article')
@@ -66,29 +75,7 @@
         // filter: "blur(3px)",
       })
     })
-
-    ctx = gsap.context((self) => {
-      gsap.set('article, section, aside, .videos', {
-        opacity: 0,
-        y: -30,
-        // clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-      })
-      gsap
-        .timeline()
-        .to('article, section, aside, .videos', {
-          opacity: 1,
-          y: 0,
-          // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-          duration: 0.6,
-          stagger: 0.2,
-          ease: "power4.inOut",
-        })
-    }); // <- Scope!
   })
-
-  onUnmounted(() => {
-    ctx.revert(); // <- Easy Cleanup!
-  });
 
   const setCurrentActiveSectionId = (nextId) => {
     gsap
@@ -98,7 +85,6 @@
         duration: 0.5,
         autoAlpha: 0,
         y: 40,
-        // filter: "blur(3px)",
         ease: "power4.inOut",
       })
       .to(nextId, {
@@ -106,7 +92,6 @@
         duration: 0.5,
         autoAlpha: 1,
         y: 0,
-        // filter: "blur(0)",
         ease: "power4.inOut",
         onComplete: () => {
           currentActiveSectionId.value = nextId

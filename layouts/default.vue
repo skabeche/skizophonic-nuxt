@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="overflow-x-hidden">
     <AppHeader />
-    <main class="overflow-x-hidden">
+    <main>
       <slot />
     </main>
     <AppFooter />
