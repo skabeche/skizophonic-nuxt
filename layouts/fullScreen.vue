@@ -1,8 +1,15 @@
 <template>
-  <div class="overscroll-none">
+  <div>
     <AppHeader />
     <main>
       <slot />
     </main>
   </div>
 </template>
+
+<style>
+  html {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+</style>
