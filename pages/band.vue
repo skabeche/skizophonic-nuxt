@@ -1,7 +1,7 @@
 <template>
-  <section ref="bandRef" class="flex flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
+  <section class="flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
-      <ul class="members flex flex-col gap-3 p-8 text-lg sm:text-xl">
+      <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_li]:[clip-path:_polygon(0_0,_100%_0,_100%_100%,_0%_100%)] [&_span]:block">
         <li><span>Vocals & Guitar: Nacho Galí</span></li>
         <li><span>Guitar: Dan Alcaide</span></li>
         <li><span>Guitar: Fede Trillo</span></li>
@@ -15,7 +15,7 @@
     </div>
     <figure v-for="image in images" :key="image.src" class="relative flex-auto overflow-hidden">
       <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
-        <img class="h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" loading="lazy" :alt="image.alt" :src="image.src" @click="handleClick" @mousemove="handleMouseMove">
+        <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" width="1920" loading="lazy" :alt="image.alt" :src="image.src" @click="handleClick" @mousemove="handleMouseMove" />
       </div>
       <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
     </figure>
@@ -29,34 +29,34 @@
   import gsap from "gsap";
 
   definePageMeta({
-    pageTransition: false,
     pageTransition: pageTransitionConfig,
   });
 
-  const bandRef = useTemplateRef('bandRef')
   const prevImage = ref(null)
   const currentImage = ref(null)
+  const isLargeDevice = window.matchMedia("(min-width: 1024px)");
+  let ctx;
 
   const handleClick = (e) => {
     const element = e.srcElement
 
     prevImage.value = (currentImage.value !== null) ? currentImage.value : element
-
     currentImage.value = element;
 
     if (prevImage.value !== currentImage.value) {
       prevImage.value.classList.remove('h-[calc(100dvh-1.4rem)]')
     }
 
-    element.classList.toggle('h-[calc(100dvh-1.4rem)]')
     element.classList.toggle('hover:scale-110')
-    // element.classList.toggle('w-fit')
-    // element.classList.toggle('w-full')
+    if (isLargeDevice.matches) {
+      element.classList.toggle('h-[calc(100dvh-1.4rem)]')
+    }
 
     // Scroll to element after CSS transition is done.
+    const delay = isLargeDevice.matches ? 500 : 0;
     setTimeout(function () {
       element.scrollIntoView({ behavior: "smooth", block: "start", inline: "start" })
-    }, 500);
+    }, delay);
   }
 
   const handleMouseMove = (e) => {
@@ -76,7 +76,6 @@
     });
   }
 
-  let ctx;
   onMounted(() => {
     ctx = gsap.context((self) => {
       gsap
@@ -103,22 +102,9 @@
           ease: 'power4.inOut',
         }, '<0.5');
     })
-    // }, bandRef.value); // <- Scope!
-  }); // <- Scope!
+  });
 
   onUnmounted(() => {
-    ctx.revert(); // <- Easy Cleanup!
+    ctx.revert();
   });
 </script>
-
-<style scoped>
-  .members {
-    & li {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    }
-
-    & span {
-      display: block;
-    }
-  }
-</style>
