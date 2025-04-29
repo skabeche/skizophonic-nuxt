@@ -62,6 +62,7 @@
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
 
+      // Hero and block 1 timeline.
       gsap
         .timeline({
           scrollTrigger: {
@@ -78,7 +79,7 @@
           clipPath: 'circle(100% at 50% 50%)',
         }, {
           scale: 1.7,
-          filter: 'blur(5px)',
+          // filter: 'blur(5px)',
           rotate: -10,
           autoAlpha: 0,
           // clipPath: 'circle(0% at 50% 50%)',
@@ -99,6 +100,7 @@
           }
         })
 
+      // Block 1 timeline.
       gsap.to(block1Split.lines, {
         duration: .7,
         autoAlpha: 0,
@@ -114,6 +116,7 @@
         }
       })
 
+      // Block 2 timeline.
       gsap
         .timeline({
           scrollTrigger: {
@@ -134,10 +137,6 @@
           backgroundColor: 'black',
           color: 'white',
         }, '<')
-        // .from(block2Split.words, {
-        //   stagger: 0.02,
-        //   y: 200,
-        // }) 
         .to(video.value, {
           duration: 3,
           maskSize: '900% 900%',
@@ -151,23 +150,12 @@
           trigger: block2.value,
           start: 'bottom bottom',
           end: '+=100%',
-          markers: true,
+          // markers: true,
           toggleActions: 'play none none reverse',
-          onEnter: () => {
-            gsap.set(block2Split.lines, {
-              position: 'relative',
-              zIndex: 0
-            })
-          },
-          onLeaveBack: () => {
-            gsap.set(block2Split.lines, {
-              position: 'relative',
-              zIndex: -1
-            })
-          }
         },
       })
 
+      // Block 3 timeline.
       gsap
         .timeline({
           scrollTrigger: {
@@ -175,7 +163,7 @@
             start: 'top center',
             end: '+=100%',
             // markers: true,
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play play none reverse',
           }
         })
         .from(block3Split.words, {
