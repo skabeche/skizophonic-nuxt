@@ -69,19 +69,20 @@
             start: 'top top',
             end: '+=100%',
             pin: true,
-            scrub: 3,
+            scrub: 2,
             pinSpacing: false,
             // markers: true,
           }
         })
         .fromTo('.hero', {
-          scale: 1,
           clipPath: 'circle(100% at 50% 50%)',
         }, {
           scale: 1.7,
           filter: 'blur(5px)',
-          rotate: -4,
-          clipPath: 'circle(0% at 50% 50%)',
+          rotate: -10,
+          autoAlpha: 0,
+          // clipPath: 'circle(0% at 50% 50%)',
+          clipPath: 'circle(15% at 50% 50%)',
         })
         .from(block1Split.words, {
           stagger: 0.025,
@@ -98,24 +99,20 @@
           }
         })
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: block2.value,
-            start: 'top center',
-            end: '+=100%',
-            // pin: true,
-            markers: true,
-            toggleActions: 'play none none reverse',
-          }
-        })
-        .to(block1Split.lines, {
-          duration: .7,
-          autoAlpha: 0,
-          stagger: 0.02,
-          y: -200,
-          ease: 'power4.in',
-        })
+      gsap.to(block1Split.lines, {
+        duration: .7,
+        autoAlpha: 0,
+        stagger: 0.02,
+        y: -200,
+        ease: 'power4.in',
+        scrollTrigger: {
+          trigger: block2.value,
+          start: 'top center',
+          end: '+=100%',
+          // markers: true, 
+          toggleActions: 'play none none reverse',
+        }
+      })
 
       gsap
         .timeline({
@@ -125,25 +122,51 @@
             end: '+=100%',
             pin: true,
             scrub: true,
+            // scrub: 2,
             // markers: true,
           }
         })
         .to(video.value, {
           maskSize: '250% 250%',
+          ease: 'power2.in',
         })
         .to(block2.value, {
           backgroundColor: 'black',
           color: 'white',
         }, '<')
-        .from(block2Split.words, {
-          stagger: 0.015,
-          y: 200,
-        }, '<')
+        // .from(block2Split.words, {
+        //   stagger: 0.02,
+        //   y: 200,
+        // }) 
         .to(video.value, {
-          duration: 2,
+          duration: 3,
           maskSize: '900% 900%',
           ease: 'power2.in',
         })
+
+      gsap.from(block2Split.words, {
+        stagger: 0.02,
+        y: 200,
+        scrollTrigger: {
+          trigger: block2.value,
+          start: 'bottom bottom',
+          end: '+=100%',
+          markers: true,
+          toggleActions: 'play none none reverse',
+          onEnter: () => {
+            gsap.set(block2Split.lines, {
+              position: 'relative',
+              zIndex: 0
+            })
+          },
+          onLeaveBack: () => {
+            gsap.set(block2Split.lines, {
+              position: 'relative',
+              zIndex: -1
+            })
+          }
+        },
+      })
 
       gsap
         .timeline({
