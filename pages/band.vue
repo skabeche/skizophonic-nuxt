@@ -47,9 +47,10 @@
       prevImage.value.classList.remove('h-[calc(100dvh-1.4rem)]')
     }
 
-    element.classList.toggle('hover:scale-110')
     if (isLargeDevice.matches) {
+      element.classList.toggle('hover:scale-110')
       element.classList.toggle('h-[calc(100dvh-1.4rem)]')
+      // element.classList.toggle('!w-auto')
     }
 
     // Scroll to element after CSS transition is done.

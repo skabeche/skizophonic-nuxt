@@ -26,11 +26,11 @@
 
 @utility container {
   margin-inline: auto;
-  padding-inline: 1rem;
-  padding-block: 1rem;
+  padding-inline: 1.2rem;
+  padding-block: 1.2rem;
 
   @variant sm {
-    padding-inline: 1.2rem;
+    padding-inline: 1.3rem;
   }
   @variant md {
     padding-inline: 1.4rem;

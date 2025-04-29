@@ -18,9 +18,7 @@
 
   const video = useTemplateRef('videoRef')
   const header = useTemplateRef('headerRef')
-
-  const main = ref();
-  let ctx;
+  let ctx
 
   onMounted(() => {
     ctx = gsap.context((self) => {
@@ -37,20 +35,20 @@
           clipPath: 'circle(100% at 50% 50%)',
         })
         .fromTo(header.value, {
-          opacity: 0,
+          autoAlpha: 0,
           scale: 1.1,
           filter: 'blur(5px)',
         }, {
-          opacity: 1,
+          autoAlpha: 1,
           duration: .5,
           scale: 1,
           filter: 'blur(0px)',
         }, '<')
-    }, main.value); // <- Scope!
+    }); // <- Scope!
 
   })
 
   onUnmounted(() => {
-    ctx.revert(); // <- Easy Cleanup!
+    ctx.revert();
   });
 </script>

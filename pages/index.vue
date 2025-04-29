@@ -4,15 +4,15 @@
       <AppLogo class="fill-white" />
     </HeroHypnotic>
 
-    <section class="content1 flex flex-col justify-center w-screen min-h-screen p-4 lg:p-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
+    <section ref="block1Ref" class="block1 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
       <div class="container">
         <p>La banda más lenta de la historia se formó entre Castellón y Benicasim a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.</p>
       </div>
     </section>
 
-    <section class="content2 flex flex-col justify-center relative w-screen min-h-dvh text-white bg-black">
-      <div ref="videoRef" class="absolute -top-10 lg:-top-18 2xl:-top-28 left-0 w-screen min-h-dvh aspect-video">
-        <video src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full object-cover" autoplay muted loop playsinline />
+    <section ref="block2Ref" class="block2 flex flex-col justify-center relative w-screen min-h-dvh">
+      <div class="absolute top-0 left-0 w-screen min-h-dvh">
+        <video ref="videoRef" src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles.svg)] mask-type-alpha mask-size-[100%_100%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback />
       </div>
 
       <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
@@ -20,11 +20,13 @@
       </div>
     </section>
 
-    <section class="content3 flex flex-col items-center justify-center gap-18 p-4 sm:p-12">
+    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-18 w-screen min-h-screen py-4 sm:py-12">
       <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
-        <p>Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y se los encuentra quizá pueda escucharlos.</p>
+        <p>Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y se los encuentra quizá pueda apreciarlos.</p>
       </div>
-      <ButtonHypnotic>Listen to their music</ButtonHypnotic>
+      <div class="py-4 sm:px-16">
+        <ButtonHypnotic>Listen to their music</ButtonHypnotic>
+      </div>
     </section>
 
   </div>
@@ -44,105 +46,124 @@
     pageTransition: pageTransitionConfig,
   });
 
+  const block1 = useTemplateRef('block1Ref')
+  const block2 = useTemplateRef('block2Ref')
+  const block3 = useTemplateRef('block3Ref')
   const video = useTemplateRef('videoRef')
+  let ctx
 
   onMounted(() => {
-    const content1Split = new SplitType('.content1 p', { types: 'lines, words' })
-    const content2Split = new SplitType('.content2 p', { types: 'lines, words' })
-    const content3Split = new SplitType('.content3 p', { types: 'lines, words' })
+    const block1Split = new SplitType('.block1 p', { types: 'lines, words' })
+    const block2Split = new SplitType('.block2 p', { types: 'lines, words' })
+    const block3Split = new SplitType('.block3 p', { types: 'lines, words' })
 
-    gsap.set([content1Split.lines, content2Split.lines, content3Split.lines], {
-      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-    })
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: '+=100%',
-          pin: true,
-          scrub: true,
-          pinSpacing: false,
-          // markers: true,
-        }
+    ctx = gsap.context((self) => {
+      gsap.set([block1Split.lines, block2Split.lines, block3Split.lines], {
+        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
-      .fromTo('.hero', {
-        // scale: 1,
-        clipPath: 'circle(100% at 50% 50%)',
-      }, {
-        // scale: 1.7,
-        // filter: 'blur(5px)',
-        clipPath: 'circle(0% at 50% 50%)',
-      }, '<')
-      .from(content1Split.words, {
-        stagger: 0.025,
-        y: 200,
-      }, '<-=0.25')
-      .to('.content1', {
-        scrollTrigger: {
-          trigger: '.content1',
-          start: 'top top',
-          end: '+=100%',
-          pin: true,
-          pinSpacing: false,
-          // markers: true,
-        }
-      })
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.content2',
-          start: 'top top',
-          end: '+=100%',
-          pin: true,
-          // markers: true,
-          // scrub: true,
-          toggleActions: 'play none none reverse',
-        }
-      })
-      .to('.content2', {
-        backgroundColor: 'white',
-        color: 'black',
-      }, '<')
-      .to(video.value, {
-        duration: .5,
-        autoAlpha: 0,
-        // rotate: 30,
-        yPercent: 15,
-        ease: 'power2.in',
-      }, '<')
-      .from(content2Split.words, {
-        stagger: 0.015,
-        y: 200,
-      }, '<')
 
       gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.content3',
-          start: 'top center',
-          end: '+=100%',
-          // markers: true,
-          toggleActions: 'play none none reverse',
-        }
-      })
-      .from(content3Split.words, {
-        stagger: 0.015,
-        y: 200,
-      }, '<')
+        .timeline({
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: '+=100%',
+            pin: true,
+            scrub: 3,
+            pinSpacing: false,
+            // markers: true,
+          }
+        })
+        .fromTo('.hero', {
+          scale: 1,
+          clipPath: 'circle(100% at 50% 50%)',
+        }, {
+          scale: 1.7,
+          filter: 'blur(5px)',
+          rotate: -4,
+          clipPath: 'circle(0% at 50% 50%)',
+        })
+        .from(block1Split.words, {
+          stagger: 0.025,
+          y: 200,
+        }, '<-=0.25')
+        .to(block1.value, {
+          scrollTrigger: {
+            trigger: block1.value,
+            start: 'top top',
+            end: '+=100%',
+            pin: true,
+            pinSpacing: false,
+            // markers: true,
+          }
+        })
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: block2.value,
+            start: 'top center',
+            end: '+=100%',
+            // pin: true,
+            markers: true,
+            toggleActions: 'play none none reverse',
+          }
+        })
+        .to(block1Split.lines, {
+          duration: .7,
+          autoAlpha: 0,
+          stagger: 0.02,
+          y: -200,
+          ease: 'power4.in',
+        })
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: block2.value,
+            start: 'top top',
+            end: '+=100%',
+            pin: true,
+            scrub: true,
+            // markers: true,
+          }
+        })
+        .to(video.value, {
+          maskSize: '250% 250%',
+        })
+        .to(block2.value, {
+          backgroundColor: 'black',
+          color: 'white',
+        }, '<')
+        .from(block2Split.words, {
+          stagger: 0.015,
+          y: 200,
+        }, '<')
+        .to(video.value, {
+          duration: 2,
+          maskSize: '900% 900%',
+          ease: 'power2.in',
+        })
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: block3.value,
+            start: 'top center',
+            end: '+=100%',
+            // markers: true,
+            toggleActions: 'play none none reverse',
+          }
+        })
+        .from(block3Split.words, {
+          stagger: 0.015,
+          y: 200,
+        }, '<')
+    }); // <- Scope!
 
   })
 
+  onUnmounted(() => {
+    ctx.revert();
+  });
 </script>
-
-<style scoped>
-  video {
-    mask-image: url(/images/circles.svg);
-    mask-type: alpha;
-    mask-size: 100% 100%;
-    mask-repeat: no-repeat;
-    mask-position: center center;
-  }
-</style>

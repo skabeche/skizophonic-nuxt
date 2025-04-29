@@ -1,8 +1,8 @@
 <template>
   <AnimationReveal>
     <div class="artwork-controls mb-2">
-      <ButtonExpand v-if="!expandedArtwork" ref="buttonExpandRef" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
-      <ButtonExpand v-if="expandedArtwork" ref="buttonCollapseRef" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
+      <ButtonExpand v-if="!expandedArtwork" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
+      <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
     </div>
   </AnimationReveal>
   <AnimationReveal :delay="0.3">
@@ -39,8 +39,6 @@
   const disc = useTemplateRef('discRef')
   const caseInner = useTemplateRef('caseInnerRef')
   const galleta = useTemplateRef('galletaRef')
-  const buttonExpand = useTemplateRef('buttonExpandRef')
-  const buttonCollapse = useTemplateRef('buttonCollapseRef')
   const expandedArtwork = ref(false);
   const flippedCase = ref(false);
   const zoomedGalleta = ref(false);
@@ -103,9 +101,6 @@
         onComplete: () => {
           buttonDisabled.value = false
         }
-      })
-      .set([buttonExpand.value, buttonCollapse.value], {
-        disabled: true
       })
       .to(galleta.value, {
         xPercent: -50,
