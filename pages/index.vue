@@ -10,12 +10,12 @@
       </div>
     </section>
 
-    <section ref="block2Ref" class="block2 flex flex-col justify-center relative w-screen min-h-dvh">
+    <section ref="block2Ref" class="block2 relative flex flex-col justify-center w-screen min-h-dvh">
       <div class="absolute top-0 left-0 w-screen min-h-dvh">
-        <video ref="videoRef" src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles.svg)] mask-type-alpha mask-size-[100%_100%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback />
+        <video ref="videoRef" src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles.svg)] mask-type-alpha mask-size-[90%_90%] 2xl:mask-size-[100%_100%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback />
       </div>
 
-      <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
+      <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty mix-blend-color-dodge">
         <p>No obstante, en la búsqueda inquieta de nuevos sonidos, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.</p>
       </div>
     </section>
@@ -79,11 +79,9 @@
           clipPath: 'circle(100% at 50% 50%)',
         }, {
           scale: 1.7,
-          // filter: 'blur(5px)',
-          rotate: -10,
-          autoAlpha: 0,
-          // clipPath: 'circle(0% at 50% 50%)',
-          clipPath: 'circle(15% at 50% 50%)',
+          filter: 'blur(5px)',
+          rotate: -15,
+          clipPath: 'circle(0% at 50% 50%)',
         })
         .from(block1Split.words, {
           stagger: 0.025,

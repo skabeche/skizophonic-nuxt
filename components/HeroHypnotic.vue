@@ -44,6 +44,15 @@
           scale: 1,
           filter: 'blur(0px)',
         }, '<')
+
+      // gsap.to(video.value, {
+      //   filter: 'blur(6px)',
+      //   duration: 1,
+      //   repeat: -1,
+      //   yoyo: true,
+      //   ease: 'sine.inOut'
+      // });
+
     }); // <- Scope!
 
   })
