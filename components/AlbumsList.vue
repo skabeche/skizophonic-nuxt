@@ -38,7 +38,9 @@
   import { albums } from "~/data/albums";
 
   import gsap from "gsap";
-  import SplitType from "split-type";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(SplitText);
 
   onMounted(() => {
     const slides = document.querySelectorAll(".slide");
@@ -76,9 +78,9 @@
     };
 
     const splitHeadings = headings.map((heading) => {
-      return new SplitType(heading, {
-        types: "chars, words, lines",
-        lineClass: "line overflow-hidden"
+      return SplitText.create(heading, {
+        type: "chars, words, lines",
+        mask: "lines"
       });
     });
 

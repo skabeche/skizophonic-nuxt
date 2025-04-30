@@ -7,15 +7,17 @@
 <script setup>
   import gsap from "gsap";
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  import SplitType from "split-type";
+  import { SplitText } from "gsap/SplitText";
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   const paragraph = useTemplateRef('paragraphRef')
 
   onMounted(() => {
-    const paragraphSplit = new SplitType(paragraph.value, { types: 'lines, words' })
-    gsap.set([paragraphSplit.lines], { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' })
+    const paragraphSplit = SplitText.create(paragraph.value, {
+      type: 'lines, words',
+      mask: 'lines'
+    })
     gsap.from(paragraphSplit.words, {
       duration: 1,
       stagger: 0.02,

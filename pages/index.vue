@@ -34,13 +34,12 @@
 
 <script setup>
   import pageTransitionConfig from '~/helpers/transitionConfig';
-  // import AnimationParagraph from "~/components/AnimationParagraph.vue";
 
   import gsap from "gsap";
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  import SplitType from "split-type";
+  import { SplitText } from "gsap/SplitText";
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   definePageMeta({
     pageTransition: pageTransitionConfig,
@@ -51,22 +50,28 @@
     ogTitle: 'Home | Skizophonic',
   })
 
-  const block1 = useTemplateRef('block1Ref')
-  const block2 = useTemplateRef('block2Ref')
-  const block3 = useTemplateRef('block3Ref')
-  const video = useTemplateRef('videoRef')
-  let ctx
+  const block1 = useTemplateRef('block1Ref');
+  const block2 = useTemplateRef('block2Ref');
+  const block3 = useTemplateRef('block3Ref');
+  const video = useTemplateRef('videoRef');
+  let ctx;
 
   onMounted(() => {
-    const block1Split = new SplitType('.block1 p', { types: 'lines, words' })
-    const block2Split = new SplitType('.block2 p', { types: 'lines, words' })
-    const block3Split = new SplitType('.block3 p', { types: 'lines, words' })
+
+    const block1Split = SplitText.create(".block1 p", {
+      type: 'lines, words',
+      // mask: 'lines'
+    });
+    const block2Split = SplitText.create(".block2 p", {
+      type: 'lines, words',
+      mask: 'lines'
+    });
+    const block3Split = SplitText.create(".block3 p", {
+      type: 'lines, words',
+      mask: 'lines'
+    });
 
     ctx = gsap.context((self) => {
-      gsap.set([block1Split.lines, block2Split.lines, block3Split.lines], {
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-      })
-
       // Hero and block 1 timeline.
       gsap
         .timeline({
