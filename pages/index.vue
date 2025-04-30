@@ -112,7 +112,7 @@
         ease: 'power4.in',
         scrollTrigger: {
           trigger: block2.value,
-          start: 'top center',
+          start: 'top center-=15%',
           end: '+=100%',
           // markers: true, 
           toggleActions: 'play none none reverse',

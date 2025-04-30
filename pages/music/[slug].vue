@@ -49,14 +49,14 @@
 </template>
 
 <script setup>
-  // import pageTransitionConfig from '~/helpers/transitionConfig';
+  import pageTransitionConfig from '~/helpers/transitionConfig';
   import { albums } from "~/data/albums";
 
   import gsap from "gsap";
 
   definePageMeta({
-    // pageTransition: pageTransitionConfig,
-    pageTransition: false,
+    pageTransition: pageTransitionConfig,
+    // pageTransition: false,
   });
 
   const slug = useRoute().params.slug

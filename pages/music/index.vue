@@ -1,5 +1,7 @@
 <template>
-  <AlbumsList />
+  <div>
+    <AlbumsList />
+  </div>
 </template>
 
 <script setup>

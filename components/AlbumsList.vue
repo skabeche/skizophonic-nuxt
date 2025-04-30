@@ -1,8 +1,12 @@
 <template>
   <section class="flex items-center gap-4 h-dvh">
     <div class="controls relative z-20 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-9xl">
-      <Icon name="ion:arrow-up-a" class="prev-slide cursor-pointer hover:text-black transition-all" />
-      <Icon name="ion:arrow-down-a" class="next-slide cursor-pointer hover:text-red-600 transition-all" />
+      <button class="prev-slide cursor-pointer hover:text-[#ff0047]" @click="handlePrevSlide">
+        <Icon name="ion:arrow-up-a" />
+      </button>
+      <button class="next-slide cursor-pointer hover:text-[#00ffc7]" @click="handleNextSlide">
+        <Icon name="ion:arrow-down-a" />
+      </button>
     </div>
     <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform">
       <div class="outer-wrapper w-full h-full overflow-y-hidden will-change-transform">
@@ -196,10 +200,11 @@
       touch.dy = t.pageY - touch.startY;
 
       if (touch.dy >= -10 && touch.dy <= 10) {
-        // Navigate if the user touched a link.
-        const touchedLink = e.target.closest('a');
-        if (touchedLink) {
-          window.location.href = touchedLink.href;
+        const touchedElement = e.target.closest('a') || e.target.closest('button');
+        if (touchedElement) {
+          // Navigate if the user touched a link.
+          if (touchedElement.tagName === "A") window.location.href = touchedLink.href;
+
           return;
         }
       }

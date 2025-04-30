@@ -45,7 +45,7 @@
 
 @layer base {
   body {
-    @apply bg-white font-bold scroll-smooth overflow-x-hidden;
+    @apply text-black bg-white font-bold scroll-smooth overflow-x-hidden;
   }
 
   a {

@@ -5,7 +5,7 @@
     </button>
   </div>
 
-  <nav class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
+  <nav ref="mainNavigationRef" class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
     <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
       <li>
         <NuxtLink to="/">Home</NuxtLink>
@@ -25,6 +25,7 @@
   import gsap from "gsap"
 
   const isOpen = ref(false)
+  const mainNavigation = useTemplateRef('mainNavigationRef')
   const route = useRoute()
 
   watch(route, () => {
@@ -43,31 +44,44 @@
           ease: 'power1.inOut'
         },
       })
-      .fromTo('.main-navigation', {
+      .fromTo(mainNavigation.value, {
         clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
       }, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
-      .set('.main-navigation ul li', {
-        opacity: 0,
+      .fromTo('.main-navigation ul li', {
+        autoAlpha: 0,
         y: 30,
-      })
-      .to('.main-navigation ul li', {
+      }, {
         duration: 0.4,
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         stagger: 0.15,
         ease: 'back.out(3)',
       }, '>+=0.3')
-
 
     watchEffect(() => {
       if (isOpen.value) {
         tl.play(0)
       } else {
         // tl.reverse()
-        tl.revert()
+        // tl.revert()
+
+        gsap
+          .timeline()
+          .to('.main-navigation ul li', {
+            duration: 0.4,
+            autoAlpha: 0,
+            y: -40,
+            ease: 'power4.in',
+          })
+          .fromTo(mainNavigation.value, {
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+          }, {
+            duration: 0.1,
+            clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+          })
       }
     })
   })
@@ -88,7 +102,7 @@
 
       &:hover {
         text-shadow:
-        4px 4px 1px rgb(255, 0, 71),
+          4px 4px 1px rgb(255, 0, 71),
           -4px -4px 1px rgb(0, 255, 199);
       }
     }
