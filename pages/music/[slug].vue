@@ -68,6 +68,15 @@
   const contentRef = ref(null)
   const currentActiveSectionId = ref('#music')
 
+  useSeoMeta({
+    title: `${content.title} | Skizophonic`,
+    ogTitle: `${content.title} | Skizophonic`,
+    ogImage: content.images.cover,
+    ogImageAlt: `${content.title} - cover`,
+    ogImageWidth: 1000,
+    ogImageHeight: 900,
+  })
+
   onMounted(() => {
     const contentArticles = contentRef.value.querySelectorAll('.content article')
     const articlesInactiveId = [...contentArticles].filter((article) => `#${article.id}` !== currentActiveSectionId.value);

@@ -6,7 +6,7 @@
 
     <section ref="block1Ref" class="block1 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
       <div class="container">
-        <p>La banda más lenta de la historia se formó entre Castellón y Benicasim a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.</p>
+        <p>La banda más lenta de la historia se formó entre Benicasim y Castellón a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.</p>
       </div>
     </section>
 
@@ -16,13 +16,13 @@
       </div>
 
       <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty mix-blend-color-dodge">
-        <p>No obstante, en la búsqueda inquieta de nuevos sonidos, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.</p>
+        <p>No obstante, en la búsqueda inquieta de ideas eclécticas, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.</p>
       </div>
     </section>
 
     <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-18 w-screen min-h-screen py-4 sm:py-12">
       <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
-        <p>Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y se los encuentra quizá pueda apreciarlos.</p>
+        <p>Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y los escucha, quizá pueda apreciarlos.</p>
       </div>
       <div class="py-4 sm:px-16">
         <ButtonHypnotic>Listen to their music</ButtonHypnotic>
@@ -45,6 +45,11 @@
   definePageMeta({
     pageTransition: pageTransitionConfig,
   });
+
+  useSeoMeta({
+    title: 'Home | Skizophonic',
+    ogTitle: 'Home | Skizophonic',
+  })
 
   const block1 = useTemplateRef('block1Ref')
   const block2 = useTemplateRef('block2Ref')

@@ -9,4 +9,9 @@
     layout: 'full-screen',
     pageTransition: pageTransitionConfig,
   });
+
+  useSeoMeta({
+    title: 'Music | Skizophonic',
+    ogTitle: 'Music | Skizophonic',
+  })
 </script>

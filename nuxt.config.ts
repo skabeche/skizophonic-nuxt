@@ -20,6 +20,27 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     'lenis/nuxt'
   ],
+  app: {
+    head: {
+      title: 'Skizophonic',
+      htmlAttrs: {
+        lang: 'en',
+        dir: 'ltr',
+      },
+      meta: [
+        {
+          name: 'description',
+          content: 'Music band based in Benicasim and Castellón, Spain',
+        },
+        { name: 'author', content: 'Dan Alcaide' },
+        { name: 'generator', content: 'Coffe and chocolate' },
+        { name: 'format-detection', content: 'telephone=no' },
+      ],
+      link: [
+        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   fonts: {
     defaults: {
       weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],

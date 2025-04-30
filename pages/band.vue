@@ -32,6 +32,11 @@
     pageTransition: pageTransitionConfig,
   });
 
+  useSeoMeta({
+    title: 'Band | Skizophonic',
+    ogTitle: 'Band | Skizophonic',
+  })
+
   const prevImage = ref(null)
   const currentImage = ref(null)
   const isLargeDevice = window.matchMedia("(min-width: 1024px)");
