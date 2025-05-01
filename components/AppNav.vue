@@ -37,7 +37,9 @@
   }
 
   onMounted(() => {
-    const tl = gsap
+    let firstPageLoad = true;
+
+    const tlOpen = gsap
       .timeline({
         paused: true,
         defaults: {
@@ -61,28 +63,41 @@
         ease: 'back.out(3)',
       }, '>+=0.3')
 
-    watchEffect(() => {
-      if (isOpen.value) {
-        tl.play(0)
-      } else {
-        // tl.reverse()
-        // tl.revert()
+    const tlClose = gsap
+      .timeline({
+        paused: true,
+      })
+      .fromTo('.main-navigation ul li', {
+        autoAlpha: 1,
+        y: 0,
+      }, {
+        duration: 0.4,
+        autoAlpha: 0,
+        y: -40,
+        ease: 'power4.in',
+      })
+      .fromTo(mainNavigation.value, {
+        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+      }, {
+        duration: 0.1,
+        clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+      })
 
-        gsap
-          .timeline()
-          .to('.main-navigation ul li', {
-            duration: 0.4,
-            autoAlpha: 0,
-            y: -40,
-            ease: 'power4.in',
-          })
-          .fromTo(mainNavigation.value, {
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-          }, {
-            duration: 0.1,
-            clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-          })
+    watchEffect(() => {
+
+      if (isOpen.value) {
+        tlOpen.play(0)
+      } else {
+        // Avoid animation on first page load.
+        if (!firstPageLoad) {
+          tlClose.play(0)
+        } else {
+          tlClose.revert()
+        }
       }
+
+      // It is not first page load.
+      firstPageLoad = false
     })
   })
 
