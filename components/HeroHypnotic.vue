@@ -21,7 +21,7 @@
   let ctx
 
   onMounted(() => {
-    ctx = gsap.context((self) => {
+    ctx = gsap.context(() => {
       gsap
         .timeline({
           defaults: {

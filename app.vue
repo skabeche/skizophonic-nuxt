@@ -1,14 +1,17 @@
 <template>
   <NuxtRouteAnnouncer />
   <NuxtLoadingIndicator />
-  <!-- Although it shows a warning, need to use Transtion component for layout transitions to work  -->
-  <Transition :name="layoutTransitionConfig.name" :mode="layoutTransitionConfig.mode" :css="layoutTransitionConfig.css" :appear="layoutTransitionConfig.appear" @enter="layoutTransitionConfig.onEnter" @leave="layoutTransitionConfig.onLeave">
-    <NuxtLayout :key="route => route.fullPath">
-      <VueLenis ref="lenisRef" :auto-raf="false" root>
-        <NuxtPage :page-key="route => route.fullPath" />
-      </VueLenis>
-    </NuxtLayout>
-  </Transition>
+  <AppPreloader @done="isPageReady = true" />
+  <div v-if="isPageReady">
+    <!-- Although it shows a warning, need to use Transition component for layout transitions to work  -->
+    <Transition :name="layoutTransitionConfig.name" :mode="layoutTransitionConfig.mode" :css="layoutTransitionConfig.css" :appear="layoutTransitionConfig.appear" @enter="layoutTransitionConfig.onEnter" @leave="layoutTransitionConfig.onLeave">
+      <NuxtLayout :key="route => route.fullPath">
+        <VueLenis ref="lenisRef" :auto-raf="false" root>
+          <NuxtPage :page-key="route => route.fullPath" />
+        </VueLenis>
+      </NuxtLayout>
+    </Transition>
+  </div>
 </template>
 
 <script setup>
@@ -20,6 +23,7 @@
   const lenisRef = ref()
 
   const { toggleTransitionComplete } = useTransition();
+  const isPageReady = ref(false)
 
   onMounted(() => {
     toggleTransitionComplete(true);
