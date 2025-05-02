@@ -27,7 +27,7 @@
       gsap
         .timeline({
           defaults: {
-            delay: props.delay,
+            delay: props.delay + 1.1, // Align with layout transition.
           }
         })
         .to(wrapper.value, {

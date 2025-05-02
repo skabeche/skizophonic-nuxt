@@ -13,7 +13,7 @@
         <div class="inner-wrapper w-full h-full overflow-y-hidden will-change-transform">
           <div :class="`bg absolute top-0 left-0 grid grid-cols-1 sm:grid-cols-2 place-items-center content-center gap-4 w-full h-full bg-cover bg-center`" :style="`background-image: linear-gradient(0deg, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 50%) 100%), url(albums/${album.slug}/${album.images.cover});`">
             <div class="absolute -z-10 top-0 left-0 w-full h-full">
-              <video ref="videoRef" class="w-full h-full object-cover rotate-180" :src="`/videos/${album.bgVideo}`" autoplay muted loop playsinline disableremoteplayback />
+              <video class="w-full h-full object-cover rotate-180" :src="`/videos/${album.bgVideo}`" autoplay muted loop playsinline disableremoteplayback />
             </div>
             <div class="w-2/3">
               <NuxtLink :to="`/music/${album.slug}`">
