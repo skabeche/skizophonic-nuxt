@@ -9,7 +9,7 @@ export const albums = [
       galleta: 'galleta.png',
     },
     year: 2017,
-    releaseDate: '2017-01-01',
+    releaseDate: '2017-04-07',
     recordLabel: 'Ventilador Music',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
@@ -19,6 +19,18 @@ export const albums = [
         height: '406px'
       }
     },
+    social: [
+      {
+        label: 'Spotify',
+        link: 'https://open.spotify.com/album/55dCAnS0nH77fJFehhlNiZ',
+        icon: 'simple-icons:spotify',
+      },
+      {
+        label: 'Bandcamp',
+        link: 'https://skizophonic.bandcamp.com/album/video-rock',
+        icon: 'simple-icons:bandcamp',
+      },
+    ],
     videos: {
       youtube: [
         {
@@ -57,7 +69,7 @@ export const albums = [
       galleta: 'galleta.png',
     },
     year: 2013,
-    releaseDate: '2017-01-01',
+    releaseDate: '2013-09-14',
     recordLabel: 'Lemon Songs',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
@@ -67,6 +79,18 @@ export const albums = [
         height: '472px'
       }
     },
+    social: [
+      // {
+      //   label: 'Spotify',
+      //   link: 'https://open.spotify.com/album/55dCAnS0nH77fJFehhlNiZ',
+      //   icon: 'simple-icons:spotify',
+      // },
+      {
+        label: 'Bandcamp',
+        link: 'https://skizophonic.bandcamp.com/album/velodrome',
+        icon: 'simple-icons:bandcamp',
+      },
+    ],
     videos: {
       youtube: [
         {
@@ -107,7 +131,7 @@ export const albums = [
       galleta: 'galleta.png',
     },
     year: 2011,
-    releaseDate: '2011-01-01',
+    releaseDate: '2011-02-28',
     recordLabel: '',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
@@ -117,6 +141,18 @@ export const albums = [
         height: '439px'
       }
     },
+    social: [
+      {
+        label: 'Spotify',
+        link: 'https://open.spotify.com/album/2hfB4iLT48MfxtPa55cLKN',
+        icon: 'simple-icons:spotify',
+      },
+      {
+        label: 'Bandcamp',
+        link: 'https://skizophonic.bandcamp.com/album/gossip',
+        icon: 'simple-icons:bandcamp',
+      },
+    ],
     videos: {
       youtube: [
         {
@@ -152,7 +188,7 @@ export const albums = [
       galleta: 'galleta.png',
     },
     year: 2009,
-    releaseDate: '2009-01-01',
+    releaseDate: '2009-09-19',
     recordLabel: '',
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
@@ -162,6 +198,18 @@ export const albums = [
         height: '340px'
       }
     },
+    social: [
+      {
+        label: 'Spotify',
+        link: 'https://open.spotify.com/album/2nzWHHLP7S2Go2It4pRo6d?si=fuZXu9eCQZm665EuRn4MVQ',
+        icon: 'simple-icons:spotify',
+      },
+      {
+        label: 'Bandcamp',
+        link: 'http://skizophonic.bandcamp.com/album/living-room',
+        icon: 'simple-icons:bandcamp',
+      },
+    ],
     videos: {
       youtube: [
         {
@@ -194,7 +242,7 @@ export const albums = [
       galleta: 'galleta.png',
     },
     year: 2008,
-    releaseDate: '2008-01-01',
+    releaseDate: '2008-05-01',
     recordLabel: '',
     player: {
       spotify: '',
@@ -204,6 +252,7 @@ export const albums = [
         height: ''
       }
     },
+    social: [],
     videos: {
       youtube: [
         {

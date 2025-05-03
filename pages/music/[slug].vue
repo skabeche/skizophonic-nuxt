@@ -25,6 +25,14 @@
               <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
             </div>
           </AnimationReveal>
+          <AnimationReveal :delay="0.4">
+            <div class="flex gap-4">
+              <span v-for="social in content.social" :key="social.label" class="flex items-center gap-2">
+                <Icon :name="social.icon" />
+                <a :href="social.link" class="">Listen on {{ social.label }}</a>
+              </span>
+            </div>
+          </AnimationReveal>
           <AnimationReveal class="w-full" :delay="0.6">
             <div class="videos">
               <div v-for="video in content.videos.youtube" :key="video.id">

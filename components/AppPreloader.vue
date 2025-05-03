@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="preloader fixed inset-0 z-10 flex items-center justify-center bg-white text-black">
+  <div v-if="showPreloader" class="preloader fixed inset-0 z-10 flex items-center justify-center bg-white text-black">
     <div class="icon w-40 h-40">
       <LogoCircles class="logo-circles" />
     </div>
@@ -13,24 +13,32 @@
 
   const emit = defineEmits(['done'])
 
-  const show = ref(true);
+  const route = useRoute();
+  const showPreloader = ref(true);
+  const isRootPath = computed(() => route.path === '/');
   let ctx;
 
-
   onMounted(() => {
+    // Only show preloader on root path.
+    if (!isRootPath.value) {
+      showPreloader.value = false
+      emit('done')
+      return
+    }
+
     ctx = gsap.context(() => {
       gsap.set([".dot1", ".dot2"], { clipPath: 'circle(0% at 50% 50%)' })
       gsap
         .timeline({
           delay: 2.5,
           onComplete: () => {
-            show.value = false
+            showPreloader.value = false
             emit('done')
           }
         })
         .to(".logo-circles", {
           duration: 0.5,
-          scale: 0.1,
+          scale: 0.05,
           ease: "power4.inOut",
         })
         .to(".dot1", {
