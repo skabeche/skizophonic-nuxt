@@ -100,6 +100,18 @@ export const images = [
     alt: 'Skizophonic - Fecstival',
   },
   {
+    src: '/images/band/skizophonic_furioso.jpg',
+    alt: 'Skizophonic 2013 - Velodrome',
+  },
+  {
+    src: '/images/band/nacho_suelo.jpg',
+    alt: 'Nacho componiendo',
+  },
+  {
+    src: '/images/band/skizophonic_smoke_darkness.jpg',
+    alt: 'Skizophonic - Smoke & Darkness',
+  },
+  {
     src: '/images/band/promo_sala_blood.jpg',
     alt: 'Skizophonic 2006 - Sala Blood',
   },
