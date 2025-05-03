@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex gap-6">
+  <ul class="flex gap-4 sm:gap-6">
     <li v-for="social in socials" :key="social.name">
       <a :href="social.url" :title="social.name">
         <Icon :name="social.icon" />
@@ -30,6 +30,16 @@
       icon: 'simple-icons:bandcamp',
       url: 'https://skizophonic.bandcamp.com'
     },
+    {
+      name: 'Instagram',
+      icon: 'simple-icons:instagram',
+      url: 'https://www.instagram.com/skizophonic_official'
+    },
+    // {
+    //   name: 'X',
+    //   icon: 'simple-icons:x',
+    //   url: 'https://x.com/skizophonic'
+    // },
   ]
 </script>
 

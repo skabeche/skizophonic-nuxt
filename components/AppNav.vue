@@ -17,7 +17,7 @@
         <NuxtLink to="/music">Music</NuxtLink>
       </li>
     </ul>
-    <SocialLinks class="text-4xl sm:text-5xl" />
+    <SocialLinks class="text-3xl sm:text-5xl" />
   </nav>
 </template>
 
