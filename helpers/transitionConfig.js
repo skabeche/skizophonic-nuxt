@@ -10,25 +10,25 @@ export const pageTransitionConfig = {
   css: false,
   appear: true,
   onEnter: (el, done) => {
-    gsap.set(el, {
-      // clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-      opacity: 0,
-    });
-    gsap
-      .timeline({
-        paused: true,
-        onComplete() {
-          toggleTransitionComplete(true);
-          done();
-        },
-      })
-      .to(el, {
-        duration: 0.6,
-        opacity: 1,
-        // clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        ease: 'power4.inOut',
-      })
-      .play();
+    // gsap.set(el, {
+    //   // clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+    //   opacity: 0,
+    // });
+    // gsap
+    //   .timeline({
+    //     paused: true,
+    //     onComplete() {
+    //       toggleTransitionComplete(true);
+    //       done();
+    //     },
+    //   })
+    //   .to(el, {
+    //     duration: 0.6,
+    //     opacity: 1,
+    //     // clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+    //     ease: 'power4.inOut',
+    //   })
+    //   .play();
   },
   onLeave: (el, done) => {
     toggleTransitionComplete(false);

@@ -21,9 +21,9 @@
   let ctx;
 
   onMounted(() => {
-    ctx = gsap.context((self) => {
+    ctx = gsap.context(() => {
       gsap.set(outerWrapperRef.value, {
-        display: 'none',
+        visibility: 'hidden',
       })
       gsap.set(innerWrapperRef.value, {
         visibility: 'hidden',
@@ -33,7 +33,7 @@
           delay: props.delay + 1.1, // Align with layout transition.
         })
         .to(outerWrapperRef.value, {
-          display: 'block',
+          visibility: 'visible',
           '--scaleBefore': "100%",
           duration: 0.7 + props.delay,
           ease: "power4.inOut",

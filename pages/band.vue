@@ -55,7 +55,6 @@
     if (isLargeDevice.matches) {
       element.classList.toggle('hover:scale-110')
       element.classList.toggle('h-[calc(100dvh-1.4rem)]')
-      // element.classList.toggle('!w-auto')
     }
 
     // Scroll to element after CSS transition is done.
@@ -83,7 +82,7 @@
   }
 
   onMounted(() => {
-    ctx = gsap.context((self) => {
+    ctx = gsap.context(() => {
       gsap
         .timeline()
         .fromTo('section', {
