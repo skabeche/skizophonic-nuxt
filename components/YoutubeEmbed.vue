@@ -1,8 +1,8 @@
 <template>
-  <div class="youtube-embed relative w-full aspect-video cursor-pointer" @click="loadVideo">
+  <div class="youtube-embed relative w-full aspect-video cursor-pointer group" @click="loadVideo">
     <img v-if="!videoLoaded" :src="`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`" class="w-full h-full object-cover" :alt="alt" loading="lazy">
-    <div v-if="!videoLoaded" class="absolute inset-0 flex items-center justify-center bg-black/40">
-      <svg class="w-30 h-30 text-white" fill="currentColor" viewBox="0 0 24 24">
+    <div v-if="!videoLoaded" class="absolute inset-0 flex items-center justify-center bg-black/40 ">
+      <svg class="w-30 h-30 group-hover:w-full group-hover:h-full group-hover:mix-blend-difference transition-all duration-400 text-white" fill="currentColor" viewBox="0 0 24 24">
         <path d="M8 5v14l11-7z" />
       </svg>
     </div>
