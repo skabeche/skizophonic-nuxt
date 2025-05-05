@@ -5,35 +5,35 @@
     </aside>
     <section>
       <header>
-        <AnimationReveal :delay="0.2">
+        <AnimationReveal>
           <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
         </AnimationReveal>
-        <AnimationReveal :delay="0.4">
+        <AnimationReveal>
           <h1>{{ content.title }}</h1>
         </AnimationReveal>
-        <AnimationReveal :delay="0.5">
+        <AnimationReveal>
           <time class="text-2xl" datetime="{{ content.year }}">{{ content.year }}</time>
         </AnimationReveal>
       </header>
-      <AnimationReveal :delay="0.3">
+      <AnimationReveal>
         <AlbumNav class="album-nav" @active-section-id="setCurrentActiveSectionId" />
       </AnimationReveal>
       <div ref="contentRef" class="content prose-lg lg:prose-xl prose-h1:m-0 prose-h1:text-7xl prose-h2:text-2xl prose-h2:normal-case prose-ol:list-decimal prose-img:m-0 text-pretty">
         <article id="music" class="active flex flex-col gap-4">
-          <AnimationReveal class="w-full" :delay="0.5">
+          <AnimationReveal class="w-full">
             <div class="player">
               <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
             </div>
           </AnimationReveal>
-          <AnimationReveal :delay="0.4">
-            <div class="flex gap-4">
+          <AnimationReveal>
+            <div class="flex flex-col sm:flex-row gap-4">
               <span v-for="social in content.social" :key="social.label" class="flex items-center gap-2">
                 <Icon :name="social.icon" />
                 <a :href="social.link" class="">Listen on {{ social.label }}</a>
               </span>
             </div>
           </AnimationReveal>
-          <AnimationReveal class="w-full" :delay="0.6">
+          <AnimationReveal class="w-full">
             <div class="videos">
               <div v-for="video in content.videos.youtube" :key="video.id">
                 <h2>{{ video.title }}</h2>

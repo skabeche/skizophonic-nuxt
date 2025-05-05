@@ -23,12 +23,12 @@ export const tshirts = [
   },
   {
     id: 5,
-    name: 'Heads blue',
+    name: 'Heads - blue',
     image: 'tshirt_heads_blue.png',
   },
   {
     id: 6,
-    name: 'Heads pink',
+    name: 'Heads - pink',
     image: 'tshirt_heads_pink.png',
   },
   // {

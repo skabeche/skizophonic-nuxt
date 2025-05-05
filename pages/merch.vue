@@ -3,10 +3,34 @@
     <AnimationReveal :delay="0.2">
       <h1 class="text-[clamp(3rem,_10vw,_6rem)]">Merch</h1>
     </AnimationReveal>
-    <MerchItem title="T-shirts" :content="tshirts" />
-    <MerchItem title="Button badges" :content="badges" />
-    <MerchItem title="Stickers" :content="stickers" />
-    <MerchItem title="Posters" :content="posters" />
+
+    <section>
+      <AnimationReveal>
+        <h2>T-Shirts</h2>
+      </AnimationReveal>
+      <MerchItem :items="tshirts" />
+    </section>
+
+    <section>
+      <AnimationReveal>
+        <h2>Button badges</h2>
+      </AnimationReveal>
+      <MerchItem :items="badges" />
+    </section>
+
+    <section>
+      <AnimationReveal>
+        <h2>Stickers</h2>
+      </AnimationReveal>
+      <MerchItem :items="stickers" />
+    </section>
+
+    <section>
+      <AnimationReveal>
+        <h2>Posters</h2>
+      </AnimationReveal>
+      <MerchItem :items="posters" />
+    </section>
   </div>
 </template>
 

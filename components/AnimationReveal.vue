@@ -9,15 +9,10 @@
 <script setup>
   import gsap from 'gsap';
 
-  const props = defineProps({
-    delay: {
-      type: Number,
-      default: 0
-    }
-  })
-
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
+  const offset = 1.1; // Align with page transition.
+  const randomDelay = +(Math.random() * 0.8 + 0.2).toFixed(2) + offset;
   let ctx;
 
   onMounted(() => {
@@ -27,15 +22,16 @@
       })
       gsap.set(innerWrapperRef.value, {
         visibility: 'hidden',
+        opacity: 0,
       })
       gsap
         .timeline({
-          delay: props.delay + 1.1, // Align with layout transition.
+          delay: randomDelay,
         })
         .to(outerWrapperRef.value, {
           visibility: 'visible',
           '--scaleBefore': "100%",
-          duration: 0.7 + props.delay,
+          duration: 1,
           ease: "power4.inOut",
           onStart: () => {
             gsap.set(outerWrapperRef.value, {
@@ -48,13 +44,14 @@
             })
             gsap.set(innerWrapperRef.value, {
               visibility: 'visible',
+              opacity: 1,
             })
           }
         })
         .to(outerWrapperRef.value, {
-          delay: 0.3,
+          delay: 0.2,
           '--scaleBefore': 0,
-          duration: 0.7,
+          duration: 0.8,
           ease: "power4.inOut",
         })
 
