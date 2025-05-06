@@ -17,7 +17,9 @@
     // @see https://github.com/nuxt/nuxt/issues/26262
     const videos = document.querySelectorAll("video");
     videos.forEach((video) => {
-      video.play();
+      if (video.autoplay === true) {
+        video.play();
+      }
     });
   })
 
