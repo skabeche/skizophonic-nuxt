@@ -35,9 +35,15 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Dan Alcaide' },
         { name: 'generator', content: 'Coffe and chocolate' },
         { name: 'format-detection', content: 'telephone=no' },
+        { name: 'apple-mobile-web-app-title', content: 'Skizophonic' },
       ],
       link: [
-        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/svg+xml', media: '(prefers-color-scheme: light)', href: '/favicons/favicon-light-mode.svg' },
+        { rel: 'icon', type: 'image/svg+xml', media: '(prefers-color-scheme: dark)', href: '/favicons/favicon-dark-mode.svg' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicons/favicon-96x96.png' },
+        // { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', type: 'image/x-icon', href: '/favicons/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/favicons/site.webmanifest' },
       ]
     }
   },
