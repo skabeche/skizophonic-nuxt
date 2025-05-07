@@ -5,6 +5,7 @@
       <slot />
     </main>
     <AppFooter />
+    <AppCursor />
   </div>
 </template>
 
