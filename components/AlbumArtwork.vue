@@ -5,7 +5,7 @@
       <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
     </div>
   </AnimationReveal>
-  <AnimationReveal :delay="0.3">
+  <AnimationReveal>
     <div class="artwork relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
         <div ref="caseInnerRef" class="relative w-full h-full transform-3d" data-cursor-text="Flip" @click="handleClickCase">
@@ -62,6 +62,7 @@
   const handleExpandArtwork = () => {
     expandedArtwork.value = true
 
+    // @todo Handle with timelines.
     // Reset animations.
     if (flippedCase.value) {
       gsap.to(caseInner.value, {
@@ -80,7 +81,8 @@
           rotate: 30,
           xPercent: 0,
           ease: 'power4.out',
-        }).to(caseRef.value, {
+        })
+        .to(caseRef.value, {
           duration: 0.6,
           opacity: 1,
           zIndex: 10,
@@ -253,7 +255,8 @@
           rotate: 30,
           xPercent: 0,
           ease: 'power4.out',
-        }).to(caseRef.value, {
+        })
+        .to(caseRef.value, {
           duration: 0.6,
           opacity: 1,
           zIndex: 10,

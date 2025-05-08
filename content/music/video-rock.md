@@ -2,6 +2,7 @@
 title: Video Rock
 ---
 
+Álbum cantado en español<br>
 Grabado y Mezclado en Álamo Shock Pool Recording Studio (Madrid, España) - Septiembre y Octubre, 2016<br>
 Masterizado en Álamo Shock Pool Recording Studio (Madrid, España) - Febrero, 2017
 

@@ -1,27 +1,29 @@
 <template>
-  <div class="fixed top-0 right-0 z-100 m-8 mix-blend-difference">
-    <button class="nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
-      <NavIcon :is-open="isOpen" />
-    </button>
+  <div>
+    <div class="fixed top-0 right-0 z-100 m-8 mix-blend-difference">
+      <button class="nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
+        <NavIcon :is-open="isOpen" />
+      </button>
+    </div>
+  
+    <nav ref="mainNavigationRef" class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
+      <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
+        <li>
+          <NuxtLink to="/">Home</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/band">Band</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/music">Music</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/merch">Merch</NuxtLink>
+        </li>
+      </ul>
+      <SocialLinks class="text-3xl sm:text-5xl" />
+    </nav>
   </div>
-
-  <nav ref="mainNavigationRef" class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
-    <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
-      <li>
-        <NuxtLink to="/">Home</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/band">Band</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/music">Music</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/merch">Merch</NuxtLink>
-      </li>
-    </ul>
-    <SocialLinks class="text-3xl sm:text-5xl" />
-  </nav>
 </template>
 
 <script setup>
@@ -62,7 +64,7 @@
         duration: 0.4,
         autoAlpha: 1,
         y: 0,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: 'back.out(3)',
       }, '>+=0.3')
 
