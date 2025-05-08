@@ -17,10 +17,16 @@
   // let hoveredElement;
 
   onMounted(() => {
+    // Data set options.
+    // [data-cursor-enable-touch]
+    // [data-cursor-text]
 
+    const isTouchDevice = matchMedia('(hover: none)').matches;
     const cursorElements = document.querySelectorAll('[data-cursor-text]');
 
-    cursorElements.forEach((el) => {
+    for (const el of cursorElements) {
+      if (isTouchDevice && el.dataset.cursorEnableTouch !== 'true') continue;
+
       el.addEventListener('mouseenter', (e) => {
         text.value = el.dataset.cursorText;
         cursorEnter(e);
@@ -32,15 +38,15 @@
       el.addEventListener('mousemove', (e) => {
         cursorMove(e);
       });
-    });
+    }
 
     // Cursor hides when the user touches out of the interacting element.
-    document.addEventListener('touchstart', (e) => {
-      hoveredElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-      // hoveredElement.id !== 'XXXX' ? cursorOut(e) : cursorEnter(e);
-    },
-      { passive: true }
-    );
+    // document.addEventListener('touchstart', (e) => {
+    //   hoveredElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+    // hoveredElement.id !== 'XXXX' ? cursorOut(e) : cursorEnter(e);
+    // },
+    //   { passive: true }
+    // );
 
     gsap
       .timeline()

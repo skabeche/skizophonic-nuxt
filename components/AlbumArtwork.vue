@@ -50,7 +50,7 @@
       xPercent: -50,
       rotate: -90,
     }, {
-      delay: 2, // Delay to align with animation reveal.
+      delay: 3.3, // Delay to align with animation reveal.
       duration: 1,
       opacity: 1,
       xPercent: 0,
