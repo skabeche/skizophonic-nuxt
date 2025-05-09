@@ -5,7 +5,7 @@
       <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
     </div>
   </AnimationReveal>
-  <AnimationReveal>
+  <AnimationReveal @done="isAnimationRevealDone = true">
     <div class="artwork relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
         <div ref="caseInnerRef" class="relative w-full h-full transform-3d" data-cursor-text="Flip" @click="handleClickCase">
@@ -43,19 +43,26 @@
   const flippedCase = ref(false);
   const zoomedGalleta = ref(false);
   const buttonDisabled = ref(false);
+  const isAnimationRevealDone = ref(false)
 
   onMounted(() => {
-    gsap.fromTo(galleta.value, {
+    gsap.set(galleta.value, {
       opacity: 0,
       xPercent: -50,
       rotate: -90,
-    }, {
-      delay: 3.3, // Delay to align with animation reveal.
-      duration: 1,
-      opacity: 1,
-      xPercent: 0,
-      rotate: 30,
-      ease: 'power4.out',
+    })
+    watchEffect(() => {
+      if (isAnimationRevealDone.value) {
+        console.log('isAnimationRevealDone.value', isAnimationRevealDone.value)
+        gsap.to(galleta.value, {
+          // delay: 1,
+          duration: 1,
+          opacity: 1,
+          xPercent: 0,
+          rotate: 30,
+          ease: 'power4.out',
+        })
+      }
     })
   })
 

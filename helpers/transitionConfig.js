@@ -8,8 +8,10 @@ export const pageTransitionConfig = {
   name: 'page-transition',
   mode: 'out-in',
   css: false,
-  appear: true,
+  appear: false,
   onEnter: (el, done) => {
+    toggleTransitionComplete(true);
+    done();
     // gsap.set(el, {
     //   // clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
     //   opacity: 0,

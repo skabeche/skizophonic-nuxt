@@ -9,6 +9,8 @@
 <script setup>
   import gsap from 'gsap';
 
+  const emit = defineEmits(['done'])
+
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
   const offset = 1.1; // Align with page transition.
@@ -27,6 +29,9 @@
       gsap
         .timeline({
           delay: randomDelay,
+          onComplete: () => {
+            emit('done')
+          }
         })
         .to(outerWrapperRef.value, {
           visibility: 'visible',
