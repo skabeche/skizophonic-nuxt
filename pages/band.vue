@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
-      <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_li]:[clip-path:_polygon(0_0,_100%_0,_100%_100%,_0%_100%)] [&_span]:block">
+      <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block">
         <li><span>Vocals & Guitar: Nacho Galí</span></li>
         <li><span>Guitar: Dan Alcaide</span></li>
         <li><span>Guitar: Fede Trillo</span></li>
@@ -27,6 +27,9 @@
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
 
   import gsap from "gsap";
+  import SplitText from "gsap/SplitText";
+
+  gsap.registerPlugin(SplitText);
 
   definePageMeta({
     pageTransition: pageTransitionConfig,
@@ -82,6 +85,11 @@
   }
 
   onMounted(() => {
+    const membersSplit = SplitText.create('.members li span', {
+      type: 'lines',
+      mask: 'lines'
+    });
+
     ctx = gsap.context(() => {
       gsap
         .timeline()
@@ -101,9 +109,10 @@
           stagger: 0.25,
           ease: 'power4.inOut',
         })
-        .from('.members li span', {
-          y: 100,
-          duration: 1.4,
+        .from(membersSplit.lines, {
+          y: 200,
+          duration: 1.2,
+          stagger: 0.05,
           ease: 'power4.inOut',
         }, '<0.5');
     })

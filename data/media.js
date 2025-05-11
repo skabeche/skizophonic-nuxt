@@ -44,8 +44,8 @@ export const images = [
     alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
-    src: '/images/band/SkizophonicWW014.jpg',
-    alt: 'Dan - Eloy - Wild Weekend Festival',
+    src: '/images/band/skizophonic_fecstival2016.jpg',
+    alt: 'Skizophonic - Fecstival',
   },
   {
     src: '/images/band/nacho_fib2014.jpg',
@@ -96,8 +96,8 @@ export const images = [
     alt: 'Gascón - FIB',
   },
   {
-    src: '/images/band/skizophonic_fecstival2016.jpg',
-    alt: 'Skizophonic - Fecstival',
+    src: '/images/band/SkizophonicWW014.jpg',
+    alt: 'Dan - Eloy - Wild Weekend Festival',
   },
   {
     src: '/images/band/skizophonic_furioso.jpg',
