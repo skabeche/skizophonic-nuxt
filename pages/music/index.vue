@@ -23,4 +23,10 @@
     document.body.classList.add('overflow-hidden', 'overscroll-none');
     document.documentElement.classList.add('overflow-hidden', 'overscroll-none');
   })
+
+  onUnmounted(() => {
+    // Enable scroll and pull-to-refresh again on other pages.
+    document.body.classList.remove('overflow-hidden', 'overscroll-none');
+    document.documentElement.classList.remove('overflow-hidden', 'overscroll-none');
+  })
 </script>
