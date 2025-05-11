@@ -53,7 +53,6 @@
     })
     watchEffect(() => {
       if (isAnimationRevealDone.value) {
-        console.log('isAnimationRevealDone.value', isAnimationRevealDone.value)
         gsap.to(galleta.value, {
           // delay: 1,
           duration: 1,

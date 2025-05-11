@@ -8,8 +8,9 @@
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
 
   definePageMeta({
-    layout: 'full-screen',
+    // layout: 'full-screen',
     pageTransition: pageTransitionConfig,
+    hideFooter: true,
   });
 
   useSeoMeta({

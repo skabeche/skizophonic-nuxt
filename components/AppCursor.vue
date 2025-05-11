@@ -1,6 +1,6 @@
 <template>
   <div v-show="showCursor" ref="cursorRef" class="cursor-custom fixed z-100 top-0 left-0 origin-top-left pointer-events-none rounded-full backdrop-blur-sm">
-    <div class="relative z-10 flex items-center justify-center w-24 h-24 p-2 bg-white/30 text-black text-center lowercase rounded-full">
+    <div class="relative z-10 flex items-center justify-center w-24 h-24 p-2 bg-black/30 text-white text-center lowercase rounded-full">
       {{ text }}
     </div>
   </div>
@@ -8,22 +8,24 @@
 
 <script setup>
   import { gsap } from "gsap";
+  import { useTransition } from "#imports";
 
+  const { transitionState } = useTransition();
   const showCursor = ref(false);
   const cursorRef = useTemplateRef('cursorRef');
   const lastCoordinatesAxis = { x: null, y: null };
   const currentCoordinatesAxis = { x: null, y: null };
   const text = ref(null);
   // let hoveredElement;
+  let cursorElements = [];
 
-  onMounted(() => {
-    // Data set options.
+  const setCursorListeners = () => {
+    // Dataset options.
     // [data-cursor-enable-touch]
     // [data-cursor-text]
 
     const isTouchDevice = matchMedia('(hover: none)').matches;
-    const cursorElements = document.querySelectorAll('[data-cursor-text]');
-
+    cursorElements = document.querySelectorAll('[data-cursor-text]');
     for (const el of cursorElements) {
       if (isTouchDevice && el.dataset.cursorEnableTouch !== 'true') continue;
 
@@ -57,6 +59,30 @@
         yoyo: true,
         ease: 'sine.inOut'
       });
+  };
+
+  const cleanCursorListeners = () => {
+    for (const el of cursorElements) {
+      el.removeEventListener('mouseenter', cursorEnter);
+      el.removeEventListener('mouseleave', cursorOut);
+      el.removeEventListener('mousemove', cursorMove);
+    }
+    cursorElements = [];
+  };
+
+  onMounted(() => {
+    setCursorListeners();
+  })
+
+  watch(() => transitionState.transitionComplete, (newValue) => {
+    if (newValue) {
+      cleanCursorListeners();
+      setCursorListeners();
+    }
+  });
+
+  onUnmounted(() => {
+    cleanCursorListeners();
   })
 
   const cursorMove = (e) => {

@@ -3,14 +3,14 @@
   <NuxtLoadingIndicator />
   <AppPreloader @done="isPageReady = true" />
   <div v-if="isPageReady">
-    <!-- Although it shows a warning, need to use Transition component for layout transitions to work  -->
-    <Transition :name="layoutTransitionConfig.name" :mode="layoutTransitionConfig.mode" :css="layoutTransitionConfig.css" :appear="layoutTransitionConfig.appear" @enter="layoutTransitionConfig.onEnter" @leave="layoutTransitionConfig.onLeave">
-      <NuxtLayout :key="route => route.fullPath">
-        <VueLenis ref="lenisRef" :auto-raf="false" root>
+    <NuxtLayout :key="route => route.fullPath">
+      <VueLenis ref="lenisRef" :auto-raf="false" root>
+        <!-- Although it shows a warning, need to use Transition component for layout transitions to work on child routes  -->
+        <Transition :name="layoutTransitionConfig.name" :mode="layoutTransitionConfig.mode" :css="layoutTransitionConfig.css" :appear="layoutTransitionConfig.appear" @enter="layoutTransitionConfig.onEnter" @leave="layoutTransitionConfig.onLeave">
           <NuxtPage :page-key="route => route.fullPath" />
-        </VueLenis>
-      </NuxtLayout>
-    </Transition>
+        </Transition>
+      </VueLenis>
+    </NuxtLayout>
   </div>
 </template>
 

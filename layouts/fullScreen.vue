@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <AppHeader />
     <main>
@@ -29,4 +29,4 @@
     document.body.classList.remove('overflow-hidden', 'overscroll-none');
     document.documentElement.classList.remove('overflow-hidden', 'overscroll-none');
   })
-</script>
+</script> -->

@@ -56,7 +56,7 @@ export const layoutTransitionConfig = {
   css: false,
   appear: false,
   onEnter: (el, done) => {
-    // toggleTransitionComplete(true);
+    toggleTransitionComplete(true);
     done();
 
     // gsap
@@ -82,7 +82,7 @@ export const layoutTransitionConfig = {
     //   .play();
   },
   onLeave: (el, done) => {
-    // toggleTransitionComplete(false);
+    toggleTransitionComplete(false);
     gsap
       .timeline({
         onComplete() {
