@@ -24,7 +24,7 @@
     // [data-cursor-enable-touch]
     // [data-cursor-text]
 
-    const isTouchDevice = matchMedia('(hover: none)').matches;
+    const isTouchDevice = !window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches;
     cursorElements = document.querySelectorAll('[data-cursor-text]');
     for (const el of cursorElements) {
       if (isTouchDevice && el.dataset.cursorEnableTouch !== 'true') continue;
