@@ -21,8 +21,8 @@
               </NuxtLinkLocale>
             </div>
             <div class="1/3">
-              <h2 class="slide-heading text-8xl text-white">
-                <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
+              <h2 class="slide-heading text-8xl">
+                <NuxtLinkLocale class="text-white" :to="{ name: 'music-slug', params: { slug: album.slug } }">
                   {{ album.title }}
                 </NuxtLinkLocale>
               </h2>

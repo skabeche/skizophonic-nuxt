@@ -78,11 +78,7 @@ export default defineNuxtConfig({
     },
     google: {
       families: {
-        'Montserrat': [300, 400, 500, 600, 700],
-        'Poppins': [600, 700, 800, 900],
-        'Lato': [700, 800, 900],
-        'League Spartan': [700, 800, 900],
-        'Public Sans': [700, 800, 900],
+        'Inter': [600, 700, 800, 900],
       },
       display: 'swap'
     },

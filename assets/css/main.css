@@ -3,11 +3,6 @@
 
 @theme {
   --font-sans: "Poppins", "sans-serif";
-  --font-montserrat: "Montserrat", "sans-serif";
-  --font-poppins: "Poppins", "sans-serif";
-  --font-lato: "Lato", "sans-serif";
-  --font-leagueSpartan: "League Spartan", "sans-serif";
-  --font-publicSans: "Public Sans", "sans-serif";
 
   --color-gray: #9e9e9e;
   --color-gray-50: #f9f9f9;
@@ -74,7 +69,7 @@
   h4,
   h5,
   h6 {
-    @apply font-poppins font-extrabold uppercase;
+    @apply font-extrabold uppercase;
     font-kerning: none;
 
     a {
@@ -85,10 +80,10 @@
     @apply text-[clamp(3rem,_10vw,_4.6rem)] leading-none overflow-y-hidden;
   }
   h2 {
-    @apply text-6xl;
+    @apply text-[clamp(2.7rem,_10vw,_3.8rem)];
   }
   h3 {
-    @apply text-4xl;
+    @apply text-3xl;
   }
 
   p {

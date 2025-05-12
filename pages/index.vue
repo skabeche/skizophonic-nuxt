@@ -101,12 +101,13 @@
         })
         .to('.hero', {
           autoAlpha: 0,
+          x: -150,
         })
         .from(block1Split.words, {
           duration: 8,
           y: 200,
           ease: 'power1',
-          stagger: 0.05,
+          stagger: 0.1,
         })
         .fromTo(video.value, {
           autoAlpha: 0,
