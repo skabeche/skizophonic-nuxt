@@ -13,13 +13,37 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts', 'lenis/nuxt', '@nuxtjs/i18n'],
   i18n: {
+    strategy: 'prefix',
     defaultLocale: 'en',
     detectBrowserLanguage: false,
     // vueI18n: './i18n/i18n.config.ts',
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'es', name: 'Spanish', file: 'es.json' }
-    ]
+    ],
+    customRoutes: 'config', // disable custom route with page components
+    pages: {
+      home: {
+        en: '/home',
+        es: '/home'
+      },
+      band: {
+        en: '/band',
+        es: '/banda'
+      },
+      merch: {
+        en: '/merch',
+        es: '/merch'
+      },
+      music: {
+        en: '/music',
+        es: '/musica'
+      },
+      'music-slug': {
+        en: '/music/[slug]',
+        es: '/musica/[slug]'
+      },
+    },
   },
   app: {
     head: {

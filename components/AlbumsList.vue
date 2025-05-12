@@ -16,15 +16,15 @@
               <video class="w-full h-full object-cover rotate-180" :src="`/videos/${album.bgVideo}`" autoplay muted loop playsinline disableremoteplayback />
             </div>
             <div class="w-2/3">
-              <LocaleLink :to="`/music/${album.slug}`">
+              <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
                 <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" loading="lazy">
-              </LocaleLink>
+              </NuxtLinkLocale>
             </div>
             <div class="1/3">
               <h2 class="slide-heading text-8xl text-white">
-                <LocaleLink :to="`/music/${album.slug}`" class="text-white">
+                <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
                   {{ album.title }}
-                </LocaleLink>
+                </NuxtLinkLocale>
               </h2>
             </div>
           </div>

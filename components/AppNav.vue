@@ -10,16 +10,16 @@
       <nav class="main-navigation" aria-label="Main navigation">
         <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
           <li>
-            <LocaleLink to="/">{{ $t('pages.home.name') }}</LocaleLink>
+            <NuxtLinkLocale to="/">{{ $t('pages.home.name') }}</NuxtLinkLocale>
           </li>
           <li>
-            <LocaleLink to="/band">{{ $t('pages.band.name') }}</LocaleLink>
+            <NuxtLinkLocale to="band">{{ $t('pages.band.name') }}</NuxtLinkLocale>
           </li>
           <li>
-            <LocaleLink to="/music">{{ $t('pages.music.name') }}</LocaleLink>
+            <NuxtLinkLocale to="music">{{ $t('pages.music.name') }}</NuxtLinkLocale>
           </li>
           <li>
-            <LocaleLink to="/merch">{{ $t('pages.merch.name') }}</LocaleLink>
+            <NuxtLinkLocale to="merch">{{ $t('pages.merch.name') }}</NuxtLinkLocale>
           </li>
         </ul>
       </nav>

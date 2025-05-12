@@ -27,7 +27,7 @@
         <p>{{ $t('pages.home.block3') }}</p>
       </div>
       <div class="py-4 sm:px-16">
-        <ButtonHypnotic>{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
+        <ButtonHypnotic to="music">{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
       </div>
     </section>
 

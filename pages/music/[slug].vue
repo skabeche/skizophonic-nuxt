@@ -6,7 +6,7 @@
     <section>
       <header>
         <AnimationReveal>
-          <LocaleLink to="/music" class="inline-block lowercase">{{ $t('pages.music.labels.back') }}</LocaleLink>
+          <NuxtLinkLocale to="music" class="inline-block lowercase">{{ $t('pages.music.labels.back') }}</NuxtLinkLocale>
         </AnimationReveal>
         <AnimationReveal>
           <h1>{{ content.title }}</h1>
