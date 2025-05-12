@@ -14,8 +14,9 @@
   const emit = defineEmits(['done'])
 
   const route = useRoute();
+  const { locale } = useI18n()
   const showPreloader = ref(true);
-  const isRootPath = computed(() => route.path === '/');
+  const isRootPath = computed(() => route.path === '/' || route.path === `/${locale.value}`);
   let ctx;
 
   onMounted(() => {
