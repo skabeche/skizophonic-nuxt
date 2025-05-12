@@ -2,7 +2,7 @@
   <div>
     <div ref="blockTimelineRef" class="block-timeline relative top-0 left-0 w-screen min-h-dvh">
       <HeroHypnotic class="hero z-50 overflow-hidden">
-        <AppLogo class="fill-white" />
+        <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
       <section ref="block1Ref" class="block1 absolute inset-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
@@ -82,33 +82,42 @@
           scrollTrigger: {
             trigger: blockTimelineRef.value,
             start: 'top top',
-            end: '+=200%',
+            end: '+=400%',
             pin: true,
             scrub: 2,
             // markers: true,
           }
         })
-        .fromTo('.hero', {
+        .fromTo('.hero .bg-wrapper', {
           clipPath: 'circle(100% at 50% 50%)',
         }, {
-          scale: 1.7,
-          rotate: -15,
+          duration: 8,
           clipPath: 'circle(0% at 50% 50%)',
         })
-        .from(block1Split.words, {
+        .to('.hero .logo', {
+          duration: 12,
+          scale: 20,
+          rotate: 45,
+        })
+        .to('.hero', {
           autoAlpha: 0,
+        })
+        .from(block1Split.words, {
+          duration: 8,
           y: 200,
-          ease: 'power1.out',
-          stagger: 0.025,
-        }, '-=40%')
+          ease: 'power1',
+          stagger: 0.05,
+        })
         .fromTo(video.value, {
           autoAlpha: 0,
           filter: 'brightness(0%)',
         }, {
           autoAlpha: 1,
-          maskSize: '20% 20%',
-        }, '+=230%')
+          maskSize: '30% 30%',
+          ease: 'power1.inOut',
+        }, '+=400%')
         .to(video.value, {
+          duration: 4,
           filter: 'brightness(100%)',
           maskSize: '200% 200%',
           ease: 'power1.in',
@@ -131,7 +140,7 @@
         ease: 'power4.in',
         scrollTrigger: {
           trigger: video.value,
-          start: 'bottom top',
+          start: 'bottom top-=200%',
           end: '+=100%',
           // markers: true,
           toggleActions: 'play none none reverse',
@@ -144,7 +153,7 @@
         y: 200,
         scrollTrigger: {
           trigger: video.value,
-          start: 'bottom top-=50%',
+          start: 'bottom top-=260%',
           end: '+=100%',
           // markers: true,
           toggleActions: 'play none none reverse',
@@ -152,20 +161,17 @@
       })
 
       // Block 3 animations.
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: block3.value,
-            start: 'top center',
-            end: '+=100%',
-            // markers: true,
-            toggleActions: 'play play none reverse',
-          }
-        })
-        .from(block3Split.words, {
-          stagger: 0.015,
-          y: 200,
-        }, '<')
+      gsap.from(block3Split.words, {
+        stagger: 0.02,
+        y: 200,
+        scrollTrigger: {
+          trigger: block3.value,
+          start: 'top center',
+          end: '+=100%',
+          // markers: true,
+          toggleActions: 'play none none reverse',
+        }
+      })
     }); // <- Scope!
 
   })
