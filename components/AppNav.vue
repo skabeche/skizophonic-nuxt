@@ -5,24 +5,29 @@
         <NavIcon :is-open="isOpen" />
       </button>
     </div>
-  
-    <nav ref="mainNavigationRef" class="main-navigation fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out " :class="isOpen ? 'open' : 'pointer-events-none'" aria-label="Main navigation">
-      <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
-        <li>
-          <NuxtLink to="/">Home</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/band">Band</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/music">Music</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/merch">Merch</NuxtLink>
-        </li>
-      </ul>
-      <SocialLinks class="text-3xl sm:text-5xl" />
-    </nav>
+
+    <div ref="navWrapperRef" class="nav-wrapper fixed top-0 right-0 z-90 flex flex-col justify-center items-center w-full h-full bg-black text-white text-5xl sm:text-7xl text-center transition-all duration-500 ease-in-out" :class="isOpen ? 'open' : 'pointer-events-none'">
+      <nav class="main-navigation" aria-label="Main navigation">
+        <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
+          <li>
+            <LocaleLink to="/">{{ $t('pages.home.name') }}</LocaleLink>
+          </li>
+          <li>
+            <LocaleLink to="/band">{{ $t('pages.band.name') }}</LocaleLink>
+          </li>
+          <li>
+            <LocaleLink to="/music">{{ $t('pages.music.name') }}</LocaleLink>
+          </li>
+          <li>
+            <LocaleLink to="/merch">{{ $t('pages.merch.name') }}</LocaleLink>
+          </li>
+        </ul>
+      </nav>
+      <nav class="social-navigation" aria-label="Social navigation">
+        <SocialLinks class="text-3xl sm:text-5xl" />
+      </nav>
+      <NavLang />
+    </div>
   </div>
 </template>
 
@@ -30,7 +35,7 @@
   import gsap from "gsap"
 
   const isOpen = ref(false)
-  const mainNavigation = useTemplateRef('mainNavigationRef')
+  const navWrapperRef = useTemplateRef('navWrapperRef')
   const route = useRoute()
 
   watch(route, () => {
@@ -51,13 +56,13 @@
           ease: 'power1.inOut'
         },
       })
-      .fromTo(mainNavigation.value, {
+      .fromTo(navWrapperRef.value, {
         clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
       }, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
-      .fromTo('.main-navigation ul li', {
+      .fromTo('.nav-wrapper ul li', {
         autoAlpha: 0,
         y: 30,
       }, {
@@ -72,7 +77,7 @@
       .timeline({
         paused: true,
       })
-      .fromTo('.main-navigation ul li', {
+      .fromTo('.nav-wrapper ul li', {
         autoAlpha: 1,
         y: 0,
       }, {
@@ -81,7 +86,7 @@
         y: -40,
         ease: 'power4.in',
       })
-      .fromTo(mainNavigation.value, {
+      .fromTo(navWrapperRef.value, {
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       }, {
         duration: 0.1,
@@ -109,14 +114,14 @@
 </script>
 
 <style scoped>
-  .main-navigation {
+  .nav-wrapper {
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
     &.open {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     }
 
-    a {
+    :deep(a) {
       text-shadow: 0 0 0 transparent;
       transition: all .2s ease-in-out;
 

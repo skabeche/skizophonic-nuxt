@@ -11,15 +11,16 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: [
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    'lenis/nuxt'
-  ],
+  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts', 'lenis/nuxt', '@nuxtjs/i18n'],
+  i18n: {
+    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+    // vueI18n: './i18n/i18n.config.ts',
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'es', name: 'Spanish', file: 'es.json' }
+    ]
+  },
   app: {
     head: {
       title: 'Skizophonic',

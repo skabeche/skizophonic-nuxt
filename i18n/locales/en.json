@@ -1,0 +1,69 @@
+{
+  "languages": {
+    "code": "en",
+    "es": "Spanish",
+    "en": "English"
+  },
+  "meta": {
+    "title": "Skizophonic",
+    "description": "Music band based in Benicasim and Castellón, Spain"
+  },
+  "pages": {
+    "home": {
+      "name": "Home",
+      "title": "Home",
+      "block1": "The slowest band in history was formed between Benicasim and Castellón in late 2003, playing a style of alternative rock infused with elements of classic rock.",
+      "block2": "However, in their restless pursuit of eclectic ideas, the band gradually shifted toward garage, soul, and especially acid sounds, blending in a mod spirit with subtle electronic touches.",
+      "block3": "Today, they survive as soldiers of fortune. If you have good taste and a discerning ear, you might appreciate them.",
+      "buttonHypnotic": "Listen to their music"
+    },
+    "band": {
+      "name": "Band",
+      "title": "Band"
+    },
+    "music": {
+      "name": "Music",
+      "title": "Music",
+      "labels": {
+        "back": "Back to music",
+        "music": "Music",
+        "info": "Info",
+        "tracks": "Tracks",
+        "socialLinks": "Listen on",
+        "expandArtwork": "Expand artwork",
+        "collapseArtwork": "Collapse artwork"
+      }
+    },
+    "merch": {
+      "name": "Merch",
+      "title": "Merch",
+      "sections": {
+        "tshirts": {
+          "title": "T-shirts"
+        },
+        "buttonBadges": {
+          "title": "Button badges"
+        },
+        "stickers": {
+          "title": "Stickers"
+        },
+        "posters": {
+          "title": "Posters"
+        }
+      },
+      "labels": {
+        "noStock": "Not available"
+      }
+    }
+  },
+  "components": {
+    "cursor": {
+      "scroll": "Scroll",
+      "flip": "Flip",
+      "zoom": "Zoom"
+    }
+  },
+  "footer": {
+    "siteBy": "Site by"
+  }
+}

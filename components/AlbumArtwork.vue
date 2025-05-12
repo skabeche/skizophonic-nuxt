@@ -1,14 +1,14 @@
 <template>
   <AnimationReveal>
     <div class="artwork-controls mb-2">
-      <ButtonExpand v-if="!expandedArtwork" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">Expand artwork</ButtonExpand>
-      <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">Collapse artwork</ButtonExpand>
+      <ButtonExpand v-if="!expandedArtwork" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">{{ $t('pages.music.labels.expandArtwork') }}</ButtonExpand>
+      <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">{{ $t('pages.music.labels.collapseArtwork') }}</ButtonExpand>
     </div>
   </AnimationReveal>
   <AnimationReveal @done="isAnimationRevealDone = true">
     <div class="artwork relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
-        <div ref="caseInnerRef" class="relative w-full h-full transform-3d" data-cursor-text="Flip" @click="handleClickCase">
+        <div ref="caseInnerRef" class="relative w-full h-full transform-3d" :data-cursor-text="$t('components.cursor.flip')" @click="handleClickCase">
           <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]">
             <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`" loading="lazy">
           </div>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
-        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" data-cursor-text="Zoom" @click="handleClickGalleta">
+        <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" loading="lazy" :data-cursor-text="$t('components.cursor.zoom')" @click="handleClickGalleta">
       </div>
     </div>
   </AnimationReveal>

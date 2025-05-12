@@ -6,7 +6,7 @@
     <section>
       <header>
         <AnimationReveal>
-          <NuxtLink to="/music" class="inline-block">back to music</NuxtLink>
+          <LocaleLink to="/music" class="inline-block lowercase">{{ $t('pages.music.labels.back') }}</LocaleLink>
         </AnimationReveal>
         <AnimationReveal>
           <h1>{{ content.title }}</h1>
@@ -29,7 +29,7 @@
             <div class="flex flex-col sm:flex-row gap-4">
               <span v-for="social in content.social" :key="social.label" class="flex items-center gap-2">
                 <Icon :name="social.icon" />
-                <a :href="social.link" class="">Listen on {{ social.label }}</a>
+                <a :href="social.link" class="">{{ $t('pages.music.labels.socialLinks') }} {{ social.label }}</a>
               </span>
             </div>
           </AnimationReveal>

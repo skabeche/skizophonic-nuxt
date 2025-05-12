@@ -111,8 +111,7 @@
         })
         .from(membersSplit.lines, {
           y: 200,
-          duration: 1.2,
-          stagger: 0.05,
+          duration: 1.4,
           ease: 'power4.inOut',
         }, '<0.5');
     })

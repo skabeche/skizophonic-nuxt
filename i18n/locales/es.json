@@ -1,0 +1,69 @@
+{
+  "languages": {
+    "code": "es",
+    "es": "Español",
+    "en": "Inglés"
+  },
+  "meta": {
+    "title": "Skizophonic",
+    "description": "Banda de música formada entre Benicasim y Castellón, España"
+  },
+  "pages": {
+    "home": {
+      "name": "Home",
+      "title": "Home",
+      "block1": "La banda más lenta de la historia se formó entre Benicasim y Castellón a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.",
+      "block2": "No obstante, en la búsqueda inquieta de ideas eclécticas, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.",
+      "block3": "Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y los escucha, quizá pueda apreciarlos.",
+      "buttonHypnotic": "Escucha su música"
+    },
+    "band": {
+      "name": "Banda",
+      "title": "Banda"
+    },
+    "music": {
+      "name": "Música",
+      "title": "Música",
+      "labels": {
+        "back": "Volver a música",
+        "music": "Música",
+        "info": "Info",
+        "tracks": "Canciones",
+        "socialLinks": "Escúchalo en",
+        "expandArtwork": "Expandir álbum",
+        "collapseArtwork": "Colapsar álbum"
+      }
+    },
+    "merch": {
+      "name": "Merch",
+      "title": "Merch",
+      "sections": {
+        "tshirts": {
+          "title": "Camisetas"
+        },
+        "buttonBadges": {
+          "title": "Pins"
+        },
+        "stickers": {
+          "title": "Pegatinas"
+        },
+        "posters": {
+          "title": "Pósters"
+        }
+      },
+      "labels": {
+        "noStock": "No disponible"
+      }
+    }
+  },
+  "components": {
+    "cursor": {
+      "scroll": "Scroll",
+      "flip": "Girar",
+      "zoom": "Zoom"
+    }
+  },
+  "footer": {
+    "siteBy": "Sitio por"
+  }
+}
