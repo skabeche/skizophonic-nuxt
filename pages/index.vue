@@ -1,13 +1,13 @@
 <template>
   <div>
     <div ref="blockTimelineRef" class="block-timeline relative top-0 left-0 w-screen min-h-dvh">
-      <HeroHypnotic class="hero z-50 overflow-hidden">
+      <HeroHypnotic class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
-      <section ref="block1Ref" class="block1 absolute inset-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-black bg-white prose prose-p:leading-normal text-pretty">
-        <div class="container">
-          <p>{{ $t('pages.home.block1') }}</p>
+      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-black bg-white">
+        <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose prose-p:leading-normal text-pretty">
+          <p class="relative z-30">{{ $t('pages.home.block1') }}</p>
         </div>
       </section>
 
@@ -16,7 +16,7 @@
       </div>
 
       <section ref="block2Ref" class="block2 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
-        <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty ">
+        <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
           <p class="relative z-20 mix-blend-color-dodge">{{ $t('pages.home.block2') }}</p>
         </div>
       </section>
@@ -101,7 +101,7 @@
         })
         .to('.hero', {
           autoAlpha: 0,
-          x: -150,
+          scale: 2,
         })
         .from(block1Split.words, {
           duration: 8,
@@ -145,7 +145,13 @@
           end: '+=100%',
           // markers: true,
           toggleActions: 'play none none reverse',
-        }
+          onLeave: () => {
+            gsap.set('.block1 p', { zIndex: 10 });
+          },
+          onLeaveBack: () => {
+            gsap.set('.block1 p', { zIndex: 30 });
+          }
+        },
       })
 
       // Block 2 animations.
