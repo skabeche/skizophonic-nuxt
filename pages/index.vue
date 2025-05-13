@@ -5,8 +5,8 @@
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
-      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40 text-black bg-white">
-        <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose prose-p:leading-normal text-pretty">
+      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
+        <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
           <p class="relative z-30">{{ $t('pages.home.block1') }}</p>
         </div>
       </section>
@@ -101,14 +101,13 @@
         })
         .to('.hero', {
           autoAlpha: 0,
-          scale: 2,
         })
         .from(block1Split.words, {
           duration: 8,
           y: 200,
           ease: 'power1',
           stagger: 0.1,
-        })
+        }, '<-=10%')
         .fromTo(video.value, {
           autoAlpha: 0,
           filter: 'brightness(0%)',
@@ -145,7 +144,7 @@
           end: '+=100%',
           // markers: true,
           toggleActions: 'play none none reverse',
-          onLeave: () => {
+          onEnter: () => {
             gsap.set('.block1 p', { zIndex: 10 });
           },
           onLeaveBack: () => {
@@ -179,7 +178,7 @@
           toggleActions: 'play none none reverse',
         }
       })
-    }); // <- Scope!
+    }, blockTimelineRef.value); // <- Scope!
 
   })
 
