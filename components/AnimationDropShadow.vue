@@ -29,6 +29,7 @@
       ease: 'none',
     });
   }
+
   const handleMouseOut = (e) => {
     const target = e.currentTarget;
 

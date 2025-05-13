@@ -1,5 +1,5 @@
 <template>
-  <span class="anim-text-shadow inline-block" @mousemove="handleMouseMove" @mouseout="handleMouseOut">
+  <span class="anim-text-shadow inline-block [text-shadow:0px 0px 0px #ff0047, 0px 0px 0px #00ffc7]" @mousemove="handleMouseMove" @mouseout="handleMouseOut">
     <slot />
   </span>
 </template>
@@ -24,11 +24,12 @@
     const y2 = y - y * 2;
 
     gsap.to(target, {
-      duration: 0.1,
+      duration: 0,
       textShadow: `${x}px ${y}px 1px #ff0047, ${x2}px ${y2}px 1px #00ffc7`,
       ease: 'none',
     });
   }
+
   const handleMouseOut = (e) => {
     const target = e.currentTarget;
 
