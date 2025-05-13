@@ -1,5 +1,5 @@
 <template>
-  <div class="merch-items grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="merch-items grid grid-cols-1 lg:grid-cols-3 gap-10">
     <div v-for="item in items" :key="item.id" class="merch-item">
       <AnimationReveal class="w-full">
         <div class="item relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-200">

@@ -42,7 +42,7 @@ export const badges = [
   {
     id: 1,
     name: 'Skizophonic',
-    image: 'badge_skizophonic.jpg',
+    image: 'badge_skizophonic.png',
   }
 ]
 
