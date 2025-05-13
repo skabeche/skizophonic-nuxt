@@ -10,16 +10,24 @@
       <nav class="main-navigation" aria-label="Main navigation">
         <ul class="relative z-90 flex flex-col gap-4 p-12 uppercase">
           <li>
-            <NuxtLinkLocale to="/">{{ $t('pages.home.name') }}</NuxtLinkLocale>
+            <AnimationTextShadow>
+              <NuxtLinkLocale to="/">{{ $t('pages.home.name') }}</NuxtLinkLocale>
+            </AnimationTextShadow>
           </li>
           <li>
-            <NuxtLinkLocale to="band">{{ $t('pages.band.name') }}</NuxtLinkLocale>
+            <AnimationTextShadow>
+              <NuxtLinkLocale to="band">{{ $t('pages.band.name') }}</NuxtLinkLocale>
+            </AnimationTextShadow>
           </li>
           <li>
-            <NuxtLinkLocale to="music">{{ $t('pages.music.name') }}</NuxtLinkLocale>
+            <AnimationTextShadow>
+              <NuxtLinkLocale to="music">{{ $t('pages.music.name') }}</NuxtLinkLocale>
+            </AnimationTextShadow>
           </li>
           <li>
-            <NuxtLinkLocale to="merch">{{ $t('pages.merch.name') }}</NuxtLinkLocale>
+            <AnimationTextShadow>
+              <NuxtLinkLocale to="merch">{{ $t('pages.merch.name') }}</NuxtLinkLocale>
+            </AnimationTextShadow>
           </li>
         </ul>
       </nav>
@@ -119,17 +127,6 @@
 
     &.open {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    }
-
-    :deep(a) {
-      text-shadow: 0 0 0 transparent;
-      transition: all .2s ease-in-out;
-
-      &:hover {
-        text-shadow:
-          4px 4px 1px rgb(255, 0, 71),
-          -4px -4px 1px rgb(0, 255, 199);
-      }
     }
   }
 

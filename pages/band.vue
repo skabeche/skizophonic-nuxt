@@ -68,7 +68,8 @@
   }
 
   const handleMouseMove = (e) => {
-    const target = e.srcElement;
+    // @todo Make a composable.
+    const target = e.currentTarget;
     const movement = 15;
     const rect = target.getBoundingClientRect();
     const relX = e.pageX - (rect.left + window.scrollX);
