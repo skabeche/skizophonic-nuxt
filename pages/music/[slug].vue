@@ -43,12 +43,12 @@
           </AnimationReveal>
         </article>
         <article id="info">
-          <div v-if="content.recordLabel" class="text-xl">Sello discográfico: {{ content.recordLabel }}</div>
+          <div v-if="content.recordLabel" class="text-xl">{{ $t('pages.music.labels.recordLabel') }}: {{ content.recordLabel }}</div>
           <ContentRenderer :value="post" />
         </article>
-        <article id="tracks">
+        <article id="tracklist">
           <ol>
-            <li v-for="track in content.tracks" :key="track">{{ track }}</li>
+            <li v-for="track in content.tracklist" :key="track">{{ track }}</li>
           </ol>
         </article>
       </div>
@@ -67,9 +67,10 @@
     // pageTransition: false,
   });
 
+  const { locale } = useI18n()
   const slug = useRoute().params.slug
   const { data: post } = await useAsyncData(slug, () => {
-    return queryCollection('music').path(`/music/${slug}`).first()
+    return queryCollection('music').path(`/${locale.value}/music/${slug}`).first()
   })
 
   const content = albums.find(album => album.slug === slug)

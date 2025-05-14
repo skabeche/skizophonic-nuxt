@@ -4,7 +4,7 @@ export default defineContentConfig({
   collections: {
     music: defineCollection({
       type: 'page',
-      source: 'music/*.md',
+      source: '**/music/*.md',
       schema: z.object({
         date: z.string()
       })

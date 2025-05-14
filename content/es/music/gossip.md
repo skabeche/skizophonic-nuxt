@@ -20,7 +20,7 @@ Diseño gráfico: [Dan Alcaide](https://www.danalcaide.com)<br>
 - Teclado Nord Electro 3
 - Teclado Arp Solina
 
-## Amplificadores:
+## Amplificadores
 
 - Orange Rocker 30C
 - Marshall JCM900

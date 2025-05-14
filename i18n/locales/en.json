@@ -28,7 +28,8 @@
         "back": "Back to music",
         "music": "Music",
         "info": "Info",
-        "tracks": "Tracks",
+        "tracklist": "Tracklist",
+        "recordLabel": "Record label",
         "socialLinks": "Listen on",
         "expandArtwork": "Expand artwork",
         "collapseArtwork": "Collapse artwork"

@@ -3,7 +3,7 @@
     <ul class="flex gap-4 [&_.active]:text-black">
       <li><a href="#music" class="active" @click.prevent="handleClick">{{ $t('pages.music.labels.music') }}</a></li>
       <li><a href="#info" @click.prevent="handleClick">{{ $t('pages.music.labels.info') }}</a></li>
-      <li><a href="#tracks" @click.prevent="handleClick">{{ $t('pages.music.labels.tracks') }}</a></li>
+      <li><a href="#tracklist" @click.prevent="handleClick">{{ $t('pages.music.labels.tracklist') }}</a></li>
     </ul>
   </nav>
 </template>

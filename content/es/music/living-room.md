@@ -19,7 +19,7 @@ Este EP fue considerado como una de las 10 mejores demos del 2009 por Mondosonor
 - Teclado Moog Little Phatty Stage II
 - Batería Pearl
 
-## Amplificadores:
+## Amplificadores
 
 - Orange Rocker 30C
 

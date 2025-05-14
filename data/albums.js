@@ -48,7 +48,7 @@ export const albums = [
       ],
     },
     bgVideo: 'vhs.mp4',
-    tracks: [
+    tracklist: [
       'Me aburrís todos con la misma mierda',
       'Coco loco',
       '¿Quién será Aaron Woodman?',
@@ -108,7 +108,7 @@ export const albums = [
       ],
     },
     bgVideo: 'woman_dancing.mp4',
-    tracks: [
+    tracklist: [
       'How Would You Say I Love You?',
       'Clockwork',
       '1 2 3 4, School Revolution!',
@@ -166,7 +166,7 @@ export const albums = [
       ],
     },
     bgVideo: 'woman_finger.mp4',
-    tracks: [
+    tracklist: [
       'I Must Doubt',
       'I Wait',
       'She’s Not Late',
@@ -223,7 +223,7 @@ export const albums = [
       ],
     },
     bgVideo: 'factories.mp4',
-    tracks: [
+    tracklist: [
       'Shut Up',
       'Today: Save Your Weekend (Tomorrow: Save Your Soul)',
       'It Was My Fault',
@@ -266,7 +266,7 @@ export const albums = [
       ],
     },
     bgVideo: 'subway.mp4',
-    tracks: [
+    tracklist: [
       'Exhibitionist',
       'The Last Stupid Rock Project',
       'Smiles & Clouds',
