@@ -10,7 +10,7 @@ Graphic design: [Dan Alcaide](https://www.danalcaide.com)<br>
 
 ## Awards
 
-- Top 10 EP 2009 - Mondosonoro Valencia: [Living Room EP on Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
+- Top 10 demos/EP 2009 - Mondosonoro Valencia: [Living Room EP on Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
 
 ## Instruments
 
