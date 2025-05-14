@@ -12,7 +12,10 @@
       </section>
 
       <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
-        <video ref="videoRef" src="/videos/woman_dancing.mp4" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-size-[40%_40%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback />
+        <video ref="videoRef" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-size-[40%_40%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
+          <source src="/videos/showreel_skizophonic_medium.mp4" type="video/mp4" media="(min-width: 1920px)">
+          <source src="/videos/showreel_skizophonic_small.mp4" type="video/mp4">
+        </video>
       </div>
 
       <section ref="block2Ref" class="block2 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
