@@ -18,3 +18,8 @@ Tuba en ‘Lejos de ti’: Jaume Tàrrega<br>
 Trompeta en ‘Lejos de ti’: Víctor Montoro<br>
 Bombardino en ‘Lejos de ti’: Guille de la Fuente<br>
 Saxo tenor en ‘Lejos de ti’: Lluís Bernal y Jordi Domenech<br>
+
+## Reconocimientos
+
+- Mejor directo 2016 - Benicassim.pop
+- Top 10 álbumes 2017 - NMPNU

@@ -13,3 +13,9 @@ Vocals in ‘Love Soldier’ & ‘No-light men’: Sara Ledesma<br>
 Trumpet in ‘Love Soldier’ & ‘Nadie te quiere ya’ & ‘How would you say I love you?’: Victor Montoro ‘Tonet’<br>
 Children's Choir in ‘1 2 3 4, School Revolution!’: Abril, Joel, Alba, Mar & Valentina<br>
 Gospel Choir in ‘Oh Oh Oh (Do Not Skip Any Detail)’: Nuria Pallarés, Sol González & Sofía Royo<br>
+
+## Awards
+
+- Best album 2013 - Benicassim.pop
+- Best song ‘Love Soldier’ 2013 - Benicassim.pop
+- Top 10 albums 2013 - NMPNU

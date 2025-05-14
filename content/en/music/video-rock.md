@@ -18,3 +18,8 @@ Tuba in ‘Lejos de ti’: Jaume Tàrrega<br>
 Trumpet in ‘Lejos de ti’: Víctor Montoro<br>
 Euphonium in ‘Lejos de ti’: Guille de la Fuente<br>
 Tenor saxophone in ‘Lejos de ti’: Lluís Bernal y Jordi Domenech<br>
+
+## Awards
+
+- Best live performance - 2016 Benicassim.pop
+- Top 10 albums 2017 - NMPNU

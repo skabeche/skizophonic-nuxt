@@ -2,17 +2,21 @@
 title: Gossip
 ---
 
-Recorded, mixed and mastered at APK Studies of Valencia in January and February 2011.
+Recorded, mixed and mastered at APK Studies in Valencia in January and February 2011.
 
 Producer: Octavio Hidalgo<br>
 Photography: Pablo Serrano<br>
 Graphic design: [Dan Alcaide](https://www.danalcaide.com)<br>
 
+## Awards
+
+- Top 10 albums 2011 - Mondosonoro Valencia
+
 ## Instruments
 
 - Guitar Rickenbacker 330
 - Guitar Fender Stratocaster
-- Guitar acústica Takamine
+- Acoustic guitar Takamine
 - Bass Epiphone Thunderbird
 - Drums Ludwig
 - Keyboard Korg CX3

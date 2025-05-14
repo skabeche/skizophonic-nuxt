@@ -8,7 +8,9 @@ Productor: Octavio Hidalgo<br>
 Fotografía: Iván Dabón<br>
 Diseño gráfico: [Dan Alcaide](https://www.danalcaide.com)<br>
 
-Este EP fue considerado como una de las 10 mejores demos del 2009 por Mondosonoro de la Comunidad Valenciana (España). Más información en: [Living Room EP en Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
+## Reconocimientos
+
+- Top 10 demos/EP 2009 - Mondosonoro Valencia: [Living Room EP en Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
 
 ## Instrumentos utilizados
 

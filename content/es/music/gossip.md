@@ -8,6 +8,10 @@ Productor: Octavio Hidalgo<br>
 Fotografía: Pablo Serrano<br>
 Diseño gráfico: [Dan Alcaide](https://www.danalcaide.com)<br>
 
+## Reconocimientos
+
+- Top 10 álbumes 2011 - Mondosonoro Valencia
+
 ## Instrumentos utilizados
 
 - Guitarra Rickenbacker 330

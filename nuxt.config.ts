@@ -12,6 +12,11 @@ export default defineNuxtConfig({
     ],
   },
   modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts', 'lenis/nuxt', '@nuxtjs/i18n'],
+  content: {
+    renderer: {
+      anchorLinks: { h2: false, h3: false, h4: false }
+    }
+  },
   i18n: {
     strategy: 'prefix',
     defaultLocale: 'en',
