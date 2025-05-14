@@ -13,14 +13,15 @@
 
       <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
         <video ref="videoRef" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-size-[40%_40%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
-          <source src="/videos/showreel_skizophonic_medium.mp4" type="video/mp4" media="(min-width: 1920px)">
+          <source src="/videos/showreel_skizophonic_large.mp4" type="video/mp4" media="(min-width: 1920px)">
+          <source src="/videos/showreel_skizophonic_medium.mp4" type="video/mp4" media="(min-width: 1280px)">
           <source src="/videos/showreel_skizophonic_small.mp4" type="video/mp4">
         </video>
       </div>
 
       <section ref="block2Ref" class="block2 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
         <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
-          <p class="relative z-20 mix-blend-color-dodge">{{ $t('pages.home.block2') }}</p>
+          <p class="relative z-20">{{ $t('pages.home.block2') }}</p>
         </div>
       </section>
     </div>
@@ -106,11 +107,11 @@
           autoAlpha: 0,
         })
         .from(block1Split.words, {
-          duration: 8,
+          duration: 6,
           y: 200,
           ease: 'power1',
           stagger: 0.1,
-        }, '<-=10%')
+        }, '<-=25%')
         .fromTo(video.value, {
           autoAlpha: 0,
           filter: 'brightness(0%)',
@@ -162,7 +163,7 @@
         y: 200,
         scrollTrigger: {
           trigger: video.value,
-          start: 'bottom top-=260%',
+          start: 'bottom top-=250%',
           end: '+=100%',
           // markers: true,
           toggleActions: 'play none none reverse',
