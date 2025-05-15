@@ -62,6 +62,9 @@
       "scroll": "Scroll",
       "flip": "Girar",
       "zoom": "Zoom"
+    },
+    "bandcampEmbed": {
+      "noPlayer": "Álbum descatalogado. No disponible para descarga o escucha."
     }
   },
   "footer": {

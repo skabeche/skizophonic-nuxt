@@ -15,7 +15,7 @@
     </div>
     <figure v-for="image in images" :key="image.src" class="relative flex-auto overflow-hidden">
       <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
-        <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" width="1920" loading="lazy" :alt="image.alt" :src="image.src" @click="handleClick" @mousemove="handleMouseMove" />
+        <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" width="1920" loading="lazy" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
       </div>
       <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
     </figure>

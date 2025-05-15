@@ -1,122 +1,146 @@
 export const images = [
   {
-    src: '/images/band/skizophonic_velodrome.jpg',
+    src: 'skizophonic_velodrome.jpg',
     alt: 'Skizophonic 2013',
   },
   {
-    src: '/images/band/skizo2017.jpg',
+    src: 'skizo2017.jpg',
     alt: 'Skizophonic 2017',
   },
   {
-    src: '/images/band/skizophonic_2009.jpg',
+    src: 'skizophonic_2009.jpg',
     alt: 'Skizophonic 2009',
   },
   {
-    src: '/images/band/skizophonic_concierto.jpg',
+    src: 'skizophonic_concierto.jpg',
     alt: 'Gascón',
   },
   {
-    src: '/images/band/skizophonic_gossip.jpg',
+    src: 'skizophonic_gossip.jpg',
     alt: 'Skizophonic - Gossip',
   },
   {
-    src: '/images/band/skizophonic_siluetas.jpg',
+    src: 'skizophonic_siluetas.jpg',
     alt: 'Skizophonic 2011',
   },
   {
-    src: '/images/band/skizophonic_sala_el_loco_1.jpg',
+    src: 'skizophonic_sala_el_loco_1.jpg',
     alt: 'Sala El loco',
   },
   {
-    src: '/images/band/skizophonic_trajes_mod.jpg',
+    src: 'skizophonic_trajes_mod.jpg',
     alt: 'Skizophonic 2011',
   },
   {
-    src: '/images/band/SkizophonicBand004.jpg',
+    src: 'SkizophonicBand004.jpg',
     alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
-    src: '/images/band/skizophonic2009.jpg',
+    src: 'skizophonic2009.jpg',
     alt: 'Skizophonic 2009',
   },
   {
-    src: '/images/band/SkizophonicWW006.jpg',
+    src: 'SkizophonicWW006.jpg',
     alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
-    src: '/images/band/skizophonic_fecstival2016.jpg',
+    src: 'skizophonic_fecstival2016.jpg',
     alt: 'Skizophonic - Fecstival',
   },
   {
-    src: '/images/band/nacho_fib2014.jpg',
+    src: 'nacho_fib2014.jpg',
     alt: 'Nacho - FIB',
   },
   {
-    src: '/images/band/skizonettes_fib2014.jpg',
+    src: 'skizonettes_fib2014.jpg',
     alt: 'Skizonettes - FIB',
   },
   {
-    src: '/images/band/SkizophonicWW061.jpg',
+    src: 'SkizophonicWW061.jpg',
     alt: 'Eloy - Wild Weekend Festival',
   },
   {
-    src: '/images/band/skizophonic_2008.jpg',
+    src: 'skizophonic_2008.jpg',
     alt: 'Skizophonic 2008',
   },
   {
-    src: '/images/band/nacho_rec_summer.jpg',
+    src: 'nacho_rec_summer.jpg',
     alt: 'Nacho - Rec Summer Festival',
   },
   {
-    src: '/images/band/nacho_gascon.jpg',
+    src: 'nacho_gascon.jpg',
     alt: 'Nacho - Gascón - Sixties Rock Weekend Festival',
   },
   {
-    src: '/images/band/deed_marc.jpg',
+    src: 'deed_marc.jpg',
     alt: 'Deed Marc',
   },
   {
-    src: '/images/band/eloy_fib2014.jpg',
+    src: 'eloy_fib2014.jpg',
     alt: 'Eloy - FIB',
   },
   {
-    src: '/images/band/Fede_Trovam_Pro_Weekend.jpg',
+    src: 'Fede_Trovam_Pro_Weekend.jpg',
     alt: 'Fede - Trovam Pro Weekend',
   },
   {
-    src: '/images/band/skizonettes_dibujo.jpg',
+    src: 'skizonettes_dibujo.jpg',
     alt: 'Skizonettes',
   },
   {
-    src: '/images/band/skizophonic_duchas_2013.jpg',
+    src: 'skizophonic_duchas_2013.jpg',
     alt: 'Skizophonic 2013',
   },
   {
-    src: '/images/band/gascon_trombon_fib.jpg',
+    src: 'gascon_trombon_fib.jpg',
     alt: 'Gascón - FIB',
   },
   {
-    src: '/images/band/SkizophonicWW014.jpg',
-    alt: 'Dan - Eloy - Wild Weekend Festival',
+    src: 'skizophonic_photocall_fib2014.jpg',
+    alt: 'Skizophonic - FIB',
   },
   {
-    src: '/images/band/skizophonic_furioso.jpg',
+    src: 'skizophonic_furioso.jpg',
     alt: 'Skizophonic 2013 - Velodrome',
   },
   {
-    src: '/images/band/nacho_suelo.jpg',
-    alt: 'Nacho componiendo',
+    src: 'SkizophonicWW014.jpg',
+    alt: 'Dan - Eloy - Wild Weekend Festival',
   },
   {
-    src: '/images/band/skizophonic_smoke_darkness.jpg',
+    src: 'skizophonic_smoke_darkness.jpg',
     alt: 'Skizophonic - Smoke & Darkness',
   },
   {
-    src: '/images/band/promo_sala_blood.jpg',
-    alt: 'Skizophonic 2006 - Sala Blood',
+    src: 'skizophonic_nacho_fandos_2008.jpg',
+    alt: 'Skizophonic 2008',
   },
   {
-    src: '/images/band/skizophonic_photocall_fib2014.jpg',
-    alt: 'Skizophonic - FIB',
+    src: 'nacho_suelo.jpg',
+    alt: 'Nacho componiendo',
+  },
+  {
+    src: 'charly_nacho.jpg',
+    alt: 'Charly - Nacho',
+  },
+  {
+    src: 'alamo_shock.jpg',
+    alt: 'Álamo Shock',
+  },
+  {
+    src: 'carlos_cruz.jpg',
+    alt: 'Carlos',
+  },
+  {
+    src: 'skizophonic_puente_2008.jpg',
+    alt: 'Skizophonic 2008',
+  },
+  {
+    src: 'skizophonic_cullera.jpg',
+    alt: 'Cullera',
+  },
+  {
+    src: 'promo_sala_blood.jpg',
+    alt: 'Skizophonic 2006 - Sala Blood',
   },
 ]
