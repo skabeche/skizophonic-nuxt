@@ -1,5 +1,5 @@
 <template>
-  <span class="anim-text-shadow inline-block [text-shadow:0px 0px 0px #ff0047, 0px 0px 0px #00ffc7]" @mousemove="handleMouseMove" @mouseout="handleMouseOut">
+  <span class="anim-text-shadow inline-block transition-all duration-300 ease-out" @mousemove="handleMouseMove" @mouseout="handleMouseOut">
     <slot />
   </span>
 </template>
@@ -7,35 +7,24 @@
 <script setup>
   import gsap from "gsap";
 
+  const movement = 15;
+
   const handleMouseMove = (e) => {
     // @todo Make a composable.
     const target = e.currentTarget;
-    const movement = 15;
     const rect = target.getBoundingClientRect();
-    const relX = e.pageX - (rect.left + window.scrollX);
-    const relY = e.pageY - (rect.top + window.scrollY);
+    const relX = e.clientX - rect.left;
+    const relY = e.clientY - rect.top;
 
-    const containerWidth = target.offsetWidth;
-    const containerHeight = target.offsetHeight;
-    const x = ((relX - containerWidth / 2) / containerWidth) * movement;
-    const y = ((relY - containerHeight / 2) / containerHeight) * movement;
-    // Mirrored axis.
-    const x2 = x - x * 2;
-    const y2 = y - y * 2;
+    const x = Math.round(((relX - rect.width / 2) / rect.width) * movement);
+    const y = Math.round(((relY - rect.height / 2) / rect.height) * movement);
 
-    gsap.to(target, {
-      duration: 0,
-      textShadow: `${x}px ${y}px 1px #ff0047, ${x2}px ${y2}px 1px #00ffc7`,
-      ease: 'none',
-    });
+    gsap.set(target, { textShadow: `${x}px ${y}px 1px #ff0047, ${-x}px ${-y}px 1px #00ffc7` })
   }
 
   const handleMouseOut = (e) => {
     const target = e.currentTarget;
 
-    gsap.to(target, {
-      duration: 0.1,
-      textShadow: '0px 0px 0px #ff0047, 0px 0px 0px #00ffc7',
-    });
+    gsap.set(target, { textShadow: '0px 0px 0px #ff0047, 0px 0px 0px #00ffc7' })
   }
 </script>

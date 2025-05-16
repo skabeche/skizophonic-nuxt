@@ -67,21 +67,21 @@
     }, delay);
   }
 
+  const movement = 15;
   const handleMouseMove = (e) => {
     // @todo Make a composable.
     const target = e.currentTarget;
-    const movement = 15;
     const rect = target.getBoundingClientRect();
-    const relX = e.pageX - (rect.left + window.scrollX);
-    const relY = e.pageY - (rect.top + window.scrollY);
+    const relX = e.clientX - rect.left;
+    const relY = e.clientY - rect.top;
 
-    const containerWidth = target.offsetWidth;
-    const containerHeight = target.offsetHeight;
+    const x = Math.round(((relX - rect.width / 2) / rect.width) * movement);
+    const y = Math.round(((relY - rect.height / 2) / rect.height) * movement);
 
     gsap.to(target.parentElement, {
       duration: .5,
-      x: ((relX - containerWidth / 2) / containerWidth) * movement,
-      y: ((relY - containerHeight / 2) / containerHeight) * movement
+      x: x,
+      y: y,
     });
   }
 
