@@ -12,32 +12,40 @@ export const images = [
     alt: 'Skizophonic 2009',
   },
   {
-    src: 'skizophonic_concierto.jpg',
-    alt: 'Gascón',
+    src: 'SkizophonicBand004.jpg',
+    alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
     src: 'skizophonic_gossip.jpg',
     alt: 'Skizophonic - Gossip',
   },
   {
-    src: 'skizophonic_siluetas.jpg',
+    src: 'skizophonic_trajes_mod.jpg',
     alt: 'Skizophonic 2011',
+  },
+  {
+    src: 'skizophonic_maletin.jpg',
+    alt: 'Skizophonic 2011',
+  },
+  {
+    src: 'skizophonic2009.jpg',
+    alt: 'Skizophonic 2009',
   },
   {
     src: 'skizophonic_sala_el_loco_1.jpg',
     alt: 'Sala El loco',
   },
   {
-    src: 'skizophonic_trajes_mod.jpg',
+    src: 'skizophonic_trajes_mod2.jpg',
     alt: 'Skizophonic 2011',
   },
   {
-    src: 'SkizophonicBand004.jpg',
-    alt: 'Skizophonic - Wild Weekend Festival',
+    src: 'skizophonic_concierto.jpg',
+    alt: 'Gascón',
   },
   {
-    src: 'skizophonic2009.jpg',
-    alt: 'Skizophonic 2009',
+    src: 'skizophonic_siluetas.jpg',
+    alt: 'Skizophonic 2011',
   },
   {
     src: 'SkizophonicWW006.jpg',
