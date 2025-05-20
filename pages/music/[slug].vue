@@ -67,6 +67,7 @@
     // pageTransition: false,
   });
 
+  const config = useRuntimeConfig()
   const { locale } = useI18n()
   const slug = useRoute().params.slug
   const { data: post } = await useAsyncData(slug, () => {
@@ -79,8 +80,11 @@
 
   useSeoMeta({
     title: `${content.title} | Skizophonic`,
+    description: content.meta.description,
     ogTitle: `${content.title} | Skizophonic`,
-    ogImage: content.images.cover,
+    ogDescription: content.meta.description,
+    ogType: 'music.album',
+    ogImage: `${config.public.appUrl}/albums/${slug}/${content.images.cover}`,
     ogImageAlt: `${content.title} - cover`,
     ogImageWidth: 1000,
     ogImageHeight: 900,

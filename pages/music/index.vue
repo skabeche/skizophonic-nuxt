@@ -15,7 +15,9 @@
 
   useSeoMeta({
     title: 'Music | Skizophonic',
+    description: 'Listen to their music',
     ogTitle: 'Music | Skizophonic',
+    ogDescription: 'Listen to their music',
   })
 
   onMounted(() => {

@@ -44,6 +44,8 @@
 
   useSeoMeta({
     title: 'Merch | Skizophonic',
+    description: 'Skizophonic merchandise',
     ogTitle: 'Merch | Skizophonic',
+    ogDescription: 'Skizophonic merchandise',
   })
 </script>

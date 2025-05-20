@@ -38,7 +38,9 @@
 
   useSeoMeta({
     title: 'Band | Skizophonic',
+    description: 'Who we are and what we look like',
     ogTitle: 'Band | Skizophonic',
+    ogDescription: 'Who we are and what we look like',
   })
 
   const sectionBandRef = useTemplateRef('sectionBandRef');

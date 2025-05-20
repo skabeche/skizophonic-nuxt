@@ -62,6 +62,39 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'Music band based in Benicasim and Castellón, Spain',
         },
+        {
+          name: 'og:title',
+          content: 'Skizophonic',
+        },
+        {
+          name: 'og:description',
+          content: 'Music band based in Benicasim and Castellón, Spain',
+        },
+        {
+          name: 'og:image',
+          content: `${process.env.APP_URL}/images/logo_circles.png`,
+        },
+        {
+          name: 'og:image:alt',
+          content: 'Skizophonic logo',
+        },
+        {
+          name: 'og:image:width',
+          content: '512',
+        },
+        {
+          name: 'og:image:height',
+          content: '512',
+        },
+        {
+          name: 'og:url',
+          content: process.env.APP_URL,
+        },
+        {
+          name: 'og:type',
+          content: 'website',
+        },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'author', content: 'Dan Alcaide' },
         { name: 'generator', content: 'Coffe and chocolate' },
         { name: 'format-detection', content: 'telephone=no' },
@@ -88,4 +121,9 @@ export default defineNuxtConfig({
       display: 'swap'
     },
   },
+  runtimeConfig: {
+    public: {
+      appUrl: process.env.APP_URL
+    }
+  }
 })

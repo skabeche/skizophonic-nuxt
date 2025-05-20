@@ -11,6 +11,9 @@ export const albums = [
     year: 2017,
     releaseDate: '2017-04-07',
     recordLabel: 'Ventilador Music',
+    meta: {
+      description: 'Video Rock is the fifth and latest album recorded by Skizophonic.',
+    },
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
       bandcamp: {
@@ -71,6 +74,9 @@ export const albums = [
     year: 2013,
     releaseDate: '2013-09-14',
     recordLabel: 'Lemon Songs',
+    meta: {
+      description: 'Velodrome is the fourth album recorded by Skizophonic.',
+    },
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
       bandcamp: {
@@ -133,6 +139,9 @@ export const albums = [
     year: 2011,
     releaseDate: '2011-02-28',
     recordLabel: '',
+    meta: {
+      description: 'Gossip is the third album recorded by Skizophonic.',
+    },
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
       bandcamp: {
@@ -190,6 +199,9 @@ export const albums = [
     year: 2009,
     releaseDate: '2009-09-19',
     recordLabel: '',
+    meta: {
+      description: 'Living Room is the second album/EP recorded by Skizophonic.',
+    },
     player: {
       spotify: 'https://open.spotify.com/embed/album/55dCAnS0nH77fJFehhlNiZ',
       bandcamp: {
@@ -244,6 +256,9 @@ export const albums = [
     year: 2008,
     releaseDate: '2008-05-01',
     recordLabel: '',
+    meta: {
+      description: 'One is the first album recorded by Skizophonic.',
+    },
     player: {
       spotify: '',
       bandcamp: {
