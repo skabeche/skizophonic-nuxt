@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
+  <section ref="sectionBandRef" class="section-band flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
       <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block">
         <li><span>Vocals & Guitar: Nacho Galí</span></li>
@@ -13,7 +13,7 @@
         <li><span>Skizonettes:<br> Sofía Royo & Nuria Pallares & Sol González</span></li>
       </ul>
     </div>
-    <figure v-for="image in images" :key="image.src" class="relative flex-auto overflow-hidden">
+    <figure v-for="(image, index) in images" :key="image.src" :class="`figure-${index}`" class="relative flex-auto overflow-hidden">
       <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
         <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" width="1920" loading="lazy" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
       </div>
@@ -27,9 +27,10 @@
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
 
   import gsap from "gsap";
-  import SplitText from "gsap/SplitText";
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  import { SplitText } from "gsap/SplitText";
 
-  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(SplitText, ScrollTrigger);
 
   definePageMeta({
     pageTransition: pageTransitionConfig,
@@ -40,8 +41,9 @@
     ogTitle: 'Band | Skizophonic',
   })
 
-  const prevImage = ref(null)
-  const currentImage = ref(null)
+  const sectionBandRef = useTemplateRef('sectionBandRef');
+  const prevImage = ref(null);
+  const currentImage = ref(null);
   const isLargeDevice = window.matchMedia("(min-width: 1024px)");
   let ctx;
 
@@ -90,32 +92,39 @@
       type: 'lines',
       mask: 'lines'
     });
+    const figures = gsap.utils.toArray('figure');
+
+    gsap.set(sectionBandRef.value, { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' });
+    gsap.set(figures, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' });
 
     ctx = gsap.context(() => {
       gsap
         .timeline()
-        .fromTo('section', {
-          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-        }, {
+        .to(sectionBandRef.value, {
           duration: 1.4,
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
           ease: 'power4.inOut',
         })
-        .fromTo('figure', {
-          clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-        }, {
-          duration: 1,
-          delay: 0.5,
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-          stagger: 0.25,
-          ease: 'power4.inOut',
-        })
+        .add(figuresReveal, '>0.5')
         .from(membersSplit.lines, {
           y: 200,
           duration: 1.4,
           ease: 'power4.inOut',
         }, '<0.5');
-    })
+
+      function figuresReveal() {
+        ScrollTrigger.batch('figure', {
+          onEnter: (figures) => {
+            gsap.to(figures, {
+              duration: 1,
+              clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+              stagger: 0.25,
+              ease: 'power4.inOut',
+            })
+          },
+        });
+      }
+    }, sectionBandRef.value);
   });
 
   onUnmounted(() => {
