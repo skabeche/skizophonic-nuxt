@@ -1,8 +1,7 @@
 <template>
   <AnimationReveal>
     <div class="artwork-controls mb-2">
-      <ButtonExpand v-if="!expandedArtwork" :disabled="buttonDisabled" preffix="+" @click="handleExpandArtwork">{{ $t('pages.music.labels.expandArtwork') }}</ButtonExpand>
-      <ButtonExpand v-if="expandedArtwork" :disabled="buttonDisabled" preffix="-" @click="handleCollapseArtwork">{{ $t('pages.music.labels.collapseArtwork') }}</ButtonExpand>
+      <ButtonExpand :disabled="buttonDisabled" :preffix="buttonExpand.preffix" @click="buttonExpand.eventMethod">{{ buttonExpand.text }}</ButtonExpand>
     </div>
   </AnimationReveal>
   <AnimationReveal @done="isAnimationRevealDone = true">
@@ -34,6 +33,7 @@
     },
   })
 
+  const t = useI18n().t
   const caseRef = useTemplateRef('caseRef')
   const back = useTemplateRef('backRef')
   const disc = useTemplateRef('discRef')
@@ -44,6 +44,7 @@
   const zoomedGalleta = ref(false);
   const buttonDisabled = ref(false);
   const isAnimationRevealDone = ref(false)
+  const buttonExpand = ref({ preffix: '+', text: t('pages.music.labels.expandArtwork'), eventMethod: () => handleExpandArtwork() })
 
   onMounted(() => {
     gsap.set(galleta.value, {
@@ -54,7 +55,6 @@
     watchEffect(() => {
       if (isAnimationRevealDone.value) {
         gsap.to(galleta.value, {
-          // delay: 1,
           duration: 1,
           opacity: 1,
           xPercent: 0,
@@ -62,12 +62,17 @@
           ease: 'power4.out',
         })
       }
+
+      if (expandedArtwork.value) {
+        buttonExpand.value = { preffix: '-', text: t('pages.music.labels.collapseArtwork'), eventMethod: () => handleCollapseArtwork() }
+      }
+      else {
+        buttonExpand.value = { preffix: '+', text: t('pages.music.labels.expandArtwork'), eventMethod: () => handleExpandArtwork() }
+      }
     })
   })
 
   const handleExpandArtwork = () => {
-    expandedArtwork.value = true
-
     // @todo Handle with timelines.
     // Reset animations.
     if (flippedCase.value) {
@@ -108,6 +113,7 @@
           document.querySelector('.cursor-custom').classList.add('hidden')
         },
         onComplete: () => {
+          expandedArtwork.value = true
           buttonDisabled.value = false
         }
       })

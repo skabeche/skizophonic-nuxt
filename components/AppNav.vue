@@ -57,6 +57,15 @@
   onMounted(() => {
     let firstPageLoad = true;
 
+    gsap.set(navWrapperRef.value, {
+      clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+    })
+
+    gsap.set('.nav-wrapper ul li', {
+      autoAlpha: 0,
+      y: 30,
+    })
+
     const tlOpen = gsap
       .timeline({
         paused: true,
@@ -64,16 +73,11 @@
           ease: 'power1.inOut'
         },
       })
-      .fromTo(navWrapperRef.value, {
-        clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-      }, {
+      .to(navWrapperRef.value, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       })
-      .fromTo('.nav-wrapper ul li', {
-        autoAlpha: 0,
-        y: 30,
-      }, {
+      .to('.nav-wrapper ul li', {
         duration: 0.4,
         autoAlpha: 1,
         y: 0,
@@ -99,7 +103,7 @@
       }, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-      })
+      }, '<0.3')
 
     watchEffect(() => {
 
@@ -122,14 +126,6 @@
 </script>
 
 <style scoped>
-  .nav-wrapper {
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-
-    &.open {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    }
-  }
-
   .nav-icon:hover {
     :deep(.line:nth-child(1)) {
       animation: anim-icon-line 1.2s ease-in-out infinite;

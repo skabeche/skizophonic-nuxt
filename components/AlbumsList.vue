@@ -1,6 +1,6 @@
 <template>
   <section class="flex items-center gap-4 h-dvh">
-    <div class="controls relative z-20 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-9xl">
+    <div class="controls relative z-20 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-[7.4rem]">
       <button class="prev-slide cursor-pointer hover:text-[#ff0047]" @click="handlePrevSlide">
         <Icon name="ion:arrow-up-a" />
       </button>
@@ -58,7 +58,7 @@
     prevSlide.addEventListener("click", handlePrevSlide);
     nextSlide.addEventListener("click", handleNextSlide);
 
-    let listening = false;
+    let isAnimating = false;
     let direction = "down";
     let current;
     let next = 0;
@@ -110,7 +110,7 @@
           paused: true,
           defaults: tlDefaults,
           onComplete: () => {
-            listening = true;
+            isAnimating = true;
             current = next;
           }
         })
@@ -149,7 +149,7 @@
         .timeline({
           defaults: tlDefaults,
           onComplete: () => {
-            listening = true;
+            isAnimating = true;
             current = next;
           }
         })
@@ -162,7 +162,7 @@
     }
 
     function handleDirection() {
-      listening = false;
+      isAnimating = false;
 
       if (direction === "down") {
         next = current + 1;
@@ -178,25 +178,25 @@
     }
 
     function handleWheel(e) {
-      if (!listening) return;
+      if (!isAnimating) return;
       direction = e.wheelDeltaY < 0 ? "down" : "up";
       handleDirection();
     }
 
     function handleTouchStart(e) {
-      if (!listening) return;
+      if (!isAnimating) return;
       const t = e.changedTouches[0];
       touch.startX = t.pageX;
       touch.startY = t.pageY;
     }
 
     function handleTouchMove(e) {
-      if (!listening) return;
+      if (!isAnimating) return;
       e.preventDefault();
     }
 
     function handleTouchEnd(e) {
-      if (!listening) return;
+      if (!isAnimating) return;
       const t = e.changedTouches[0];
       touch.dx = t.pageX - touch.startX;
       touch.dy = t.pageY - touch.startY;
@@ -217,13 +217,13 @@
     }
 
     function handlePrevSlide() {
-      if (!listening) return;
+      if (!isAnimating) return;
       direction = "up";
       handleDirection();
     }
 
     function handleNextSlide() {
-      if (!listening) return;
+      if (!isAnimating) return;
       direction = "down";
       handleDirection();
     }
