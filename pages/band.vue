@@ -36,18 +36,19 @@
     pageTransition: pageTransitionConfig,
   });
 
-  useSeoMeta({
-    title: 'Band | Skizophonic',
-    description: 'Who we are and what we look like',
-    ogTitle: 'Band | Skizophonic',
-    ogDescription: 'Who we are and what we look like',
-  })
-
+  const { t } = useI18n();
   const sectionBandRef = useTemplateRef('sectionBandRef');
   const prevImage = ref(null);
   const currentImage = ref(null);
   const isLargeDevice = window.matchMedia("(min-width: 1024px)");
   let ctx;
+
+  useSeoMeta({
+    title: `${t('pages.band.meta.title')} | ${t('siteName')}`,
+    description: t('pages.band.meta.description'),
+    ogTitle: `${t('pages.band.meta.title')} | ${t('siteName')}`,
+    ogDescription: t('pages.band.meta.description'),
+  })
 
   const handleClick = (e) => {
     const element = e.srcElement

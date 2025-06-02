@@ -116,7 +116,7 @@ export default defineNuxtConfig({
     },
     google: {
       families: {
-        'Inter': [600, 700, 800, 900],
+        'Poppins': [600, 700, 800, 900],
       },
       display: 'swap'
     },

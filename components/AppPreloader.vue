@@ -56,7 +56,7 @@
           duration: 1.2,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
-        }, '<0.3')
+        }, '<0.1')
     }); // <- Scope!
   })
 

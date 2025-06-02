@@ -51,17 +51,20 @@
     pageTransition: pageTransitionConfig,
   });
 
-  useSeoMeta({
-    title: 'Home | Skizophonic',
-    ogTitle: 'Home | Skizophonic',
-  })
-
+  const { t } = useI18n();
   const blockTimelineRef = useTemplateRef('blockTimelineRef');
   // const block1 = useTemplateRef('block1Ref');
   const block2 = useTemplateRef('block2Ref');
   const block3 = useTemplateRef('block3Ref');
   const video = useTemplateRef('videoRef');
   let ctx;
+
+  useSeoMeta({
+    title: `${t('pages.home.meta.title')} | ${t('siteName')}`,
+    description: t('pages.home.meta.description'),
+    ogTitle: `${t('pages.home.meta.title')} | ${t('siteName')}`,
+    ogDescription: t('pages.home.meta.description'),
+  })
 
   onMounted(() => {
 

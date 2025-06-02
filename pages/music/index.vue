@@ -13,11 +13,13 @@
     hideFooter: true,
   });
 
+  const {t} = useI18n();
+
   useSeoMeta({
-    title: 'Music | Skizophonic',
-    description: 'Listen to their music',
-    ogTitle: 'Music | Skizophonic',
-    ogDescription: 'Listen to their music',
+    title: `${t('pages.music.meta.title')} | ${t('siteName')}`,
+    description: t('pages.music.meta.description'),
+    ogTitle: `${t('pages.music.meta.title')} | ${t('siteName')}`,
+    ogDescription: t('pages.music.meta.description'),
   })
 
   onMounted(() => {

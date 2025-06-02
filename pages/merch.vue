@@ -42,10 +42,11 @@
     pageTransition: pageTransitionConfig,
   });
 
+  const { t } = useI18n();
   useSeoMeta({
-    title: 'Merch | Skizophonic',
-    description: 'Skizophonic merchandise',
-    ogTitle: 'Merch | Skizophonic',
-    ogDescription: 'Skizophonic merchandise',
+    title: `${t('pages.merch.meta.title')} | ${t('siteName')}`,
+    description: t('pages.merch.meta.description'),
+    ogTitle: `${t('pages.merch.meta.title')} | ${t('siteName')}`,
+    ogDescription: t('pages.merch.meta.description'),
   })
 </script>
