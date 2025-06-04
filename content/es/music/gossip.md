@@ -2,7 +2,7 @@
 title: Gossip
 ---
 
-Grabado, mezclado y masterizado en los estudios APK de Valencia en enero y febrero de 2011.
+Grabado, mezclado y masterizado en los estudios APK de Valencia (España) en enero y febrero de 2011.
 
 Productor: Octavio Hidalgo<br>
 Fotografía: Pablo Serrano<br>

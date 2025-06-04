@@ -15,7 +15,7 @@
         <h3>{{ item.name }}</h3>
       </AnimationReveal>
       <AnimationReveal>
-        <span class="block text-gray-500">Not available</span>
+        <span class="block text-gray-500">{{ $t('pages.merch.labels.noStock') }}</span>
       </AnimationReveal>
     </div>
   </div>

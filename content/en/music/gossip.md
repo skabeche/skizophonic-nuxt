@@ -2,7 +2,7 @@
 title: Gossip
 ---
 
-Recorded, mixed and mastered at APK Studies in Valencia in January and February 2011.
+Recorded, mixed and mastered at APK Studios in Valencia (Spain) in January and February 2011.
 
 Producer: Octavio Hidalgo<br>
 Photography: Pablo Serrano<br>
@@ -10,7 +10,7 @@ Graphic design: [Dan Alcaide](https://www.danalcaide.com)<br>
 
 ## Awards
 
-- Top 10 albums 2011 - Mondosonoro Valencia
+- Top 10 albums 2011 - Mondosonoro Valencia (Spanish magazine)
 
 ## Instruments
 

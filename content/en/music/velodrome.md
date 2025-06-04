@@ -18,4 +18,4 @@ Gospel Choir in ‘Oh Oh Oh (Do Not Skip Any Detail)’: Nuria Pallarés, Sol Go
 
 - Best album 2013 - Benicassim.pop
 - Best song ‘Love Soldier’ 2013 - Benicassim.pop
-- Top 10 albums 2013 - NMPNU
+- Top 10 albums 2013 - NMPNU (Spanish magazine)

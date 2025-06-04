@@ -2,7 +2,7 @@
 title: One
 ---
 
-Recorded at Bubble Studies in Castellón (Spain) sometime in 2008 while we were having a pint.
+Recorded, mixed and mastered at Bubble Studios in Castellón (Spain) sometime in 2008 while we were having a pint.
 
 Producer: Nacho Fandós<br>
 Photography: Iván Dabón<br>

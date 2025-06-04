@@ -2,7 +2,7 @@
 title: Living Room
 ---
 
-Recorded, mixed and mastered at APK Studies in Valencia in August 2009.
+Recorded, mixed and mastered at APK Studios in Valencia (Spain) in August 2009.
 
 Producer: Octavio Hidalgo<br>
 Photography: Iván Dabón<br>
@@ -10,7 +10,7 @@ Graphic design: [Dan Alcaide](https://www.danalcaide.com)<br>
 
 ## Awards
 
-- Top 10 demos/EP 2009 - Mondosonoro Valencia: [Living Room EP on Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
+- Top 10 demos/EP 2009 - Mondosonoro Valencia (Spanish magazine): [Living Room EP on Mondosonoro](https://issuu.com/mondosonoroval/docs/mondoissuuene10)
 
 ## Instruments
 

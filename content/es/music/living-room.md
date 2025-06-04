@@ -2,7 +2,7 @@
 title: Living Room
 ---
 
-Grabado en los estudios APK de Valencia en agosto de 2009.
+Grabado, mezclado y masterizado en los estudios APK de Valencia (España) en agosto de 2009.
 
 Productor: Octavio Hidalgo<br>
 Fotografía: Iván Dabón<br>

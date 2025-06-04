@@ -2,7 +2,7 @@
 title: One
 ---
 
-Grabado en los Estudios Bubble de Castellón (Spain) en algún momento de 2008 mientras tomábamos un carajillo.
+Grabado, mezclado y masterizado en los estudios Bubble de Castellón (España) en algún momento de 2008 mientras tomábamos un carajillo.
 
 Productor: Nacho Fandós<br>
 Fotografía: Iván Dabón<br>
