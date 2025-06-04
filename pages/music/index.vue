@@ -13,7 +13,7 @@
     hideFooter: true,
   });
 
-  const {t} = useI18n();
+  const { t } = useI18n();
 
   useSeoMeta({
     title: `${t('pages.music.meta.title')} | ${t('siteName')}`,
