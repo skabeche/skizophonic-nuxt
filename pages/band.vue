@@ -9,7 +9,7 @@
         <li><span>Bass & Trombone: Javier Gascón</span></li>
         <li><span>Bass: Carlos Sánchez</span></li>
         <li><span>Drums: Carlos Cruz</span></li>
-        <li><span>Drums: Deed Marc</span></li>
+        <li><span>Drums: David Marco</span></li>
         <li><span>Skizonettes:<br> Sofía Royo & Nuria Pallares & Sol González</span></li>
       </ul>
     </div>

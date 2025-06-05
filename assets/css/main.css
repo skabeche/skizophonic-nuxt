@@ -80,7 +80,7 @@
     @apply text-[clamp(3rem,_10vw,_4.6rem)] leading-none overflow-y-hidden;
   }
   h2 {
-    @apply text-[clamp(2.7rem,_10vw,_3.8rem)];
+    @apply text-[clamp(2.4rem,_10vw,_3.8rem)];
   }
   h3 {
     @apply text-3xl;
@@ -109,14 +109,20 @@ html.lenis body {
   height: auto;
 }
 
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
 
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
 }

@@ -1,6 +1,6 @@
 <template>
-  <section class="flex items-center gap-4 h-dvh">
-    <div class="controls relative z-20 flex flex-col gap-4 text-white text-5xl sm:text-6xl xl:text-[7.4rem]">
+  <section class="flex items-center justify-end sm:justify-start h-dvh">
+    <div class="controls relative z-20 flex flex-col text-white mx-2 text-5xl lg:text-[4.4rem] 2xl:text-[7.4rem]">
       <button class="prev-slide cursor-pointer hover:text-[#ff0047]" @click="handlePrevSlide">
         <Icon name="ion:arrow-up-a" />
       </button>
@@ -17,14 +17,16 @@
             </div>
             <div class="w-2/3">
               <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
-                <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" loading="lazy">
+                <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" width="1000" height="900" loading="lazy">
               </NuxtLinkLocale>
             </div>
             <div class="1/3">
-              <h2 class="slide-heading text-8xl">
-                <NuxtLinkLocale class="text-white" :to="{ name: 'music-slug', params: { slug: album.slug } }">
-                  {{ album.title }}
-                </NuxtLinkLocale>
+              <h2 class="slide-heading text-8xl [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)] hover:[clip-path:none]">
+                <AnimationTextShadow>
+                  <NuxtLinkLocale class="text-white" :to="{ name: 'music-slug', params: { slug: album.slug } }">
+                    {{ album.title }}
+                  </NuxtLinkLocale>
+                </AnimationTextShadow>
               </h2>
             </div>
           </div>
@@ -79,8 +81,7 @@
 
     const splitHeadings = headings.map((heading) => {
       return SplitText.create(heading, {
-        type: "chars, words, lines",
-        mask: "lines"
+        type: "chars, words",
       });
     });
 

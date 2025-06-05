@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div ref="homeTimelineRef">
     <div ref="blockTimelineRef" class="block-timeline relative top-0 left-0 w-screen min-h-dvh">
       <HeroHypnotic class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
-      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
+      <section class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
         <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
           <p class="relative z-30">{{ $t('pages.home.block1') }}</p>
         </div>
@@ -34,7 +34,6 @@
         <ButtonHypnotic to="music">{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -52,8 +51,8 @@
   });
 
   const { t } = useI18n();
+  const homeTimelineRef = useTemplateRef('homeTimelineRef');
   const blockTimelineRef = useTemplateRef('blockTimelineRef');
-  // const block1 = useTemplateRef('block1Ref');
   const block2 = useTemplateRef('block2Ref');
   const block3 = useTemplateRef('block3Ref');
   const video = useTemplateRef('videoRef');
@@ -185,7 +184,7 @@
           toggleActions: 'play none none reverse',
         }
       })
-    }, blockTimelineRef.value); // <- Scope!
+    }, homeTimelineRef.value); // <- Scope!
 
   })
 

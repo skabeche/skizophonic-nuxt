@@ -81,7 +81,7 @@ export const images = [
   },
   {
     src: 'deed_marc.jpg',
-    alt: 'Deed Marc',
+    alt: 'David Marco',
   },
   {
     src: 'eloy_fib2014.jpg',
