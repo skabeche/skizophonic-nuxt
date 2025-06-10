@@ -13,9 +13,10 @@
 
       <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
         <video ref="videoRef" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-size-[40%_40%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
-          <source src="/videos/showreel_skizophonic_large.mp4" type="video/mp4" media="(min-width: 1920px)">
-          <source src="/videos/showreel_skizophonic_medium.mp4" type="video/mp4" media="(min-width: 1280px)">
-          <source src="/videos/showreel_skizophonic_small.mp4" type="video/mp4">
+          <source src="/videos/showreel_skizophonic_1080p.mp4" type="video/mp4" media="(min-width: 1920px)">
+          <source src="/videos/showreel_skizophonic_720p.mp4" type="video/mp4" media="(min-width: 1280px)">
+          <source src="/videos/showreel_skizophonic_480p.mp4" type="video/mp4" media="(min-width: 640px)">
+          <source src="/videos/showreel_skizophonic_360p.mp4" type="video/mp4">
         </video>
       </div>
 
@@ -124,7 +125,7 @@
         }, '+=400%')
         .to(video.value, {
           duration: 4,
-          filter: 'brightness(100%)',
+          filter: 'brightness(85%)',
           maskSize: '200% 200%',
           ease: 'power1.in',
         }, '+=0.3')

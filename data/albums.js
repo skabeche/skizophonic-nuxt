@@ -50,7 +50,10 @@ export const albums = [
         },
       ],
     },
-    bgVideo: 'vhs.mp4',
+    bgVideo: {
+      fhd: 'vhs_1080p.mp4',
+      hd: 'vhs_720p.mp4',
+    },
     tracklist: [
       'Me aburrís todos con la misma mierda',
       'Coco loco',
@@ -113,7 +116,10 @@ export const albums = [
         },
       ],
     },
-    bgVideo: 'woman_dancing.mp4',
+    bgVideo: {
+      fhd: 'woman_dancing_1080p.mp4',
+      hd: 'woman_dancing_720p.mp4',
+    },
     tracklist: [
       'How Would You Say I Love You?',
       'Clockwork',
@@ -170,11 +176,14 @@ export const albums = [
         },
         {
           id: 'wi6xNiO0xZQ',
-          title: 'Annie -  Conciertos de Radio 3 - TVE',
+          title: 'Annie - Conciertos de Radio 3 - TVE',
         },
       ],
     },
-    bgVideo: 'woman_finger.mp4',
+    bgVideo: {
+      fhd: 'woman_finger_1080p.mp4',
+      hd: 'woman_finger_720p.mp4',
+    },
     tracklist: [
       'I Must Doubt',
       'I Wait',
@@ -234,7 +243,10 @@ export const albums = [
         // },
       ],
     },
-    bgVideo: 'factories.mp4',
+    bgVideo: {
+      fhd: 'factories_1080p.mp4',
+      hd: 'factories_720p.mp4',
+    },
     tracklist: [
       'Shut Up',
       'Today: Save Your Weekend (Tomorrow: Save Your Soul)',
@@ -280,7 +292,10 @@ export const albums = [
         // },
       ],
     },
-    bgVideo: 'subway.mp4',
+    bgVideo: {
+      fhd: 'subway_1080p.mp4',
+      hd: 'subway_720p.mp4',
+    },
     tracklist: [
       'Exhibitionist',
       'The Last Stupid Rock Project',
