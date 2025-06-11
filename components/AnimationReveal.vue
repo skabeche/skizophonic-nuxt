@@ -13,7 +13,7 @@
 
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
-  const offset = 1.1; // Align with page transition.
+  const offset = 0.6; // Align with page transition.
   const randomDelay = +(Math.random() * 0.8 + 0.2).toFixed(2) + offset;
   let ctx;
 
