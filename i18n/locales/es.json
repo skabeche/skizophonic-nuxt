@@ -25,6 +25,14 @@
     "band": {
       "name": "Banda",
       "title": "Banda",
+      "labels": {
+        "vocals": "Voz",
+        "guitar": "Guitarra",
+        "keyboards": "Teclados",
+        "bass": "Bajo",
+        "trombone": "Trombón",
+        "drums": "Batería"
+      },
       "meta": {
         "title": "Banda",
         "description": "Quiénes somos y cómo somos"

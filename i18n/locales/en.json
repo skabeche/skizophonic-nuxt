@@ -25,6 +25,14 @@
     "band": {
       "name": "Band",
       "title": "Band",
+      "labels": {
+        "vocals": "Vocals",
+        "guitar": "Guitar",
+        "keyboards": "Keyboards",
+        "bass": "Bass",
+        "trombone": "Trombone",
+        "drums": "Drums"
+      },
       "meta": {
         "title": "Band",
         "description": "Who we are and what we look like"

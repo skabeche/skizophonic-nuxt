@@ -2,14 +2,14 @@
   <section ref="sectionBandRef" class="section-band flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
       <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block">
-        <li><span>Vocals & Guitar: Nacho Galí</span></li>
-        <li><span>Guitar: Dan Alcaide</span></li>
-        <li><span>Guitar: Fede Trillo</span></li>
-        <li><span>Keyboards: Eloy Alcaide</span></li>
-        <li><span>Bass & Trombone: Javier Gascón</span></li>
-        <li><span>Bass: Carlos Sánchez</span></li>
-        <li><span>Drums: Carlos Cruz</span></li>
-        <li><span>Drums: David Marco</span></li>
+        <li><span>{{ $t('pages.band.labels.vocals') }} & {{ $t('pages.band.labels.guitar') }}: Nacho Galí</span></li>
+        <li><span>{{ $t('pages.band.labels.guitar') }}: Dan Alcaide</span></li>
+        <li><span>{{ $t('pages.band.labels.guitar') }}: Fede Trillo</span></li>
+        <li><span>{{ $t('pages.band.labels.keyboards') }}: Eloy Alcaide</span></li>
+        <li><span>{{ $t('pages.band.labels.bass') }} & {{ $t('pages.band.labels.trombone') }}: Javier Gascón</span></li>
+        <li><span>{{ $t('pages.band.labels.bass') }}: Carlos Sánchez</span></li>
+        <li><span>{{ $t('pages.band.labels.drums') }}: Carlos Cruz</span></li>
+        <li><span>{{ $t('pages.band.labels.drums') }}: David Marco</span></li>
         <li><span>Skizonettes:<br> Sofía Royo & Nuria Pallares & Sol González</span></li>
       </ul>
     </div>
