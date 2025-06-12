@@ -1,6 +1,6 @@
 <template>
   <div v-show="showCursor" ref="cursorRef" class="cursor-custom fixed z-100 top-0 left-0 origin-top-left pointer-events-none rounded-full backdrop-blur-sm">
-    <div class="relative z-10 flex items-center justify-center w-24 h-24 p-2 bg-black/30 text-white text-center lowercase rounded-full">
+    <div class="relative z-10 flex items-center justify-center w-26 h-26 p-2 bg-black/30 text-white text-center lowercase rounded-full">
       {{ text }}
     </div>
   </div>
@@ -16,7 +16,6 @@
   const lastCoordinatesAxis = { x: null, y: null };
   const currentCoordinatesAxis = { x: null, y: null };
   const text = ref(null);
-  // let hoveredElement;
   let cursorElements = [];
 
   const setCursorListeners = () => {
@@ -29,26 +28,10 @@
     for (const el of cursorElements) {
       if (isTouchDevice && el.dataset.cursorEnableTouch !== 'true') continue;
 
-      el.addEventListener('mouseenter', (e) => {
-        text.value = el.dataset.cursorText;
-        cursorEnter(e);
-      });
-      el.addEventListener('mouseleave', (e) => {
-        text.value = null;
-        cursorOut(e);
-      });
-      el.addEventListener('mousemove', (e) => {
-        cursorMove(e);
-      });
+      el.addEventListener('mouseenter', cursorEnter);
+      el.addEventListener('mouseleave', cursorOut);
+      el.addEventListener('mousemove', cursorMove);
     }
-
-    // Cursor hides when the user touches out of the interacting element.
-    // document.addEventListener('touchstart', (e) => {
-    //   hoveredElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-    // hoveredElement.id !== 'XXXX' ? cursorOut(e) : cursorEnter(e);
-    // },
-    //   { passive: true }
-    // );
 
     gsap
       .timeline()
@@ -62,6 +45,7 @@
   };
 
   const cleanCursorListeners = () => {
+    cursorOut();
     for (const el of cursorElements) {
       el.removeEventListener('mouseenter', cursorEnter);
       el.removeEventListener('mouseleave', cursorOut);
@@ -124,6 +108,8 @@
   }
 
   const cursorEnter = (e) => {
+    text.value = e.currentTarget.dataset.cursorText;
+
     gsap.to(cursorRef.value, {
       opacity: 1,
       filter: "blur(0px)",
@@ -136,7 +122,9 @@
     });
   }
 
-  const cursorOut = (e) => {
+  const cursorOut = () => {
+    text.value = null;
+
     gsap.to(cursorRef.value, {
       opacity: 0,
       filter: "blur(8px)",
