@@ -11,7 +11,17 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts', 'lenis/nuxt', '@nuxtjs/i18n'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    'lenis/nuxt',
+    '@nuxtjs/i18n',
+    '@nuxtjs/sitemap',
+  ],
   content: {
     renderer: {
       anchorLinks: { h2: false, h3: false, h4: false }
