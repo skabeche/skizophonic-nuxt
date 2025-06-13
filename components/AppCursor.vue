@@ -33,9 +33,7 @@
       el.addEventListener('mousemove', cursorMove);
     }
 
-    gsap
-      .timeline()
-      .to(cursorRef.value, {
+    gsap.to(cursorRef.value, {
         yPercent: 8,
         duration: 1,
         repeat: -1,
