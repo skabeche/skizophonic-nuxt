@@ -28,10 +28,13 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
-    strategy: 'prefix',
+    strategy: 'prefix_except_default',
     defaultLocale: 'en',
-    detectBrowserLanguage: false,
-    // vueI18n: './i18n/i18n.config.ts',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'es', name: 'Spanish', file: 'es.json' }
