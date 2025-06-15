@@ -17,7 +17,7 @@
   const { locale } = useI18n()
   const showPreloader = ref(true);
   const isRootPath = computed(() => route.path === '/' || route.path === `/${locale.value}`);
-  let ctx;
+  let ctx = gsap.context(() => { });
 
   onMounted(() => {
     // Only show preloader on root path.
