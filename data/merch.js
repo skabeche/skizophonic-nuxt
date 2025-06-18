@@ -56,7 +56,12 @@ export const stickers = [
   //   id: 2,
   //   name: 'Star',
   //   image: 'sticker_star.jpg',
-  // }
+  // },
+  {
+    id: 3,
+    name: 'Retrogame',
+    image: 'sticker_retrogame.png',
+  },
 ]
 
 export const posters = [
@@ -64,5 +69,10 @@ export const posters = [
     id: 1,
     name: 'Black & white',
     image: 'poster_skizophonic_black_white.jpg',
-  }
+  },
+  // {
+  //   id: 2,
+  //   name: 'Velodrome',
+  //   image: 'poster_velodrome.jpg',
+  // },
 ]

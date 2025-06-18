@@ -1,13 +1,13 @@
 <template>
-  <div class="merch-items grid grid-cols-1 lg:grid-cols-3 gap-10">
-    <div v-for="item in items" :key="item.id" class="merch-item">
+  <div class="merch-items grid grid-cols-1 lg:grid-cols-2 gap-18">
+    <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center">
       <AnimationReveal class="w-full">
-        <div class="item relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-200">
-          <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-500 cursor-crosshair drop-shadow-md/50" :src="`/images/merch/${item.image}`" :alt="`${title} - ${item.name}`" loading="lazy" />
-          <video ref="videoRef" class="item-bg-video absolute z-20 top-0 left-0 w-full h-full object-cover transition-all duration-500" preload="auto" autoplay muted loop playsinline disableremoteplayback>
-            <source src="/videos/spiral_large.mp4" type="video/mp4" media="(min-width: 2560px)">
-            <source src="/videos/spiral_medium.mp4" type="video/mp4" media="(min-width: 1920px)">
-            <source src="/videos/spiral_small.mp4" type="video/mp4">
+        <div class="item relative overflow-hidden">
+          <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-500 cursor-crosshair drop-shadow-md/70" :src="`/images/merch/${item.image}`" :alt="`${title} - ${item.name}`" loading="lazy" />
+          <video ref="videoRef" class="item-bg-video absolute z-20 inset-0 w-full h-full object-cover transition-all duration-500 [clip-path:circle(46%_at_50%_50%)] mix-blend-darken" preload="auto" autoplay muted loop playsinline disableremoteplayback aria-hidden="true">
+            <!-- <source src="/videos/spiral2_large.mp4" type="video/mp4" media="(min-width: 1920px)"> -->
+            <source src="/videos/spiral2_medium.mp4" type="video/mp4" media="(min-width: 1280px)">
+            <source src="/videos/spiral2_small.mp4" type="video/mp4">
           </video>
         </div>
       </AnimationReveal>
@@ -31,20 +31,22 @@
 </script>
 
 <style scoped>
-  .item:hover {
+  .item-img {
+    transition: all .4s ease-in-out;
+  }
 
-    .item-img,
-    .tem-bg-video {
-      transform: scale(1.04);
-    }
+  .item:hover .item-img {
+    transform: scale(1.04);
   }
 
   .item-img + .item-bg-video {
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transform: scale(0.9);
+    transition: all .4s ease;
   }
 
   .item-img:hover + .item-bg-video {
     opacity: 1;
+    transform: scale(1);
   }
 </style>

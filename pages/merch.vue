@@ -1,52 +1,166 @@
 <template>
-  <div class="container flex flex-col gap-16 mt-[100px]">
-    <AnimationReveal :delay="0.2">
-      <h1 class="text-[clamp(3rem,_10vw,_6rem)]">{{ $t('pages.merch.title') }}</h1>
-    </AnimationReveal>
+  <section ref="merchRef" class="container relative flex gap-16 justify-end min-h-dvh pt-[60px]">
+    <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <section>
-      <AnimationReveal>
-        <h2>{{ $t('pages.merch.sections.tshirts.title') }}</h2>
-      </AnimationReveal>
-      <MerchItem :items="tshirts" />
-    </section>
+    <aside class="absolute top-0 left-0 w-full h-full" aria-label="Merch filter" role="complementary">
+      <ul class="merch-filter">
+        <li v-for="(item, index) in filterItems" :key="item.key" class="relative">
+          <button class="w-max text-[1.8rem] uppercase leading-none" :class="`${item.key}`" @click="handleClickFilterOption(index)">{{ item.label }}</button>
+        </li>
+      </ul>
+    </aside>
 
-    <section>
-      <AnimationReveal>
-        <h2>{{ $t('pages.merch.sections.buttonBadges.title') }}</h2>
-      </AnimationReveal>
-      <MerchItem :items="badges" />
+    <section class="merch-items flex flex-col gap-24 w-[80%]">
+      <article id="tshirts">
+        <h2 class="sr-only">{{ $t('pages.merch.sections.tshirts.title') }}</h2>
+        <MerchItem :items="tshirts" />
+      </article>
+      <article id="badges">
+        <h2 class="sr-only">{{ $t('pages.merch.sections.buttonBadges.title') }}</h2>
+        <MerchItem :items="badges" />
+      </article>
+      <article id="stickers">
+        <h2 class="sr-only">{{ $t('pages.merch.sections.stickers.title') }}</h2>
+        <MerchItem :items="stickers" />
+      </article>
+      <article id="posters">
+        <h2 class="sr-only">{{ $t('pages.merch.sections.posters.title') }}</h2>
+        <MerchItem :items="posters" />
+      </article>
     </section>
-
-    <section>
-      <AnimationReveal>
-        <h2>{{ $t('pages.merch.sections.stickers.title') }}</h2>
-      </AnimationReveal>
-      <MerchItem :items="stickers" />
-    </section>
-
-    <section>
-      <AnimationReveal>
-        <h2>{{ $t('pages.merch.sections.posters.title') }}</h2>
-      </AnimationReveal>
-      <MerchItem :items="posters" />
-    </section>
-  </div>
+  </section>
 </template>
 
 <script setup>
   import { tshirts, badges, stickers, posters } from "~/data/merch";
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
 
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+  import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+  gsap.registerPlugin(SplitText, ScrollTrigger, ScrollToPlugin);
+
   definePageMeta({
     pageTransition: pageTransitionConfig,
   });
 
   const { t } = useI18n();
+
   useSeoMeta({
     title: `${t('pages.merch.meta.title')} | ${t('siteName')}`,
     description: t('pages.merch.meta.description'),
     ogTitle: `${t('pages.merch.meta.title')} | ${t('siteName')}`,
     ogDescription: t('pages.merch.meta.description'),
   })
+
+  const filterItems = ref([
+    { label: t('pages.merch.sections.tshirts.title'), key: 'tshirts', active: false },
+    { label: t('pages.merch.sections.buttonBadges.title'), key: 'badges', active: false },
+    { label: t('pages.merch.sections.stickers.title'), key: 'stickers', active: false },
+    { label: t('pages.merch.sections.posters.title'), key: 'posters', active: false },
+  ]);
+  const activeFilterItem = ref(null);
+  const merchRef = useTemplateRef('merchRef');
+  let ctx;
+
+  onMounted(() => {
+    const filterSplit = SplitText.create(".merch-filter li button", {
+      type: 'lines, words, chars',
+      mask: 'lines',
+      charsClass: 'char'
+    });
+
+    ctx = gsap.context(() => {
+      gsap.set(filterSplit.lines, { y: 60, });
+      gsap
+        .timeline(
+          {
+            onComplete: () => createScrollTriggerBySection(),
+          }
+        )
+        .to(filterSplit.lines, {
+          delay: 0.5,
+          y: 0,
+          duration: 1,
+          ease: 'power4',
+        })
+
+      // Make aside sticky.
+      ScrollTrigger.create({
+        trigger: 'aside',
+        start: 'top-=80 top',
+        // end: () => `${document.documentElement.scrollHeight - window.innerHeight - 240}px`,
+        end: 'bottom center',
+        pin: true,
+        // markers: true,
+      });
+
+      const createScrollTriggerBySection = () => {
+        filterItems.value.forEach((section, index) => {
+          ScrollTrigger.create({
+            trigger: `#${section.key}`,
+            start: 'top-=130 top',
+            // end: 'bottom bottom',
+            // markers: true,
+            onEnter: () => setActiveSection(index),
+            onEnterBack: () => setActiveSection(index),
+          });
+        });
+      }
+
+    }, merchRef.value);
+  })
+
+  onUnmounted(() => {
+    ctx.revert();
+  });
+
+  const setActiveSection = (index) => {
+    const newSection = filterItems.value[index].key;
+    const prevSection = activeFilterItem.value;
+
+    if (prevSection === newSection) return;
+
+    // Matching: font-size: clamp(1.8rem, 10vw, 12rem);
+    const clamp = gsap.utils.clamp(28.8, 192); // min 1.8rem, max 12rem - in px.
+    const fontSize = clamp(window.innerWidth * 0.10); // 10vw - result in px.
+
+    gsap.
+      timeline()
+      // Shrink previous.
+      .to(`.${prevSection} .char`, {
+        fontSize: '1.8rem',
+        color: '#000',
+        stagger: 0.03,
+        ease: 'power2.inOut',
+      })
+      // Grow new.
+      .to(`.${newSection} .char`, {
+        fontSize: `${fontSize}px`,
+        color: '#cfcfcf',
+        duration: 0.4,
+        stagger: 0.03,
+        ease: 'power2.inOut',
+      }, '<');
+
+    // Set active state.
+    filterItems.value.forEach((item, i) => {
+      item.active = i === index;
+    });
+
+    activeFilterItem.value = newSection;
+  };
+
+  const handleClickFilterOption = (index) => {
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: {
+        y: `#${filterItems.value[index].key}`,
+        offsetY: 60,
+      },
+      ease: 'power4.inOut',
+    });
+  }
 </script>
