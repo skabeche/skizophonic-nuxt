@@ -25,7 +25,7 @@ export const pageTransitionConfig = {
       })
       .to(el, {
         duration: 1.6,
-        clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
         ease: 'power4.inOut',
       })
       .play();
@@ -55,8 +55,8 @@ export const layoutTransitionConfig = {
         },
       })
       .to(el, {
-        duration: 1.2,
-        clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)',
+        duration: 1.4,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
         ease: 'power4.inOut',
       })
       .play();
