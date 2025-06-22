@@ -1,7 +1,7 @@
 <template>
   <Transition :name="pageTransitionConfig.name" :mode="pageTransitionConfig.mode" :css="pageTransitionConfig.css" :appear="pageTransitionConfig.appear" @enter="pageTransitionConfig.onEnter" @leave="pageTransitionConfig.onLeave">
     <!-- Need to use Transition component for page transitions to work on child routes  -->
-    <article class="container grid grid-cols-1 xl:grid-cols-2 gap-16 min-h-[calc(100dvh-100px)] mt-[100px]">
+    <article class="container grid grid-cols-1 xl:grid-cols-2 gap-16 min-h-[calc(100dvh-100px)] mt-[100px] overflow-x-hidden">
       <aside>
         <AlbumArtwork :content="content" />
       </aside>
@@ -24,7 +24,7 @@
           <article id="music" class="active flex flex-col gap-4">
             <AnimationReveal class="w-full">
               <div class="player">
-                <BandcampEmbed :player-id="content.player.bandcamp.id" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
+                <BandcampEmbed :player-id="content.player.bandcamp.id || 0" :with="content.player.bandcamp.width" :height="content.player.bandcamp.height" />
               </div>
             </AnimationReveal>
             <AnimationReveal>
