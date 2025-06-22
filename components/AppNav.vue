@@ -55,7 +55,7 @@
   }
 
   onMounted(() => {
-    let firstPageLoad = true;
+    let isFirstPageLoad = true;
 
     gsap.set(navWrapperRef.value, {
       clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
@@ -106,26 +106,38 @@
       }, '<0.3')
 
     watchEffect(() => {
-
       if (isOpen.value) {
         tlOpen.play(0)
       } else {
         // Avoid animation on first page load.
-        if (!firstPageLoad) {
+        if (!isFirstPageLoad) {
           tlClose.play(0)
         } else {
           tlClose.revert()
         }
       }
 
-      // It is not first page load.
-      firstPageLoad = false
+      isFirstPageLoad = false
     })
   })
 
 </script>
 
 <style scoped>
+  .nav-icon {
+    animation: anim-icon-init .8s ease;
+  }
+
+  @keyframes anim-icon-init {
+    0% {
+      transform: scaleX(0);
+    }
+
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
   .nav-icon:hover {
     :deep(.line:nth-child(1)) {
       animation: anim-icon-line 1.2s ease-in-out infinite;
