@@ -14,8 +14,8 @@
       </ul>
     </div>
     <figure v-for="(image, index) in images" :key="image.src" :class="`figure-${index}`" class="relative flex-auto overflow-hidden">
-      <div class="relative [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]">
-        <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%]" width="1920" loading="lazy" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
+      <div class="relative">
+        <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110" width="1920" loading="lazy" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
       </div>
       <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
     </figure>
@@ -97,16 +97,16 @@
     });
     const figures = gsap.utils.toArray('figure');
 
-    gsap.set(sectionBandRef.value, { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' });
-    gsap.set(figures, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' });
+    gsap.set(sectionBandRef.value, { clipPath: 'inset(100% 0% 0% 0%)' });
+    gsap.set(figures, { clipPath: 'inset(0% 0% 100% 0%)' });
 
     ctx = gsap.context(() => {
       gsap
         .timeline()
         .to(sectionBandRef.value, {
-          duration: 1.4,
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          ease: 'power4.inOut',
+          duration: 1.3,
+          clipPath: 'inset(0% 0% 0% 0%)',
+          ease: 'power4.out',
         })
         .add(figuresReveal, '>0.5')
         .from(membersSplit.lines, {
@@ -119,10 +119,10 @@
         ScrollTrigger.batch('figure', {
           onEnter: (figures) => {
             gsap.to(figures, {
+              clipPath: 'inset(0% 0% 0% 0%)',
               duration: 1,
-              clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
               stagger: 0.25,
-              ease: 'power4.inOut',
+              ease: 'power3.inOut',
             })
           },
         });
