@@ -1,7 +1,7 @@
 <template>
   <section ref="sectionBandRef" class="section-band flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
     <div class="flex-auto">
-      <ul class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block">
+      <ul ref="membersRef" class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block" role="list">
         <li><span>{{ $t('pages.band.labels.vocals') }} & {{ $t('pages.band.labels.guitar') }}: Nacho Galí</span></li>
         <li><span>{{ $t('pages.band.labels.guitar') }}: Dan Alcaide</span></li>
         <li><span>{{ $t('pages.band.labels.guitar') }}: Fede Trillo</span></li>
@@ -38,6 +38,7 @@
 
   const { t } = useI18n();
   const sectionBandRef = useTemplateRef('sectionBandRef');
+  const membersRef = useTemplateRef('membersRef');
   const prevImage = ref(null);
   const currentImage = ref(null);
   const isLargeDevice = window.matchMedia("(min-width: 1024px)");
@@ -91,13 +92,16 @@
   }
 
   onMounted(() => {
-    const membersSplit = SplitText.create('.members li span', {
-      type: 'lines',
-      mask: 'lines'
+    SplitText.create(membersRef.value, {
+      type: 'lines, words',
+      mask: 'lines',
+      linesClass: 'line',
+      wordsClass: 'word',
     });
     const figures = gsap.utils.toArray('figure');
 
     gsap.set(sectionBandRef.value, { clipPath: 'inset(100% 0% 0% 0%)' });
+    gsap.set(membersRef.value.querySelectorAll('.word'), { y: 100 });
     gsap.set(figures, { clipPath: 'inset(0% 0% 100% 0%)' });
 
     ctx = gsap.context(() => {
@@ -109,11 +113,18 @@
           ease: 'power4.out',
         })
         .add(figuresReveal, '>0.5')
-        .from(membersSplit.lines, {
-          y: 200,
-          duration: 1.4,
-          ease: 'power4.inOut',
-        }, '<0.5');
+        .add(membersReveal, '<0.4')
+
+      function membersReveal() {
+        membersRef.value.querySelectorAll('.line').forEach((line) => {
+          gsap.to(line.querySelectorAll('.word'), {
+            y: 0,
+            duration: 1.4,
+            stagger: 0.05,
+            ease: 'power4.inOut',
+          });
+        });
+      }
 
       function figuresReveal() {
         ScrollTrigger.batch('figure', {
