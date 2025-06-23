@@ -101,7 +101,7 @@
     const figures = gsap.utils.toArray('figure');
 
     gsap.set(sectionBandRef.value, { clipPath: 'inset(100% 0% 0% 0%)' });
-    gsap.set(membersRef.value.querySelectorAll('.word'), { y: 100 });
+    gsap.set(membersRef.value.querySelectorAll('.word'), { y: 200 });
     gsap.set(figures, { clipPath: 'inset(0% 0% 100% 0%)' });
 
     ctx = gsap.context(() => {
