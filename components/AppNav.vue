@@ -61,21 +61,20 @@
       clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
     })
 
-    gsap.set('.nav-wrapper ul li', {
-      autoAlpha: 0,
-      y: 30,
-    })
-
     const tlOpen = gsap
       .timeline({
         paused: true,
-        defaults: {
-          ease: 'power1.inOut'
-        },
+        onStart() {
+          gsap.set('.nav-wrapper ul li', {
+            autoAlpha: 0,
+            y: 30,
+          })
+        }
       })
       .to(navWrapperRef.value, {
         duration: 0.1,
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut'
       })
       .to('.nav-wrapper ul li', {
         duration: 0.4,

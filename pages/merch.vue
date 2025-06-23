@@ -1,8 +1,7 @@
 <template>
-  <section ref="merchRef" class="container relative flex gap-16 justify-end min-h-dvh pt-[60px]">
+  <section ref="merchRef" class="container relative flex gap-16 justify-end pt-[60px]">
     <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <!-- <aside class="absolute top-0 left-0 w-full h-full" aria-label="Merch filter" role="complementary"> -->
     <aside class="fixed container inset-10 lg:inset-20 hidden md:block" aria-label="Merch filter" role="complementary">
       <ul class="merch-filter">
         <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
@@ -11,7 +10,7 @@
       </ul>
     </aside>
 
-    <section class="merch-items flex flex-col gap-18 md:gap-28 w-full md:w-[70%] lg:w-[80%]">
+    <section class="merch-list flex flex-col gap-18 md:gap-28 w-full md:w-[70%] lg:w-[80%]">
       <article id="tshirts">
         <AnimationReveal>
           <h2 class="md:sr-only">{{ $t('pages.merch.sections.tshirts.title') }}</h2>
@@ -99,25 +98,14 @@
             duration: 1,
             ease: 'power4',
           })
-
-        // Make aside sticky.
-        // ScrollTrigger.create({
-        //   trigger: 'aside',
-        //   start: 'top-=80 top',
-        //   // end: () => `${document.documentElement.scrollHeight - window.innerHeight - 240}px`,
-        //   end: 'bottom center',
-        //   pin: true,
-        //   // markers: true,
-        // });
       })
-
 
       const createScrollTriggerBySection = () => {
         filterSections.forEach((section, index) => {
           ScrollTrigger.create({
             trigger: `#${section.key}`,
-            start: 'top-=150 top',
-            // end: 'bottom bottom',
+            start: 'top-=200 top',
+            end: 'bottom-=100 top',
             // markers: true,
             onEnter: () => setActiveSection(index),
             onEnterBack: () => setActiveSection(index),
