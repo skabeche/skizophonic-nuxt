@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="pageTransitionConfig.name" :mode="pageTransitionConfig.mode" :css="pageTransitionConfig.css" :appear="pageTransitionConfig.appear" @enter="pageTransitionConfig.onEnter" @leave="pageTransitionConfig.onLeave">
+  <Transition :name="pageTransitionFadeConfig.name" :mode="pageTransitionFadeConfig.mode" :css="pageTransitionFadeConfig.css" :appear="pageTransitionFadeConfig.appear" @enter="pageTransitionFadeConfig.onEnter" @leave="pageTransitionFadeConfig.onLeave">
     <!-- Need to use Transition component for page transitions to work on child routes  -->
     <article class="container grid grid-cols-1 xl:grid-cols-2 gap-16 min-h-[calc(100dvh-100px)] mt-[100px]">
       <aside>
@@ -60,13 +60,13 @@
 </template>
 
 <script setup>
-  import { pageTransitionConfig } from '~/helpers/transitionConfig';
+  import { pageTransitionFadeConfig } from '~/helpers/transitionConfig';
   import { albums } from "~/data/albums";
 
   import gsap from "gsap";
 
   definePageMeta({
-    pageTransition: pageTransitionConfig,
+    pageTransition: pageTransitionFadeConfig,
   });
 
   const config = useRuntimeConfig()

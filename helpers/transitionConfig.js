@@ -30,6 +30,7 @@ export const pageTransitionConfig = {
       .to(el, {
         duration: 1.9,
         y: '-100vh',
+        overflow: 'hidden',
         ease: 'power4.in',
       })
       .to('#page-transition-overlay', {
@@ -60,6 +61,40 @@ export const pageTransitionConfig = {
         scale: 50,
         duration: 0.6,
         ease: 'power4.in'
+      })
+      .play();
+  },
+};
+
+export const pageTransitionFadeConfig = {
+  name: 'page-transition',
+  mode: 'out-in',
+  css: false,
+  appear: false,
+  onEnter: (el, done) => {
+    // No animations on enter as they are custom-made on each route/page.
+    gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
+    gsap.set('#page-transition-overlay .inner', { scale: 1 })
+    toggleTransitionComplete(true);
+    done();
+  },
+  onLeave: (el, done) => {
+    toggleTransitionComplete(false);
+
+    gsap
+      .timeline({
+        paused: true,
+        onComplete() {
+          toggleTransitionComplete(true);
+          done();
+        },
+      })
+      .to(el, {
+        delay: .2,
+        duration: 0.7,
+        autoAlpha: 0,
+        y: -80,
+        ease: 'power4.in',
       })
       .play();
   },
