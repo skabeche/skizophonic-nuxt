@@ -81,6 +81,8 @@ export const pageTransitionFadeConfig = {
   onLeave: (el, done) => {
     toggleTransitionComplete(false);
 
+    const children = el.querySelectorAll('div, h1, h2, h3, h4');
+
     gsap
       .timeline({
         paused: true,
@@ -89,11 +91,12 @@ export const pageTransitionFadeConfig = {
           done();
         },
       })
-      .to(el, {
-        delay: .2,
+      .to(children, {
+        delay: 0.15,
         duration: 0.7,
+        stagger: 0.02,
+        y: -70,
         autoAlpha: 0,
-        y: -80,
         ease: 'power4.in',
       })
       .play();
