@@ -22,7 +22,11 @@ export const pageTransitionConfig = {
     gsap
       .timeline({
         paused: true,
+        onStart() {
+          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 1 })
+        },
         onComplete() {
+          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 0 }) 
           toggleTransitionComplete(true);
           done();
         },

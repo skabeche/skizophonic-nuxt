@@ -106,7 +106,9 @@
 
     ctx = gsap.context(() => {
       gsap
-        .timeline()
+        .timeline({
+          paused: true,
+        })
         .to(sectionBandRef.value, {
           duration: 1.3,
           clipPath: 'inset(0% 0% 0% 0%)',
@@ -114,6 +116,7 @@
         })
         .add(figuresReveal, '>0.5')
         .add(membersReveal, '<0.4')
+        .play();
 
       function membersReveal() {
         membersRef.value.querySelectorAll('.line').forEach((line) => {
