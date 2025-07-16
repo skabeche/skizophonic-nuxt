@@ -1,7 +1,7 @@
 <template>
   <div class="merch-items grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-18">
     <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center">
-      <AnimationReveal class="w-full">
+      <AnimationReveal class="w-full" :refresh-scroll-trigger="true">
         <div class="item relative overflow-hidden">
           <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-500 cursor-crosshair drop-shadow-md/70" :src="`/images/merch/${item.image}`" :alt="`Merch item - ${item.name}`" loading="lazy" />
           <video ref="videoRef" class="item-bg-video absolute z-20 inset-0 w-full h-full object-cover transition-all duration-500 [clip-path:circle(46%_at_50%_50%)] mix-blend-darken" preload="auto" autoplay muted loop playsinline disableremoteplayback aria-hidden="true">

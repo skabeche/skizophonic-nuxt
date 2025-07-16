@@ -8,8 +8,18 @@
 
 <script setup>
   import gsap from 'gsap';
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
 
   const emit = defineEmits(['done'])
+
+  const props = defineProps({
+    refreshScrollTrigger: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  })
 
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
@@ -24,11 +34,17 @@
       })
       gsap.set(innerWrapperRef.value, {
         visibility: 'hidden',
-        opacity: 0,
+        autoAlpha: 0,
       })
       gsap
         .timeline({
           delay: randomDelay,
+          onStart: () => {
+            // Sometimes elements loose their scroll position, so we have to refresh it manually.
+            if (props.refreshScrollTrigger) {
+              ScrollTrigger.refresh();
+            }
+          },
           onComplete: () => {
             emit('done')
           }
@@ -49,7 +65,7 @@
             })
             gsap.set(innerWrapperRef.value, {
               visibility: 'visible',
-              opacity: 1,
+              autoAlpha: 1,
             })
           }
         })
@@ -60,7 +76,7 @@
           ease: "power4.inOut",
         })
 
-    }, outerWrapperRef.value); // <- Scope!
+    }, outerWrapperRef.value);
 
   })
 

@@ -2,37 +2,29 @@
   <section ref="merchRef" class="container relative flex gap-16 justify-end pt-[60px]">
     <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <aside class="fixed container inset-10 lg:inset-20 hidden md:block" aria-label="Merch filter" role="complementary">
+    <aside class="fixed top-12 left-3 lg:inset-20 md:block" aria-label="Merch filter" role="complementary">
       <ul class="merch-filter">
         <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
-          <button class="w-max text-[1.8rem] uppercase leading-none" :class="`${item.key}`" @click="handleClickFilterOption(index)">{{ item.label }}</button>
+          <button class="w-max text-xl md:text-[1.8rem] uppercase leading-none" :class="`${item.key}`" @click="handleClickFilterOption(index)">{{ item.label }}</button>
         </li>
       </ul>
     </aside>
 
-    <section class="merch-list flex flex-col gap-18 md:gap-28 w-full md:w-[70%] lg:w-[80%]">
+    <section class="merch-list flex flex-col gap-18 md:gap-28 w-[75%] lg:w-[80%]">
       <article id="tshirts">
-        <AnimationReveal>
-          <h2 class="md:sr-only">{{ $t('pages.merch.sections.tshirts.title') }}</h2>
-        </AnimationReveal>
+        <h2 class="sr-only">{{ $t('pages.merch.sections.tshirts.title') }}</h2>
         <MerchItem :items="tshirts" />
       </article>
       <article id="badges">
-        <AnimationReveal>
-          <h2 class="md:sr-only">{{ $t('pages.merch.sections.buttonBadges.title') }}</h2>
-        </AnimationReveal>
+        <h2 class="sr-only">{{ $t('pages.merch.sections.buttonBadges.title') }}</h2>
         <MerchItem :items="badges" />
       </article>
       <article id="stickers">
-        <AnimationReveal>
-          <h2 class="md:sr-only">{{ $t('pages.merch.sections.stickers.title') }}</h2>
-        </AnimationReveal>
+        <h2 class="sr-only">{{ $t('pages.merch.sections.stickers.title') }}</h2>
         <MerchItem :items="stickers" />
       </article>
       <article id="posters">
-        <AnimationReveal>
-          <h2 class="md:sr-only">{{ $t('pages.merch.sections.posters.title') }}</h2>
-        </AnimationReveal>
+        <h2 class="sr-only">{{ $t('pages.merch.sections.posters.title') }}</h2>
         <MerchItem :items="posters" />
       </article>
     </section>
@@ -74,31 +66,27 @@
   let ctx;
 
   onMounted(() => {
-    const mm = gsap.matchMedia();
-
     ctx = gsap.context(() => {
       // Only desktop.
-      mm.add("(min-width: 768px)", () => {
-        const filterSplit = SplitText.create(".merch-filter li button", {
-          type: 'lines, words, chars',
-          mask: 'lines',
-          charsClass: 'char'
-        });
+      const filterSplit = SplitText.create(".merch-filter li button", {
+        type: 'lines, words, chars',
+        mask: 'lines',
+        charsClass: 'char'
+      });
 
-        gsap.set(filterSplit.lines, { y: 60, });
-        gsap
-          .timeline(
-            {
-              onComplete: () => createScrollTriggerBySection(),
-            }
-          )
-          .to(filterSplit.lines, {
-            delay: 0.5,
-            y: 0,
-            duration: 1,
-            ease: 'power4',
-          })
-      })
+      gsap.set(filterSplit.lines, { y: 60, });
+      gsap
+        .timeline(
+          {
+            onComplete: () => createScrollTriggerBySection(),
+          }
+        )
+        .to(filterSplit.lines, {
+          delay: 0.5,
+          y: 0,
+          duration: 1,
+          ease: 'power4',
+        })
 
       const createScrollTriggerBySection = () => {
         filterSections.forEach((section, index) => {
@@ -114,20 +102,20 @@
       }
 
       // Items dissapear on scroll.
-      // gsap.utils.toArray('.merch-items .merch-item').forEach((item) => {
-      //   gsap.to(item, {
-      //     autoAlpha: 0,
-      //     filter: 'blur(6px)',
-      //     ease: 'none',
-      //     scrollTrigger: {
-      //       trigger: item,
-      //       start: 'bottom top+=40%',
-      //       // end: 'bottom top',
-      //       scrub: true,
-      //       // markers: true,
-      //     }
-      //   });
-      // });
+      gsap.utils.toArray('.merch-items .merch-item').forEach((item) => {
+        gsap.to(item, {
+          autoAlpha: 0,
+          filter: 'blur(6px)',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: item,
+            start: 'bottom top+=40%',
+            // end: 'bottom top',
+            scrub: true,
+            // markers: true,
+          }
+        });
+      });
 
     }, merchRef.value);
   })
@@ -142,15 +130,16 @@
 
     if (prevSection === nextSection) return;
 
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const tl = gsap.timeline();
     // Matching: font-size: clamp(1.8rem, 10vw, 12rem);
     const clamp = gsap.utils.clamp(28.8, 192); // min 1.8rem, max 12rem - in px.
-    const fontSize = clamp(window.innerWidth * 0.10); // 10vw - result in px.
-    const tl = gsap.timeline();
+    const fontSizeNext = clamp(window.innerWidth * 0.10); // 10vw - result in px.
 
     if (prevSection) {
       // Shrink previous.
       tl.to(`.${prevSection} .char`, {
-        fontSize: '1.8rem',
+        fontSize: isDesktop ? '1.8rem' : '1.25rem',
         color: '#000',
         stagger: 0.03,
         ease: 'power2.inOut',
@@ -158,7 +147,7 @@
     }
     // Grow next.
     tl.to(`.${nextSection} .char`, {
-      fontSize: `${fontSize}px`,
+      fontSize: `${fontSizeNext}px`,
       color: '#cfcfcf',
       duration: 0.4,
       stagger: 0.03,
