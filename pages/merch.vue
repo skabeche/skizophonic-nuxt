@@ -2,7 +2,7 @@
   <section ref="merchRef" class="container relative flex gap-16 justify-end pt-[60px]">
     <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <aside class="fixed top-12 left-3 lg:inset-20 md:block" aria-label="Merch filter" role="complementary">
+    <aside class="fixed top-16 left-4 lg:inset-20 md:block" aria-label="Merch filter" role="complementary">
       <ul class="merch-filter">
         <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
           <button class="w-max text-xl md:text-[1.8rem] uppercase leading-none" :class="`${item.key}`" @click="handleClickFilterOption(index)">{{ item.label }}</button>
@@ -10,7 +10,7 @@
       </ul>
     </aside>
 
-    <section class="merch-list flex flex-col gap-18 md:gap-28 w-[75%] lg:w-[80%]">
+    <section class="merch-list flex flex-col gap-18 md:gap-28 w-[80%]">
       <article id="tshirts">
         <h2 class="sr-only">{{ $t('pages.merch.sections.tshirts.title') }}</h2>
         <MerchItem :items="tshirts" />
@@ -132,8 +132,8 @@
 
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
     const tl = gsap.timeline();
-    // Matching: font-size: clamp(1.8rem, 10vw, 12rem);
-    const clamp = gsap.utils.clamp(28.8, 192); // min 1.8rem, max 12rem - in px.
+    // Matching: font-size: clamp(2.6rem, 10vw, 12rem);
+    const clamp = gsap.utils.clamp(41.6, 192); // min 2.6rem, max 12rem - in px.
     const fontSizeNext = clamp(window.innerWidth * 0.10); // 10vw - result in px.
 
     if (prevSection) {
