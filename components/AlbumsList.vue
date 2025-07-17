@@ -1,10 +1,10 @@
 <template>
   <section class="flex items-center justify-end sm:justify-start h-dvh">
     <div class="controls relative z-20 flex flex-col text-white mx-2 text-5xl lg:text-[4.4rem] 2xl:text-[7.4rem]">
-      <button class="prev-slide cursor-pointer hover:text-[#ff0047]" @click="handlePrevSlide">
+      <button class="prev-slide cursor-pointer hover:text-[#ff0047]" :disabled="buttonDisabled" @click="handlePrevSlide">
         <Icon name="ion:arrow-up-a" />
       </button>
-      <button class="next-slide cursor-pointer hover:text-[#00ffc7]" @click="handleNextSlide">
+      <button class="next-slide cursor-pointer hover:text-[#00ffc7]" :disabled="buttonDisabled" @click="handleNextSlide">
         <Icon name="ion:arrow-down-a" />
       </button>
     </div>
@@ -47,6 +47,8 @@
 
   gsap.registerPlugin(SplitText);
 
+  const buttonDisabled = ref(false);
+
   let isAnimating = false;
   let direction = "down";
   let current;
@@ -69,19 +71,19 @@
   };
 
   function handleTouchStart(e) {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     const t = e.changedTouches[0];
     touch.startX = t.pageX;
     touch.startY = t.pageY;
   }
 
   function handleTouchMove(e) {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     // e.preventDefault();
   }
 
   function handleTouchEnd(e) {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     const t = e.changedTouches[0];
     touch.dx = t.pageX - touch.startX;
     touch.dy = t.pageY - touch.startY;
@@ -96,25 +98,25 @@
   }
 
   function handleWheel(e) {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     direction = e.wheelDeltaY < 0 ? "down" : "up";
     handleDirection();
   }
 
   function handlePrevSlide() {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     direction = "up";
     handleDirection();
   }
 
   function handleNextSlide() {
-    if (!isAnimating) return;
+    if (isAnimating) return;
     direction = "down";
     handleDirection();
   }
 
   function handleDirection() {
-    isAnimating = false;
+    isAnimating = true;
 
     if (direction === "down") {
       next = current + 1;
@@ -150,8 +152,12 @@
       .timeline({
         paused: true,
         defaults: tlDefaults,
+        onStart: () => {
+          buttonDisabled.value = true;
+        },
         onComplete: () => {
-          isAnimating = true;
+          buttonDisabled.value = false;
+          isAnimating = false;
           current = next;
         }
       })
@@ -189,8 +195,12 @@
     gsap
       .timeline({
         defaults: tlDefaults,
+        onStart: () => {
+          buttonDisabled.value = true;
+        },
         onComplete: () => {
-          isAnimating = true;
+          buttonDisabled.value = false;
+          isAnimating = false;
           current = next;
         }
       })
