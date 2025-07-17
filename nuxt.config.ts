@@ -39,6 +39,9 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'es', name: 'Spanish', file: 'es.json' }
     ],
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
     customRoutes: 'config', // disable custom route with page components
     pages: {
       home: {
