@@ -51,7 +51,8 @@
 
   let isAnimating = false;
   let direction = "down";
-  let current;
+  // Keep slide index between pages.
+  const current = useState('currentAlbumIndex', () => undefined);
   let next = 0;
 
   const touch = {
@@ -119,13 +120,13 @@
     isAnimating = true;
 
     if (direction === "down") {
-      next = current + 1;
+      next = current.value + 1;
       if (next >= slides.length) next = 0;
       slideIn();
     }
 
     if (direction === "up") {
-      next = current - 1;
+      next = current.value - 1;
       if (next < 0) next = slides.length - 1;
       slideOut();
     }
@@ -142,7 +143,7 @@
   }
 
   function slideIn() {
-    if (current !== undefined) gsap.set(slides[current], { zIndex: 0 });
+    if (current.value !== undefined) gsap.set(slides[current.value], { zIndex: 0 });
 
     gsap.set(slides[next], { autoAlpha: 1, zIndex: 1, pointerEvents: "auto" });
     gsap.set(images[next], { yPercent: 0 });
@@ -158,16 +159,16 @@
         onComplete: () => {
           buttonDisabled.value = false;
           isAnimating = false;
-          current = next;
+          current.value = next;
         }
       })
       .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
       .from(images[next], { yPercent: 15 }, 0)
       .add(revealSectionHeading(), 0);
 
-    if (current !== undefined) {
+    if (current.value !== undefined) {
       tl.add(
-        gsap.to(images[current], {
+        gsap.to(images[current.value], {
           yPercent: -15,
           ...tlDefaults
         }),
@@ -175,10 +176,10 @@
       ).add(
         gsap
           .timeline()
-          .set(outerWrappers[current], { yPercent: 100 })
-          .set(innerWrappers[current], { yPercent: -100 })
-          .set(images[current], { yPercent: 0 })
-          .set(slides[current], { autoAlpha: 0 })
+          .set(outerWrappers[current.value], { yPercent: 100 })
+          .set(innerWrappers[current.value], { yPercent: -100 })
+          .set(images[current.value], { yPercent: 0 })
+          .set(slides[current.value], { autoAlpha: 0 })
       );
     }
 
@@ -186,7 +187,7 @@
   }
 
   function slideOut() {
-    gsap.set(slides[current], { zIndex: 1, pointerEvents: "none" });
+    gsap.set(slides[current.value], { zIndex: 1, pointerEvents: "none" });
     gsap.set(slides[next], { autoAlpha: 1, zIndex: 0 });
     gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
     gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
@@ -201,15 +202,15 @@
         onComplete: () => {
           buttonDisabled.value = false;
           isAnimating = false;
-          current = next;
+          current.value = next;
         }
       })
-      .to(outerWrappers[current], { yPercent: 100 }, 0)
-      .to(innerWrappers[current], { yPercent: -100 }, 0)
-      .to(images[current], { yPercent: 15 }, 0)
+      .to(outerWrappers[current.value], { yPercent: 100 }, 0)
+      .to(innerWrappers[current.value], { yPercent: -100 }, 0)
+      .to(images[current.value], { yPercent: 15 }, 0)
       .from(images[next], { yPercent: -15 }, 0)
       .add(revealSectionHeading(), ">-1")
-      .set(images[current], { yPercent: 0 });
+      .set(images[current.value], { yPercent: 0 });
   }
 
   onMounted(() => {
@@ -225,6 +226,10 @@
 
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
+
+    // Keep slide index between pages.
+    next = current.value === undefined ? 0 : current.value;
+    current.value = undefined;
 
     document.addEventListener("wheel", handleWheel);
     document.addEventListener("touchstart", handleTouchStart);
