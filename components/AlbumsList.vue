@@ -1,11 +1,14 @@
 <template>
-  <section class="flex items-center justify-end sm:justify-start h-dvh">
+  <section ref="albumsListRef" class="flex items-center justify-end sm:justify-start h-dvh">
     <div class="controls relative z-20 flex flex-col text-white mx-2 text-5xl lg:text-[4.4rem] 2xl:text-[7.4rem]">
       <button class="prev-slide cursor-pointer hover:text-[#ff0047]" :disabled="buttonDisabled" @click="handlePrevSlide">
         <Icon name="ion:arrow-up-a" />
       </button>
       <button class="next-slide cursor-pointer hover:text-[#00ffc7]" :disabled="buttonDisabled" @click="handleNextSlide">
         <Icon name="ion:arrow-down-a" />
+      </button>
+      <button class="swipe-slide md:hidden fixed z-20 bottom-0 p-4 text-3xl text-white" :disabled="buttonDisabled">
+        <Icon class="icon-swipe origin-right" name="ic:baseline-swipe-vertical" />
       </button>
     </div>
     <div v-for="album in albums" :key="album.name" class="slide album invisible fixed w-screen h-screen top-0 will-change-transform [&_a]:before:h-0">
@@ -47,7 +50,9 @@
 
   gsap.registerPlugin(SplitText);
 
+  const albumsListRef = useTemplateRef('albumsListRef');
   const buttonDisabled = ref(false);
+  let ctx;
 
   let isAnimating = false;
   let direction = "down";
@@ -214,6 +219,9 @@
   }
 
   onMounted(() => {
+
+
+
     slides = document.querySelectorAll(".slide");
     images = document.querySelectorAll(".bg");
     headings = gsap.utils.toArray(".slide-heading");
@@ -236,10 +244,22 @@
     document.addEventListener("touchmove", handleTouchMove);
     document.addEventListener("touchend", handleTouchEnd);
 
-    slideIn();
+    ctx = gsap.context(() => {
+      gsap.to('.icon-swipe', {
+        rotate: 10,
+        repeat: -1,
+        duration: 1.2,
+        ease: 'power2.inOut',
+        yoyo: true
+      })
+
+      slideIn();
+    }, albumsListRef.value);
   });
 
   onUnmounted(() => {
+    ctx.revert();
+
     document.removeEventListener("wheel", handleWheel);
     document.removeEventListener("touchstart", handleTouchStart);
     document.removeEventListener("touchmove", handleTouchMove);
