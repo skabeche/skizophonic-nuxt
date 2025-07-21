@@ -57,32 +57,32 @@
   onMounted(() => {
     let isFirstPageLoad = true;
 
-    gsap.set(navWrapperRef.value, {
-      clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-    })
+    gsap.set(navWrapperRef.value, { clipPath: 'inset(0% 0% 100% 0%)', })
+    gsap.set('.nav-wrapper ul li', { clipPath: 'inset(0% 0% 0% 0%)', })
 
     const tlOpen = gsap
       .timeline({
         paused: true,
         onStart() {
           gsap.set('.nav-wrapper ul li', {
-            autoAlpha: 0,
-            y: 30,
+            autoAlpha: 1,
+            y: 0
           })
         }
       })
       .to(navWrapperRef.value, {
-        duration: 0.1,
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
-        ease: 'power1.inOut'
+        duration: 0.2,
+        clipPath: 'inset(0% 0% 0% 0%)',
+        ease: 'power2.inOut'
       })
-      .to('.nav-wrapper ul li', {
-        duration: 0.4,
-        autoAlpha: 1,
+      .fromTo('.nav-wrapper ul li > span', {
+        y: -200,
+      }, {
         y: 0,
-        stagger: 0.12,
-        ease: 'back.out(3)',
-      }, '>+=0.3')
+        duration: 0.5,
+        stagger: 0.04,
+        ease: 'power2.inOut'
+      }, '<')
 
     const tlClose = gsap
       .timeline({
@@ -94,15 +94,17 @@
       }, {
         duration: 0.4,
         autoAlpha: 0,
-        y: -40,
+        y: -50,
         ease: 'power4.in',
       })
       .fromTo(navWrapperRef.value, {
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+        clipPath: 'inset(0% 0% 0% 0%)',
       }, {
         duration: 0.1,
-        clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
-      }, '<0.3')
+        clipPath: 'inset(0% 0% 100% 0%)',
+        ease: 'power4.inOut'
+      }, '<0.25')
+
 
     watchEffect(() => {
       if (isOpen.value) {
@@ -123,6 +125,12 @@
 </script>
 
 <style scoped>
+
+  li:hover,
+  :deep(li:hover) {
+    clip-path: none !important;
+  }
+
   .nav-icon {
     animation: anim-icon-init .8s ease;
   }
