@@ -8,15 +8,15 @@
     <section class="artwork relative h-fit">
       <div ref="caseRef" class="case relative z-10 w-[80%] perspective-[1000px]" :class="{ 'cursor-pointer': !expandedArtwork }">
         <div ref="caseInnerRef" class="relative w-full h-full transform-3d" :data-cursor-text="$t('components.cursor.flip')" @click="handleClickCase">
-          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]">
+          <div ref="coverRef" class="cover relative w-full top-0 left-0 backface-hidden overflow-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]" aria-label="Album cover">
             <img class="object-cover" :src="`/albums/${content.slug}/${content.images.cover}`" :alt="`${content.title} - cover`">
           </div>
-          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]">
+          <div ref="backRef" class="back absolute w-full top-0 left-0 rotate-y-180 backface-hidden will-change-transform [box-shadow:_5px_3px_10px_-3px_rgba(0,_0,_0,_.7)]" aria-label="Album back cover">
             <img class="object-cover" :src="`/albums/${content.slug}/${content.images.back}`" :alt="`${content.title} - back`">
           </div>
         </div>
       </div>
-      <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform">
+      <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform" aria-label="Album disc">
         <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" :data-cursor-text="$t('components.cursor.zoom')" @click="handleClickGalleta">
       </div>
     </section>

@@ -1,9 +1,13 @@
 <template>
   <div ref="homeTimelineRef">
+    <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
+
     <div ref="blockTimelineRef" class="block-timeline relative top-0 left-0 w-screen min-h-dvh">
       <HeroHypnotic class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
+
+      <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
 
       <section class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
         <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
@@ -31,7 +35,7 @@
       <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
         <p>{{ $t('pages.home.block3') }}</p>
       </div>
-      <div class="py-4 sm:px-16">
+      <div class="p-4 sm:px-16">
         <ButtonHypnotic to="music">{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
       </div>
     </section>

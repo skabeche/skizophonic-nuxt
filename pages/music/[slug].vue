@@ -45,7 +45,7 @@
             </AnimationReveal>
           </article>
           <article id="info">
-            <div v-if="content.recordLabel" class="text-xl">{{ $t('pages.music.labels.recordLabel') }}: {{ content.recordLabel }}</div>
+            <div v-if="content.recordLabel">{{ $t('pages.music.labels.recordLabel') }}: {{ content.recordLabel }}</div>
             <ContentRenderer v-if="post" :value="post" />
           </article>
           <article id="tracklist">

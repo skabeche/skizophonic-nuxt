@@ -2,12 +2,14 @@
   <section ref="merchRef" class="container relative flex gap-16 justify-end pt-[60px]">
     <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <aside class="fixed top-16 left-4 lg:inset-20 md:block" aria-label="Merch filter" role="complementary">
-      <ul class="merch-filter">
-        <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
-          <button class="w-max text-xl md:text-[1.8rem] uppercase leading-none" :class="`${item.key}`" @click="handleClickFilterOption(index)">{{ item.label }}</button>
-        </li>
-      </ul>
+    <aside class="fixed top-16 left-4 lg:inset-20 md:block" aria-label="Merch filter options" role="complementary">
+      <nav aria-label="Merch filter navigation">
+        <ul class="merch-filter">
+          <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
+            <button class="w-max text-xl md:text-[1.8rem] uppercase leading-none" :class="item.key" @click="handleClickFilterOption(index)">{{ item.label }}</button>
+          </li>
+        </ul>
+      </nav>
     </aside>
 
     <section class="merch-list flex flex-col gap-18 md:gap-28 w-[80%]">

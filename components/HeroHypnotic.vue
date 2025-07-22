@@ -7,9 +7,9 @@
         <source src="/videos/spiral_small.mp4" type="video/mp4">
       </video>
     </div>
-    <h1 ref="headingRef" class="relative z-10 flex justify-center items-center w-full h-full overflow-hidden text-9xl bg-black text-white mix-blend-difference">
+    <div ref="slotRef" class="relative z-10 flex justify-center items-center w-full h-full overflow-hidden text-9xl bg-black text-white mix-blend-difference">
       <slot />
-    </h1>
+    </div>
     <div ref="scrollDownRef" class="scroll-down absolute bottom-2 w-full text-4xl sm:text-5xl text-center text-white mix-blend-difference">
       <Icon class="animate-bounce" name="ion:arrow-down-a" />
     </div>
@@ -24,7 +24,7 @@
 
   const heroHypnoticRef = useTemplateRef('heroHypnoticRef');
   const videoRef = useTemplateRef('videoRef');
-  const headingRef = useTemplateRef('headingRef');
+  const slotRef = useTemplateRef('slotRef');
   const scrollDownRef = useTemplateRef('scrollDownRef');
   let ctx;
 
@@ -48,7 +48,7 @@
           duration: 2,
           clipPath: 'circle(100% at 50% 50%)',
         })
-        .fromTo(headingRef.value, {
+        .fromTo(slotRef.value, {
           autoAlpha: 0,
           scale: 1.1,
           filter: 'blur(5px)',
@@ -75,7 +75,7 @@
           toggleActions: 'play none none reverse',
         }
       })
-    }, heroHypnoticRef.value); // <- Scope!
+    }, heroHypnoticRef.value);
   })
 
   onUnmounted(() => {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="sr-only">{{ $t('pages.music.title') }}</h1>
     <AlbumsList />
   </div>
 </template>

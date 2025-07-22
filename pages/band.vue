@@ -1,7 +1,8 @@
 <template>
   <section ref="sectionBandRef" class="section-band flex flex-col lg:flex-row lg:flex-wrap gap-x-4 bg-black text-white border-t-16 border-t-black">
+    <h1 class="sr-only">{{ $t('pages.band.title') }}</h1>
     <div class="flex-auto">
-      <ul ref="membersRef" class="members flex flex-col gap-1.5 p-6 text-lg lg:text-[1.15rem] [&_span]:block" role="list">
+      <ul ref="membersRef" class="members flex flex-col gap-1.5 p-6 text-[clamp(1.05rem,3vw,1.15rem)] [&_span]:block" role="list">
         <li><span>{{ $t('pages.band.labels.vocals') }} & {{ $t('pages.band.labels.guitar') }}: Nacho Galí</span></li>
         <li><span>{{ $t('pages.band.labels.guitar') }}: Dan Alcaide</span></li>
         <li><span>{{ $t('pages.band.labels.guitar') }}: Fede Trillo</span></li>

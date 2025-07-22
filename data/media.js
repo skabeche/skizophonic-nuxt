@@ -33,7 +33,7 @@ export const images = [
   },
   {
     src: 'skizophonic_sala_el_loco_1.jpg',
-    alt: 'Sala El loco',
+    alt: 'Sala El Loco',
   },
   {
     src: 'skizophonic_trajes_mod2.jpg',
@@ -125,7 +125,7 @@ export const images = [
   },
   {
     src: 'nacho_suelo.jpg',
-    alt: 'Nacho componiendo',
+    alt: 'Nacho writing music',
   },
   {
     src: 'charly_nacho.jpg',
