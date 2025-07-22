@@ -1,5 +1,5 @@
 <template>
-  <div id="page-transition-overlay" class="fixed z-1000 top-0 left-0 flex items-center justify-center w-full h-full [clip-path:inset(100%_0%_0%_0%)] text-3xl text-white bg-black ">
+  <div id="page-transition-overlay" class="fixed z-90 top-0 left-0 flex items-center justify-center w-full h-full [clip-path:inset(100%_0%_0%_0%)] text-3xl text-white bg-black ">
     <div class="inner size-48">
       <svg id="logo-circles-transition" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.32 288.3" aria-hidden="true" role="img" fill="currentColor">
         <path class="center-ring" d="M150.64,102.09h-.01c-23.24-3.57-44.96,12.37-48.53,35.61-3.57,23.23,12.37,44.95,35.6,48.52,23.22,3.57,44.95-12.37,48.52-35.6s-12.36-44.96-35.58-48.53Z" />

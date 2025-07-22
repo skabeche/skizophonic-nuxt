@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fixed top-0 right-0 z-100 m-8 mix-blend-difference">
-      <button class="nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
+      <button class="button-nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
         <NavIcon :is-open="isOpen" />
       </button>
     </div>
@@ -131,8 +131,8 @@
     clip-path: none !important;
   }
 
-  .nav-icon {
-    animation: anim-icon-init .8s ease;
+  .button-nav-icon {
+    animation: anim-icon-init .7s ease;
   }
 
   @keyframes anim-icon-init {
@@ -145,7 +145,7 @@
     }
   }
 
-  .nav-icon:hover {
+  .button-nav-icon:hover {
     :deep(.line:nth-child(1)) {
       animation: anim-icon-line 1.2s ease-in-out infinite;
     }

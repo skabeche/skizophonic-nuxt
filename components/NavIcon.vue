@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="nav-icon relative z-100 flex flex-col gap-2">
     <span :class="`${commonStyle} ${isOpen ? 'rotate-45 translate-y-3.5' : ' -translate-y-px'}`" />
     <span :class="`${commonStyle} ${isOpen ? 'opacity-0 translate-x-6' : ' opacity-100'}`" />
     <span :class="`${commonStyle} ${isOpen ? '-rotate-45 -translate-y-2.5' : ' translate-y-px'}`" />

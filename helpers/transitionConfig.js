@@ -26,7 +26,7 @@ export const pageTransitionConfig = {
           gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 1 })
         },
         onComplete() {
-          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 0 }) 
+          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 0 })
           toggleTransitionComplete(true);
           done();
         },
@@ -37,8 +37,12 @@ export const pageTransitionConfig = {
         overflow: 'hidden',
         ease: 'power4.in',
       })
+      .to('.nav-icon', {
+        scaleX: 0,
+        ease: 'power4.in',
+      }, '<')
       .to('#page-transition-overlay', {
-        delay: .3,
+        delay: 0.3,
         clipPath: 'inset(0% 0% 0% 0%)',
         duration: 1.2,
         ease: 'power4.inOut'
@@ -66,6 +70,10 @@ export const pageTransitionConfig = {
         duration: 0.6,
         ease: 'power4.in'
       })
+      .to('.nav-icon', {
+        scaleX: 1,
+        ease: 'power4.out'
+      }, '<85%')
       .play();
   },
 };
