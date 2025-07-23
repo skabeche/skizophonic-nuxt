@@ -46,7 +46,6 @@
         .fromTo(videoRef.value, {
           clipPath: 'circle(0% at 50% 50%)',
         }, {
-          delay: 0,
           duration: 2,
           clipPath: 'circle(100% at 50% 50%)',
         })
