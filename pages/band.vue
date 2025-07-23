@@ -18,7 +18,7 @@
       <div class="relative">
         <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110" sizes="400px md:640px xl:1920px" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
       </div>
-      <figcaption class="relative z-10 text-white bg-black">{{ image.alt }}</figcaption>
+      <figcaption class="relative z-10 h-full text-white bg-black">{{ image.alt }}</figcaption>
     </figure>
   </section>
 </template>
@@ -74,9 +74,9 @@
     }, delay);
   }
 
-  const movement = 15;
   const handleMouseMove = (e) => {
     // @todo Make a composable.
+    const movement = 15;
     const target = e.currentTarget;
     const rect = target.getBoundingClientRect();
     const relX = e.clientX - rect.left;

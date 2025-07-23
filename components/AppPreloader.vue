@@ -37,7 +37,7 @@
 
     ctx = gsap.context(() => {
       gsap.set([dot1Ref.value, dot2Ref.value], { clipPath: 'circle(0% at 50% 50%)' })
-      gsap.set(preloaderTextRef.value, { opacity: 0 })
+      gsap.set(preloaderTextRef.value, { opacity: 0, scale: 0.9 })
 
       gsap
         .timeline({
@@ -51,7 +51,6 @@
           duration: 0.3,
           scale: 0.03,
           ease: "power4.inOut",
-          // ease: "back.in(1.7)",
         })
         .to(dot1Ref.value, {
           duration: 0.8,
@@ -63,16 +62,17 @@
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
         })
+        .to(preloaderTextRef.value, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.3,
+          ease: "power4.inOut",
+        }, '<0.1')
         .to(dot2Ref.value, {
           duration: 1.2,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
-        }, '<0.1')
-        .to(preloaderTextRef.value, {
-          opacity: 1,
-          duration: .3,
-          ease: "power4.inOut",
-        }, '<0.1')
+        }, '<')
     }, preloaderRef.value);
   })
 
