@@ -9,6 +9,9 @@
     "title": "Skizophonic",
     "description": "Banda de música formada entre Benicasim y Castellón, España"
   },
+  "preloader": {
+    "text": "Espiral de subliminal cadencia"
+  },
   "pages": {
     "home": {
       "name": "Home",

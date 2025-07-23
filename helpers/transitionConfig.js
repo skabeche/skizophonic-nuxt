@@ -50,19 +50,19 @@ export const pageTransitionConfig = {
       .from('#page-transition-overlay .inner .center-ring', {
         duration: 0.4,
         scale: 0,
-        svgOrigin: "144 144",
+        svgOrigin: "144.16 144.16",
         ease: 'back.out(2)',
       }, '-=.9')
       .from('#page-transition-overlay .inner .middle-ring', {
         duration: 0.7,
         scale: 0,
-        svgOrigin: "144 144",
+        svgOrigin: "144.16 144.16",
         ease: 'back.out(2)',
       }, '<')
       .from('#page-transition-overlay .inner .outer-ring', {
         duration: .9,
         scale: 0,
-        svgOrigin: "144 144",
+        svgOrigin: "144.16 144.16",
         ease: 'power1.out',
       }, '<')
       .to('#page-transition-overlay .inner', {

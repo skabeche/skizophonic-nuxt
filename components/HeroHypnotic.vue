@@ -32,6 +32,7 @@
     ctx = gsap.context(() => {
       gsap
         .timeline({
+          paused: true,
           defaults: {
             delay: .4
           },
@@ -45,6 +46,7 @@
         .fromTo(videoRef.value, {
           clipPath: 'circle(0% at 50% 50%)',
         }, {
+          delay: 0,
           duration: 2,
           clipPath: 'circle(100% at 50% 50%)',
         })
@@ -63,6 +65,7 @@
           autoAlpha: 1,
           filter: 'blur(0px)',
         }, '<0.3')
+        .play();
 
       gsap.to(scrollDownRef.value, {
         duration: .3,

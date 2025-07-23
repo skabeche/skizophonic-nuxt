@@ -9,6 +9,9 @@
     "title": "Skizophonic",
     "description": "Music band based in Benicasim and Castellón, Spain"
   },
+  "preloader": {
+    "text": "Spiral of subliminal cadence"
+  },
   "pages": {
     "home": {
       "name": "Home",

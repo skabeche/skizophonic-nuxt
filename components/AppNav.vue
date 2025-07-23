@@ -76,9 +76,9 @@
         ease: 'power2.inOut'
       })
       .fromTo('.nav-wrapper ul li > span', {
-        y: -200,
+        yPercent: -200,
       }, {
-        y: 0,
+        yPercent: 0,
         duration: 0.5,
         stagger: 0.04,
         ease: 'power2.inOut'
