@@ -3,7 +3,7 @@
     <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center">
       <AnimationReveal class="w-full" :refresh-scroll-trigger="true">
         <div class="item relative overflow-hidden">
-          <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-500 cursor-crosshair drop-shadow-md/70" :src="`/images/merch/${item.image}`" :alt="`Merch item - ${item.name}`" loading="lazy" />
+          <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-500 cursor-crosshair drop-shadow-md/70" :src="`/images/merch/${item.image}`" :alt="`Merch item - ${item.name}`" />
           <video ref="videoRef" class="item-bg-video absolute z-20 inset-0 w-full h-full object-cover transition-all duration-500 [clip-path:circle(46%_at_50%_50%)] mix-blend-darken" preload="auto" autoplay muted loop playsinline disableremoteplayback aria-hidden="true">
             <!-- <source src="/videos/spiral2_large.mp4" type="video/mp4" media="(min-width: 1920px)"> -->
             <source src="/videos/spiral2_medium.mp4" type="video/mp4" media="(min-width: 1280px)">

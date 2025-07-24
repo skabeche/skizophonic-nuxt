@@ -69,7 +69,7 @@
           ease: "power4.inOut",
         }, '<0.1')
         .to(dot2Ref.value, {
-          duration: 1.2,
+          duration: 1,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
         }, '<')

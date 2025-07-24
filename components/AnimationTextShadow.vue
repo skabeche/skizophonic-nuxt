@@ -19,7 +19,7 @@
     const x = Math.round(((relX - rect.width / 2) / rect.width) * movement);
     const y = Math.round(((relY - rect.height / 2) / rect.height) * movement);
 
-    gsap.set(target, { textShadow: `${x}px ${y}px 1px #ff0047, ${-x}px ${-y}px 1px #00ffc7` })
+    gsap.set(target, { textShadow: `${x}px ${y}px 2px #ff0047, ${-x}px ${-y}px 2px #00ffc7` })
   }
 
   const handleMouseOut = (e) => {
