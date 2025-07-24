@@ -37,11 +37,12 @@
 
     ctx = gsap.context(() => {
       gsap.set([dot1Ref.value, dot2Ref.value], { clipPath: 'circle(0% at 50% 50%)' })
-      gsap.set(preloaderTextRef.value, { opacity: 0, scale: 0.9 })
+      gsap.set(preloaderTextRef.value, { opacity: 0, scale: 0.8 })
 
       gsap
         .timeline({
-          delay: 2.5,
+          paused: true,
+          delay: 2.5, // Align with logo animation.
           onComplete: () => {
             showPreloader.value = false
             emit('done')
@@ -63,8 +64,12 @@
           ease: "power4.inOut",
         })
         .to(preloaderTextRef.value, {
-          opacity: 1,
           scale: 1,
+          duration: 1.3,
+          ease: "power4",
+        }, '<')
+        .to(preloaderTextRef.value, {
+          opacity: 1,
           duration: 0.3,
           ease: "power4.inOut",
         }, '<0.1')
@@ -73,6 +78,7 @@
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
         }, '<')
+        .play();
     }, preloaderRef.value);
   })
 
