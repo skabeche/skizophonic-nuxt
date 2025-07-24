@@ -27,7 +27,7 @@
               </NuxtLinkLocale>
             </div>
             <div class="1/3">
-              <h2 class="slide-heading text-8xl [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)] hover:[clip-path:none]">
+              <h2 class="slide-heading text-8xl">
                 <AnimationTextShadow>
                   <NuxtLinkLocale class="text-white" :to="{ name: 'music-slug', params: { slug: album.slug } }">
                     {{ album.title }}
@@ -152,6 +152,7 @@
 
     gsap.set(slides[next], { autoAlpha: 1, zIndex: 1, pointerEvents: "auto" });
     gsap.set(images[next], { yPercent: 0 });
+    gsap.set(splitHeadings[next].lines, { clipPath: "inset(0% 0% 0% 0%)" });
     gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
 
     const tl = gsap
@@ -159,12 +160,14 @@
         paused: true,
         defaults: tlDefaults,
         onStart: () => {
+          isAnimating = true;
           buttonDisabled.value = true;
         },
         onComplete: () => {
-          buttonDisabled.value = false;
           isAnimating = false;
+          buttonDisabled.value = false;
           current.value = next;
+          gsap.set(splitHeadings[next].lines, { clipPath: "none" });
         }
       })
       .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
@@ -194,6 +197,7 @@
   function slideOut() {
     gsap.set(slides[current.value], { zIndex: 1, pointerEvents: "none" });
     gsap.set(slides[next], { autoAlpha: 1, zIndex: 0 });
+    gsap.set(splitHeadings[next].lines, { clipPath: "inset(0% 0% 0% 0%)" });
     gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
     gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
     gsap.set(images[next], { yPercent: 0 });
@@ -208,6 +212,7 @@
           buttonDisabled.value = false;
           isAnimating = false;
           current.value = next;
+          gsap.set(splitHeadings[next].lines, { clipPath: "none" });
         }
       })
       .to(outerWrappers[current.value], { yPercent: 100 }, 0)
@@ -219,9 +224,6 @@
   }
 
   onMounted(() => {
-
-
-
     slides = document.querySelectorAll(".slide");
     images = document.querySelectorAll(".bg");
     headings = gsap.utils.toArray(".slide-heading");
@@ -229,7 +231,10 @@
     innerWrappers = gsap.utils.toArray(".inner-wrapper");
 
     splitHeadings = headings.map((heading) =>
-      SplitText.create(heading, { type: "chars, words" })
+      SplitText.create(heading, {
+        type: "lines, chars",
+        linesClass: "line",
+      })
     );
 
     gsap.set(outerWrappers, { yPercent: 100 });
@@ -266,3 +271,9 @@
     document.removeEventListener("touchend", handleTouchEnd);
   });
 </script>
+
+<style scoped>
+  :deep(.line:hover) {
+    clip-path: none !important;
+  }
+</style>

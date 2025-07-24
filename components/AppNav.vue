@@ -58,15 +58,20 @@
     let isFirstPageLoad = true;
 
     gsap.set(navWrapperRef.value, { clipPath: 'inset(0% 0% 100% 0%)', })
-    gsap.set('.nav-wrapper ul li', { clipPath: 'inset(0% 0% 0% 0%)', })
 
     const tlOpen = gsap
       .timeline({
         paused: true,
         onStart() {
           gsap.set('.nav-wrapper ul li', {
+            clipPath: 'inset(0% 0% 0% 0%)',
             autoAlpha: 1,
             y: 0
+          })
+        },
+        onComplete() {
+          gsap.set('.nav-wrapper ul li', {
+            clipPath: 'none'
           })
         }
       })
@@ -125,12 +130,6 @@
 </script>
 
 <style scoped>
-
-  li:hover,
-  :deep(li:hover) {
-    clip-path: none !important;
-  }
-
   .button-nav-icon {
     animation: anim-icon-init .7s ease;
   }
