@@ -8,7 +8,7 @@
         <SocialLinks class="text-4xl" />
         <div class="copyright flex flex-col lg:flex-row gap-2 [&_a]:anim-underline-white">
           <p>&copy; {{ currentYear }} Skizophonic</p>
-          <p>&infin; {{ $t('footer.siteBy') }} <a href="https://www.danalcaide.com">danalcaide.com</a></p>
+          <p>&infin; {{ $t('footer.siteBy') }} <a href="https://www.danalcaide.com">danalcaide.com</a> <DanHummingbird /></p>
         </div>
       </div>
     </div>

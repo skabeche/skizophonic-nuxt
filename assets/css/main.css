@@ -17,6 +17,8 @@
   --color-gray-900: #212121;
 
   --text-8xl: clamp(2rem, 5vw, 6rem);
+
+  --background-image-colibri-anim: url("/images/colibri_anim.png");
 }
 
 @utility container {
