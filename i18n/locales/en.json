@@ -29,6 +29,7 @@
     "band": {
       "name": "Band",
       "title": "Band",
+      "copyrightText": "All images are copyright to their respective owners.",
       "labels": {
         "vocals": "Vocals",
         "guitar": "Guitar",

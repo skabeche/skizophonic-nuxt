@@ -28,6 +28,7 @@
     "band": {
       "name": "Banda",
       "title": "Banda",
+      "copyrightText": "Todos los derechos de las imágenes pertenecen a sus respectivos autores.",
       "labels": {
         "vocals": "Voz",
         "guitar": "Guitarra",
