@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
+    baseUrl: process.env.APP_URL,
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     detectBrowserLanguage: {
@@ -36,12 +37,19 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'es', name: 'Spanish', file: 'es.json' }
+      {
+        code: 'en',
+        name: 'English',
+        language: 'en-GB',
+        file: 'en.json'
+      },
+      {
+        code: 'es',
+        name: 'Spanish',
+        language: 'es-ES',
+        file: 'es.json'
+      }
     ],
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
     customRoutes: 'config', // disable custom route with page components
     pages: {
       home: {
@@ -69,10 +77,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Skizophonic',
-      htmlAttrs: {
-        lang: 'en',
-        dir: 'ltr',
-      },
       meta: [
         {
           name: 'description',

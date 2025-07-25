@@ -1,5 +1,6 @@
 <template>
   <div v-if="showPreloader" ref="preloaderRef" class="preloader fixed inset-0 z-10 w-screen h-dvh flex items-center justify-center bg-white text-black">
+    <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
     <div ref="logoCirclesRef" class="logo-circles w-40 h-40">
       <LogoCircles />
     </div>
@@ -16,6 +17,7 @@
 
   const emit = defineEmits(['done']);
 
+  const head = useLocaleHead();
   const route = useRoute();
   const { locale } = useI18n();
   const showPreloader = ref(true);
