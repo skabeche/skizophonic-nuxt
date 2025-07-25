@@ -10,7 +10,14 @@
     "description": "Banda de música formada entre Benicasim y Castellón, España"
   },
   "preloader": {
-    "text": "Espiral de subliminal cadencia"
+    "text": [
+      "Espiral de subliminal cadencia",
+      "Ascenso mecánico del sonido",
+      "Sinestesia de hipermúsica",
+      "Sucio caleidoscopio de ruido",
+      "Laberinto eléctrico de ondulaciones",
+      "Tangente de un ciudadano sónico"
+    ]
   },
   "pages": {
     "home": {

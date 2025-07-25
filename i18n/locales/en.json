@@ -10,7 +10,14 @@
     "description": "Music band based in Benicasim and Castellón, Spain"
   },
   "preloader": {
-    "text": "Spiral of subliminal cadence"
+    "text": [
+      "Spiral of subliminal cadence",
+      "Mechanical ascent of sound",
+      "Synesthesia of hypermusic",
+      "Dirty kaleidoscope of noise",
+      "Electric labyrinth of waves",
+      "Tangent of a sonic citizen"
+    ]
   },
   "pages": {
     "home": {

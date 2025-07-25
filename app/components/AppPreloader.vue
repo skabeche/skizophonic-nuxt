@@ -7,7 +7,7 @@
     <div ref="dot1Ref" class="dot1 fixed z-20 w-screen h-dvh bg-black will-change-[clip-path]" />
     <div ref="dot2Ref" class="dot2 fixed z-30 w-screen h-dvh bg-white will-change-[clip-path]" />
     <div ref="preloaderTextRef" class="preloader-text fixed z-20 inset-0 flex items-center justify-center w-screen h-dvh text-[clamp(1.2rem,5vw,2.8rem)] text-white font-bold uppercase mix-blend-difference">
-      {{ $t('preloader.text') }}
+      {{ $t(`preloader.text[${Math.floor(Math.random() * 6)}]`) }}
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@
 
     ctx = gsap.context(() => {
       gsap.set([dot1Ref.value, dot2Ref.value], { clipPath: 'circle(0% at 50% 50%)' })
-      gsap.set(preloaderTextRef.value, { opacity: 0, scale: 0.8 })
+      gsap.set(preloaderTextRef.value, { opacity: 0, scale: 1.1 })
 
       gsap
         .timeline({
@@ -67,7 +67,7 @@
         })
         .to(preloaderTextRef.value, {
           scale: 1,
-          duration: 1.3,
+          duration: 1.4,
           ease: "power4",
         }, '<')
         .to(preloaderTextRef.value, {
