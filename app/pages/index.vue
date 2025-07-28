@@ -10,8 +10,8 @@
 
       <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
 
-      <div v-for="(video, index) in videos" :key="index" class="circles absolute top-0 left-0 w-full h-full will" :class="`circle${index}`">
-        <video class="w-full h-full object-cover rotate-180" preload="auto" autoplay muted loop playsinline disableremoteplayback>
+      <div v-for="(video, index) in videos" :key="video.small" class="circles absolute top-0 left-0 w-full h-full">
+        <video class="w-full h-full object-cover rotate-180 brightness-70 will-change-[clip-path]" :class="`circle${index}`" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
           <source :src="`/videos/${video.large}`" type="video/mp4" media="(min-width: 1280px)">
           <source :src="`/videos/${video.small}`" type="video/mp4">
         </video>
@@ -24,7 +24,7 @@
       </section>
 
       <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
-        <video ref="showreelRef" class="video absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-cover mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
+        <video ref="showreelRef" class="showreel absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-cover mask-no-repeat mask-center brightness-80 will-change-[mask]" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
           <source src="/videos/showreel_skizophonic_1080p.mp4" type="video/mp4" media="(min-width: 1920px)">
           <source src="/videos/showreel_skizophonic_720p.mp4" type="video/mp4" media="(min-width: 1280px)">
           <source src="/videos/showreel_skizophonic_480p.mp4" type="video/mp4" media="(min-width: 640px)">
@@ -39,7 +39,7 @@
       </section>
     </div>
 
-    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-18 w-screen sm:min-h-screen py-12">
+    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-16 min-h-dvh py-12">
       <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
         <p>{{ $t('pages.home.block3') }}</p>
       </div>
@@ -116,7 +116,10 @@
 
     gsap.set('.circle0, .circle1, .circle2, .circle3, .circle4', {
       clipPath: 'circle(0% at 50% 50%)',
-      filter: 'brightness(60%)',
+    });
+    gsap.set(showreelRef.value, {
+      autoAlpha: 0,
+      maskSize: '100% 100%',
     });
 
     ctx = gsap.context(() => {
@@ -128,9 +131,11 @@
           scrollTrigger: {
             trigger: timelineRef.value,
             start: 'top top',
-            end: '+=900%',
+            end: '+=650%',
             pin: true,
             scrub: 2,
+            preventOverlaps: true,
+            fastScrollEnd: true,
             // markers: true,
           }
         })
@@ -154,7 +159,7 @@
           stagger: 0.01,
         }, '<0.2')
         .to('.circle0', {
-          clipPath: 'circle(62% at 50% 50%)',
+          clipPath: 'circle(64% at 50% 50%)',
           ease: "back.out(1)",
         }, '<0.6')
         .to(block1Ref.value, {
@@ -185,26 +190,20 @@
         }, '<')
         .to('.circle0, .circle1, .circle2, .circle3, .circle4', {
           clipPath: 'circle(0% at 50% 50%)',
-          stagger: 0.01,
           ease: "power4.inOut",
         }, '<0.3')
-        .fromTo(showreelRef.value, {
-          autoAlpha: 0,
-          maskSize: '900% 900%',
-          filter: 'brightness(0%)',
-        }, {
+        .to(showreelRef.value, {
           autoAlpha: 1,
           maskSize: '30% 30%',
-          ease: 'power4.inOut',
+          ease: 'power3.inOut',
         }, '<')
         .to(showreelRef.value, {
-          filter: 'brightness(80%)',
           maskSize: '200% 200%',
           ease: 'power4.inOut',
         }, '<0.4')
         .to(timelineRef.value, {
           backgroundColor: '#000000',
-          ease: 'power1',
+          ease: 'power3',
         }, '<0.2')
         .to(showreelRef.value, {
           maskSize: '900% 900%',
