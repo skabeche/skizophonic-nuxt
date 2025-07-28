@@ -2,21 +2,29 @@
   <div ref="homeTimelineRef">
     <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
 
-    <div ref="blockTimelineRef" class="block-timeline relative top-0 left-0 w-screen min-h-dvh">
+    <div ref="timelineRef" class="timeline relative top-0 left-0 w-screen min-h-dvh">
+
       <HeroHypnotic class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
       <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
 
-      <section class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
+      <div v-for="(video, index) in videos" :key="index" class="circles absolute top-0 left-0 w-full h-full will" :class="`circle${index}`">
+        <video class="w-full h-full object-cover rotate-180" preload="auto" autoplay muted loop playsinline disableremoteplayback>
+          <source :src="`/videos/${video.large}`" type="video/mp4" media="(min-width: 1280px)">
+          <source :src="`/videos/${video.small}`" type="video/mp4">
+        </video>
+      </div>
+
+      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
         <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
           <p class="relative z-30">{{ $t('pages.home.block1') }}</p>
         </div>
       </section>
 
       <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
-        <video ref="videoRef" class="absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-size-[40%_40%] mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
+        <video ref="showreelRef" class="video absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-cover mask-no-repeat mask-center" preload="auto" autoplay muted loop playsinline disableremoteplayback>
           <source src="/videos/showreel_skizophonic_1080p.mp4" type="video/mp4" media="(min-width: 1920px)">
           <source src="/videos/showreel_skizophonic_720p.mp4" type="video/mp4" media="(min-width: 1280px)">
           <source src="/videos/showreel_skizophonic_480p.mp4" type="video/mp4" media="(min-width: 640px)">
@@ -24,14 +32,14 @@
         </video>
       </div>
 
-      <section ref="block2Ref" class="block2 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
-        <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
+      <section ref="block2Ref" class="block2 absolute z-20 top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
+        <div class="container py-12 lg:py-40 text-[clamp(1.5rem,_3.5vw,_3.5rem)] text-white text-pretty">
           <p class="relative z-20">{{ $t('pages.home.block2') }}</p>
         </div>
       </section>
     </div>
 
-    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-18 w-screen min-h-screen py-4 sm:py-12">
+    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-18 w-screen sm:min-h-screen py-12">
       <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
         <p>{{ $t('pages.home.block3') }}</p>
       </div>
@@ -55,12 +63,34 @@
     pageTransition: pageTransitionConfig,
   });
 
+  const videos = {
+    0: {
+      'small': 'woman_dancing_480p.mp4',
+      'large': 'woman_dancing_720p.mp4',
+    },
+    1: {
+      'small': 'vhs_480p.mp4',
+      'large': 'vhs_720p.mp4',
+    },
+    2: {
+      'small': 'subway_480p.mp4',
+      'large': 'subway_720p.mp4',
+    },
+    3: {
+      'small': 'woman_finger_640p.mp4',
+      'large': 'woman_finger_720p.mp4',
+    },
+    4: {
+      'small': 'factories_480p.mp4',
+      'large': 'factories_720p.mp4',
+    },
+  }
   const { t } = useI18n();
   const homeTimelineRef = useTemplateRef('homeTimelineRef');
-  const blockTimelineRef = useTemplateRef('blockTimelineRef');
-  const block2 = useTemplateRef('block2Ref');
-  const block3 = useTemplateRef('block3Ref');
-  const video = useTemplateRef('videoRef');
+  const timelineRef = useTemplateRef('timelineRef');
+  const block1Ref = useTemplateRef('block1Ref');
+  const block3Ref = useTemplateRef('block3Ref');
+  const showreelRef = useTemplateRef('showreelRef');
   let ctx;
 
   useSeoMeta({
@@ -71,7 +101,6 @@
   })
 
   onMounted(() => {
-
     const block1Split = SplitText.create(".block1 p", {
       type: 'lines, words',
       mask: 'words'
@@ -85,15 +114,21 @@
       mask: 'lines'
     });
 
+    gsap.set('.circle0, .circle1, .circle2, .circle3, .circle4', {
+      clipPath: 'circle(0% at 50% 50%)',
+      filter: 'brightness(60%)',
+    });
+
     ctx = gsap.context(() => {
-      // Hero and blocks timeline.
-      gsap
-        .timeline({
-          defaults: { duration: 2, ease: 'none' },
+      gsap.
+        timeline({
+          defaults: {
+            ease: 'none'
+          },
           scrollTrigger: {
-            trigger: blockTimelineRef.value,
+            trigger: timelineRef.value,
             start: 'top top',
-            end: '+=400%',
+            end: '+=900%',
             pin: true,
             scrub: 2,
             // markers: true,
@@ -102,98 +137,106 @@
         .fromTo('.hero .bg-wrapper', {
           clipPath: 'circle(100% at 50% 50%)',
         }, {
-          duration: 8,
           clipPath: 'circle(0% at 50% 50%)',
         })
         .to('.hero .logo', {
-          duration: 12,
           scale: 20,
           rotate: 45,
+          ease: 'power1.in',
         })
         .to('.hero', {
           autoAlpha: 0,
-        })
+          ease: 'power4.in',
+        }, '<-=1%')
         .from(block1Split.words, {
-          duration: 6,
-          y: 200,
-          ease: 'power1',
-          stagger: 0.1,
-        }, '<-=25%')
-        .fromTo(video.value, {
+          yPercent: 100,
+          ease: 'power4.inOut',
+          stagger: 0.01,
+        }, '<0.2')
+        .to('.circle0', {
+          clipPath: 'circle(62% at 50% 50%)',
+          ease: "back.out(1)",
+        }, '<0.6')
+        .to(block1Ref.value, {
+          color: '#ffffff',
+          ease: "power1",
+        }, '<')
+        .to('.circle1', {
+          clipPath: 'circle(47% at 50% 50%)',
+          ease: "back.out(1.2)",
+        }, '<0.2')
+        .to('.circle2', {
+          clipPath: 'circle(33% at 50% 50%)',
+          ease: "back.out(1)",
+        }, '<0.1')
+        .to('.circle3', {
+          clipPath: 'circle(25% at 50% 50%)',
+          ease: "power4",
+        }, '<0.2')
+        .to('.circle4', {
+          clipPath: 'circle(11% at 50% 50%)',
+          ease: "power4",
+        }, '<0.1')
+        .to(block1Split.lines, {
           autoAlpha: 0,
+          stagger: 0.02,
+          yPercent: -200,
+          ease: 'power4.in',
+        }, '<')
+        .to('.circle0, .circle1, .circle2, .circle3, .circle4', {
+          clipPath: 'circle(0% at 50% 50%)',
+          stagger: 0.01,
+          ease: "power4.inOut",
+        }, '<0.3')
+        .fromTo(showreelRef.value, {
+          autoAlpha: 0,
+          maskSize: '900% 900%',
           filter: 'brightness(0%)',
         }, {
           autoAlpha: 1,
           maskSize: '30% 30%',
-          ease: 'power1.inOut',
-        }, '+=400%')
-        .to(video.value, {
-          duration: 4,
-          filter: 'brightness(85%)',
+          ease: 'power4.inOut',
+        }, '<')
+        .to(showreelRef.value, {
+          filter: 'brightness(80%)',
           maskSize: '200% 200%',
-          ease: 'power1.in',
-        }, '+=0.3')
-        .to(block2.value, {
-          backgroundColor: 'black',
-          color: 'white',
-        }, '<0.3')
-        .to(video.value, {
-          duration: 5,
+          ease: 'power4.inOut',
+        }, '<0.4')
+        .to(timelineRef.value, {
+          backgroundColor: '#000000',
+          ease: 'power1',
+        }, '<0.2')
+        .to(showreelRef.value, {
           maskSize: '900% 900%',
-        })
-
-      // Block 1 animations.
-      gsap.to(block1Split.lines, {
-        duration: .7,
-        autoAlpha: 0,
-        stagger: 0.02,
-        y: -200,
-        ease: 'power4.in',
-        scrollTrigger: {
-          trigger: video.value,
-          start: 'bottom top-=200%',
-          end: '+=100%',
-          // markers: true,
-          toggleActions: 'play none none reverse',
-          onEnter: () => {
-            gsap.set('.block1 p', { zIndex: 10 });
-          },
-          onLeaveBack: () => {
-            gsap.set('.block1 p', { zIndex: 30 });
-          }
-        },
-      })
-
-      // Block 2 animations.
-      gsap.from(block2Split.words, {
-        stagger: 0.02,
-        y: 200,
-        scrollTrigger: {
-          trigger: video.value,
-          start: 'bottom top-=250%',
-          end: '+=100%',
-          // markers: true,
-          toggleActions: 'play none none reverse',
-        },
-      })
+          duration: 0.7,
+          ease: 'power4.in',
+        }, '<0.3')
+        .from(block2Split.words, {
+          yPercent: 100,
+          ease: 'power4',
+          stagger: 0.01,
+        }, '<')
+        .to(timelineRef.value, {}) // Simulate a scroll pause.
 
       // Block 3 animations.
       gsap.from(block3Split.words, {
         stagger: 0.02,
-        y: 200,
+        yPercent: 100,
         scrollTrigger: {
-          trigger: block3.value,
-          start: 'top center',
+          trigger: block3Ref.value,
+          start: 'top bottom',
           end: '+=100%',
-          // markers: true,
           toggleActions: 'play none none reverse',
+          // markers: true,
         }
       })
-    }, homeTimelineRef.value); // <- Scope!
-
+    }, homeTimelineRef.value);
   })
 
   onUnmounted(() => {
     ctx.revert();
+    block1Split.revert();
+    block2Split.revert();
+    block3Split.revert();
   });
 </script>
