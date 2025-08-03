@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full rounded-full">
+  <div class="relative w-full hover:w-[97%] transition-all duration-600 rounded-full">
     <div class="absolute top-0 left-0 w-full h-full rounded-full">
       <video class="w-full h-full object-cover rounded-full" preload="auto" autoplay muted loop playsinline disableremoteplayback>
         <source src="/videos/spiral_large.mp4" type="video/mp4" media="(min-width: 2560px)">

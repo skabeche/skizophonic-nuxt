@@ -2,8 +2,7 @@
   <div ref="homeTimelineRef">
     <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
 
-    <div ref="timelineRef" class="timeline relative top-0 left-0 w-screen min-h-dvh">
-
+    <div ref="timelineRef" class="timeline relative z-10 top-0 left-0 w-screen min-h-dvh">
       <HeroHypnotic class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
@@ -39,14 +38,24 @@
       </section>
     </div>
 
-    <section ref="block3Ref" class="block3 flex flex-col justify-evenly gap-16 min-h-dvh py-12">
-      <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-black prose-p:leading-normal text-pretty">
-        <p>{{ $t('pages.home.block3') }}</p>
+    <div ref="timeline2Ref" class="timeline2 relative z-5 top-0 left-0 w-screen min-h-dvh">
+      <div class="animation-circles relative w-full h-full">
+        <AnimationCircles class="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[90%] object-cover origin-center scale-150" />
       </div>
-      <div class="p-4 sm:px-16">
-        <ButtonHypnotic to="music">{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
-      </div>
-    </section>
+
+      <section ref="block3Ref" class="block3 absolute inset-0 flex flex-col items-center justify-center w-full h-full text-white mix-blend-difference">
+        <div class="container text-[clamp(1.5rem,_3.5vw,_3.5rem)] prose-whitex prose-p:leading-normal text-pretty">
+          <p class="">{{ $t('pages.home.block3') }}</p>
+        </div>
+      </section>
+
+      <section class="button-hyp absolute top-1/2 -translate-y-1/2 left-0 flex items-center w-full mix-blend-differencex">
+        <div class="flex justify-center w-full p-4 sm:px-16">
+          <ButtonHypnotic to="music">{{ $t('pages.home.buttonHypnotic') }}</ButtonHypnotic>
+        </div>
+      </section>
+    </div>
+
   </div>
 </template>
 
@@ -88,8 +97,8 @@
   const { t } = useI18n();
   const homeTimelineRef = useTemplateRef('homeTimelineRef');
   const timelineRef = useTemplateRef('timelineRef');
+  const timeline2Ref = useTemplateRef('timeline2Ref');
   const block1Ref = useTemplateRef('block1Ref');
-  const block3Ref = useTemplateRef('block3Ref');
   const showreelRef = useTemplateRef('showreelRef');
   let ctx;
 
@@ -101,28 +110,29 @@
   })
 
   onMounted(() => {
-    const block1Split = SplitText.create(".block1 p", {
-      type: 'lines, words',
-      mask: 'words'
-    });
-    const block2Split = SplitText.create(".block2 p", {
-      type: 'lines, words',
-      mask: 'lines'
-    });
-    const block3Split = SplitText.create(".block3 p", {
-      type: 'lines, words',
-      mask: 'lines'
-    });
-
-    gsap.set('.circle0, .circle1, .circle2, .circle3, .circle4', {
-      clipPath: 'circle(0% at 50% 50%)',
-    });
-    gsap.set(showreelRef.value, {
-      autoAlpha: 0,
-      maskSize: '100% 100%',
-    });
-
     ctx = gsap.context(() => {
+      const block1Split = SplitText.create(".block1 p", {
+        type: 'lines, words',
+        // mask: 'words'
+      });
+      const block2Split = SplitText.create(".block2 p", {
+        type: 'lines, words',
+        // mask: 'lines'
+      });
+      const block3Split = SplitText.create(".block3 p", {
+        type: 'lines, words',
+        // mask: 'words'
+      });
+
+      gsap.set('.circle0, .circle1, .circle2, .circle3, .circle4', {
+        clipPath: 'circle(0% at 50% 50%)',
+      });
+      gsap.set(showreelRef.value, {
+        autoAlpha: 0,
+        maskSize: '100% 100%',
+      });
+
+      // Timeline 1.
       gsap.
         timeline({
           defaults: {
@@ -131,7 +141,7 @@
           scrollTrigger: {
             trigger: timelineRef.value,
             start: 'top top',
-            end: '+=650%',
+            end: '+=800%',
             pin: true,
             scrub: 2,
             preventOverlaps: true,
@@ -155,9 +165,11 @@
         }, '<-=1%')
         .from(block1Split.words, {
           yPercent: 100,
-          ease: 'power4.inOut',
+          autoAlpha: 0,
+          filter: 'blur(3px)',
+          ease: 'power4.out',
           stagger: 0.01,
-        }, '<0.2')
+        }, '<0.3')
         .to('.circle0', {
           clipPath: 'circle(64% at 50% 50%)',
           ease: "back.out(1)",
@@ -212,30 +224,155 @@
         }, '<0.3')
         .from(block2Split.words, {
           yPercent: 100,
-          ease: 'power4',
+          autoAlpha: 0,
+          filter: 'blur(3px)',
+          ease: 'power4.out',
           stagger: 0.01,
         }, '<')
         .to(timelineRef.value, {}) // Simulate a scroll pause.
 
-      // Block 3 animations.
-      gsap.from(block3Split.words, {
-        stagger: 0.02,
-        yPercent: 100,
-        scrollTrigger: {
-          trigger: block3Ref.value,
-          start: 'top bottom',
-          end: '+=100%',
-          toggleActions: 'play none none reverse',
-          // markers: true,
-        }
+
+      // Timeline for circles animation.
+      const tlCircles = gsap.timeline({
+        repeat: -1,
+        defaults: {
+          // delay: 0.5,
+          ease: 'sine.inOut',
+          stagger: {
+            each: 0.02,
+            from: 'end'
+          }
+        },
       })
+      // tlCircles.
+      //   fromTo('.animation-circles .circle', {
+      //     yPercent: -30,
+      //     xPercent: -20,
+      //   }, {
+      //     yPercent: 10,
+      //     xPercent: -10,
+      //     duration: 2.8,
+      //   })
+      //   .to('.animation-circles .circle', {
+      //     yPercent: 0,
+      //     xPercent: 20,
+      //     duration: 2,
+      //   })
+      //   .to('.animation-circles .circle', {
+      //     yPercent: -24,
+      //     xPercent: 30,
+      //     duration: 2.3,
+      //   })
+      //   .to('.animation-circles .circle', {
+      //     yPercent: -30,
+      //     xPercent: -20,
+      //     duration: 2.5,
+      //   })
+      tlCircles.
+        fromTo('.animation-circles .circle', {
+          yPercent: -2,
+          xPercent: 0,
+        }, {
+          yPercent: -9,
+          xPercent: -6,
+          duration: 1.8,
+        })
+        .to('.animation-circles .circle', {
+          yPercent: 2,
+          xPercent: -6,
+          duration: 2,
+        })
+        .to('.animation-circles .circle', {
+          yPercent: 5,
+          xPercent: 5,
+          duration: 1.8,
+        })
+        .to('.animation-circles .circle', {
+          yPercent: -11,
+          xPercent: 11,
+          duration: 2,
+        })
+        .to('.animation-circles .circle', {
+          yPercent: -2,
+          xPercent: 0,
+          duration: 1.9,
+        })
+
+      // Timeline 2.
+      gsap
+        .timeline({
+          defaults: {
+            ease: 'none'
+          },
+          scrollTrigger: {
+            trigger: timeline2Ref.value,
+            start: 'center center',
+            end: '+=500%',
+            pin: true,
+            scrub: 2,
+            // markers: true,
+          },
+          onStart: () => {
+            tlCircles.pause();
+          },
+          onReverseComplete: () => {
+            gsap.to('.animation-circles .circle', {
+              yPercent: -2,
+              xPercent: 0,
+              duration: 1.8,
+              ease: 'sine.inOut',
+              stagger: {
+                each: 0.02,
+                from: 'end'
+              },
+              onComplete: () => {
+                tlCircles.play(0);
+              }
+            })
+          }
+        })
+        .to('.animation-circles .circle', {
+          scale: 30,
+          transformOrigin: 'center center',
+          ease: 'power4.in',
+          stagger: {
+            each: 0.1
+          }
+        }, '<0.1')
+        .from(block3Split.words, {
+          yPercent: 100,
+          autoAlpha: 0,
+          filter: 'blur(3px)',
+          ease: 'power4.out',
+          stagger: 0.01,
+        }, '<')
+        .to(block3Split.lines, {
+          yPercent: -200,
+          autoAlpha: 0,
+          ease: 'power4.in',
+          stagger: 0.03,
+        }, '<1')
+        .from('.button-hyp', {
+          autoAlpha: 0,
+          scale: 0.8,
+          ease: 'back.inOut(3)',
+          onComplete: () => {
+            tlCircles.play(0);
+          },
+          onReverseComplete: () => {
+            tlCircles.pause();
+          },
+        }, '<0.3')
+        .to('.animation-circles .circle.sound', {
+          scale: 1,
+          ease: 'power4.out',
+        })
+        .to(timeline2Ref.value, {}) // Simulate a scroll pause.
+
     }, homeTimelineRef.value);
   })
 
   onUnmounted(() => {
     ctx.revert();
-    block1Split.revert();
-    block2Split.revert();
-    block3Split.revert();
   });
 </script>
