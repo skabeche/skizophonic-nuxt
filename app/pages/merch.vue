@@ -103,20 +103,45 @@
         });
       }
 
-      // Items dissapear on scroll.
       gsap.utils.toArray('.merch-items .merch-item').forEach((item) => {
-        gsap.to(item, {
-          autoAlpha: 0,
-          filter: 'blur(6px)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: item,
-            start: 'bottom top+=40%',
-            // end: 'bottom top',
-            scrub: true,
-            // markers: true,
+        const image = item.querySelector('img');
+        const header = item.querySelector('h3');
+        const text = item.querySelector('span');
+        // Items disappear as it scrolls out (from top).
+        gsap.fromTo([image, header, text],
+          {
+            filter: 'blur(0px)',
+          },
+          {
+            filter: 'blur(8px)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: item,
+              start: 'bottom center-=10%',
+              end: 'bottom top',
+              scrub: true,
+              // markers: true,
+            }
           }
-        });
+        );
+        // Items appear as it scrolls in (from bottom).
+        gsap.set([image, header, text], { filter: 'blur(8px)' });
+        gsap.fromTo([image, header, text],
+          {
+            filter: 'blur(8px)',
+          },
+          {
+            filter: 'blur(0px)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top bottom',
+              end: 'top center+=20%',
+              scrub: true,
+              // markers: true,
+            }
+          }
+        );
       });
 
     }, merchRef.value);
