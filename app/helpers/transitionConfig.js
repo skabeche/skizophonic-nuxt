@@ -11,8 +11,7 @@ export const pageTransitionConfig = {
   appear: false,
   onEnter: (el, done) => {
     // No animations on enter as they are custom-made on each route/page.
-    gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
-    gsap.set('#page-transition-overlay .inner', { scale: 1 })
+    resetAnimations();
     toggleTransitionComplete(true);
     done();
   },
@@ -85,8 +84,7 @@ export const pageTransitionFadeConfig = {
   appear: false,
   onEnter: (el, done) => {
     // No animations on enter as they are custom-made on each route/page.
-    gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
-    gsap.set('#page-transition-overlay .inner', { scale: 1 })
+    resetAnimations();
     toggleTransitionComplete(true);
     done();
   },
@@ -111,6 +109,18 @@ export const pageTransitionFadeConfig = {
         autoAlpha: 0,
         ease: 'power4.in',
       })
+      .to('footer', {
+        delay: 0.15,
+        duration: 0.7,
+        autoAlpha: 0,
+        ease: 'power4.in',
+      }, '<')
       .play();
   },
 };
+
+const resetAnimations = () => {
+  gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
+  gsap.set('#page-transition-overlay .inner', { scale: 1 })
+  gsap.set('footer', { autoAlpha: 1 })
+}
