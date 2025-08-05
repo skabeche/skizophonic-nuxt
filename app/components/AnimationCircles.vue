@@ -44,15 +44,20 @@
   import gsap from "gsap";
 
   onMounted(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isFirefoxMobile = ua.includes('firefox') && /android|iphone|ipad|ipod|mobile/.test(ua);
+
     gsap.set('.anim-svg-circles circle, .anim-svg-circles text', {
       transformOrigin: 'center center'
     })
     gsap.set('.anim-svg-circles text', {
-      filter: 'blur(.5px)',
+      filter: isFirefoxMobile ? 'blur(0px)' : 'blur(.5px)',
     })
     gsap.from('.anim-svg-circles circle', {
       scale: 0.84,
+      translateZ: 0,
       duration: 0.8,
+      force3D: true,
       ease: 'back(3.8)',
       stagger: {
         each: -0.061,
@@ -63,8 +68,10 @@
 
     gsap.from('.anim-svg-circles text', {
       scale: 0.9,
+      translateZ: 0,
       autoAlpha: 0,
-      filter: 'blur(3px)',
+      force3D: true,
+      filter: isFirefoxMobile ? 'blur(0px)' : 'blur(3px)',
       duration: 0.8,
       ease: 'back(4)',
       repeat: -1,
