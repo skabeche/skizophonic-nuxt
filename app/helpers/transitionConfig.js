@@ -122,5 +122,7 @@ export const pageTransitionFadeConfig = {
 const resetAnimations = () => {
   gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
   gsap.set('#page-transition-overlay .inner', { scale: 1 })
-  gsap.set('footer', { autoAlpha: 1 })
+  if (document.querySelector('footer')) {
+    gsap.set('footer', { autoAlpha: 1 })
+  }
 }
