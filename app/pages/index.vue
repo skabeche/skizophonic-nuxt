@@ -9,7 +9,7 @@
 
       <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
 
-      <section ref="block1Ref" class="block1 absolute top-0 left-0 flex flex-col justify-center w-screen min-h-screen py-4 lg:py-40">
+      <section ref="block1Ref" class="block1 absolute z-10 inset-0 flex flex-col items-center justify-center w-screen h-dvh">
         <div v-for="(video, index) in videos" :key="video.small" class="circles absolute top-0 left-0 w-full h-full" :class="`circle${index}`">
           <video class="w-full h-full object-cover rotate-180 brightness-70 will-change-[clip-path]" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
             <source :src="`/videos/${video.large}`" type="video/mp4" media="(min-width: 1280px)">
@@ -21,8 +21,8 @@
         </div>
       </section>
 
-      <section ref="block2Ref" class="block2 absolute z-20 top-0 left-0 flex flex-col justify-center w-screen min-h-dvh">
-        <div class="absolute z-10 top-0 left-0 w-screen min-h-dvh">
+      <section ref="block2Ref" class="block2 absolute z-20 inset-0 flex flex-col items-center justify-center w-screen h-dvh">
+        <div class="absolute z-10 top-0 left-0 w-full h-full">
           <video ref="showreelRef" class="showreel absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-cover mask-no-repeat mask-center brightness-80 will-change-[mask]" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
             <source src="/videos/showreel_skizophonic_1080p.mp4" type="video/mp4" media="(min-width: 1920px)">
             <source src="/videos/showreel_skizophonic_720p.mp4" type="video/mp4" media="(min-width: 1280px)">
@@ -35,7 +35,7 @@
         </div>
       </section>
 
-      <section class="block3 absolute z-30 top-0 left-0 flex flex-col items-center justify-center w-screen min-h-dvh overflow-hidden">
+      <section class="block3 absolute z-30 inset-0 flex flex-col items-center justify-center w-screen h-dvh overflow-hidden">
         <div class="animation-circles absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full origin-center">
           <AnimationCircles class="object-cover w-full h-full" />
         </div>
@@ -133,7 +133,7 @@
         autoAlpha: 0,
       });
 
-      // Timeline for circles animation.
+      // Timeline for circles animation in block 3.
       const tlCircles = gsap.timeline({
         paused: true,
         repeat: -1,
@@ -175,7 +175,7 @@
           duration: 1.9,
         })
 
-      // Timeline.
+      // Main timeline.
       gsap.
         timeline({
           defaults: {
