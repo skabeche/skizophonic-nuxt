@@ -1,7 +1,7 @@
 <template>
   <NuxtRouteAnnouncer />
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,#ff0047 0%,#ffffff 50%,#00ffc7 100%)" />
-  <AppPreloader @done="isPageReady = true" />
+  <AppPreloader v-if="!isPageReady" @done="isPageReady = true" />
   <div v-if="isPageReady">
     <NuxtLayout :key="route => route.fullPath">
       <VueLenis ref="lenisRef" :auto-raf="false" root>

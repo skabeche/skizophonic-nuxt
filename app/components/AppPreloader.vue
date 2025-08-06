@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showPreloader" ref="preloaderRef" class="preloader fixed inset-0 z-10 w-screen h-dvh flex items-center justify-center bg-white text-black">
+  <div v-if="showPreloader" ref="preloaderRef" class="preloader fixed inset-0 z-100 w-screen h-dvh flex flex-col items-center justify-center bg-white text-black">
     <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
     <div ref="logoCirclesRef" class="logo-circles w-40 h-40">
       <LogoCircles />
@@ -19,6 +19,7 @@
 
   const head = useLocaleHead();
   const route = useRoute();
+  const router = useRouter()
   const { locale } = useI18n();
   const showPreloader = ref(true);
   const preloaderRef = useTemplateRef('preloaderRef');
@@ -29,13 +30,16 @@
   const isRootPath = computed(() => route.path === '/' || route.path === `/${locale.value}`);
   let ctx = gsap.context(() => { });
 
-  onMounted(() => {
+  onMounted(async () => {
     // Only show preloader on root path.
     if (!isRootPath.value) {
       showPreloader.value = false;
       emit('done');
       return;
     }
+
+    // Preload current route components.
+    await preloadRouteComponents(router.currentRoute.value)
 
     ctx = gsap.context(() => {
       gsap.set([dot1Ref.value, dot2Ref.value], { clipPath: 'circle(0% at 50% 50%)' })
