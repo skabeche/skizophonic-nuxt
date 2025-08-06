@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-x-hidden">
     <AppHeader />
-    <main>
+    <main class="min-h-dvh">
       <slot />
     </main>
     <AppFooter v-if="!route.meta.hideFooter" />

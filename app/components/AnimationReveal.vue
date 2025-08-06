@@ -1,5 +1,12 @@
 <template>
-  <div ref="outerWrapperRef" class="outer-wrapper relative w-fit before:absolute before:z-70 before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:will-change-transform">
+  <div ref="outerWrapperRef" class="outer-wrapper relative w-fit">
+    <svg class="reveal-grid absolute z-100 inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
+      <rect width="21%" height="100%" x="0" y="0" />
+      <rect width="22%" height="100%" x="20%" y="0" />
+      <rect width="23%" height="100%" x="40%" y="0" />
+      <rect width="24%" height="100%" x="60%" y="0" />
+      <rect width="25%" height="100%" x="80%" y="0" />
+    </svg>
     <div ref="innerWrapperRef" class="inner-wrapper">
       <slot />
     </div>
@@ -9,6 +16,7 @@
 <script setup>
   import gsap from 'gsap';
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+
   gsap.registerPlugin(ScrollTrigger);
 
   const emit = defineEmits(['done'])
@@ -24,16 +32,12 @@
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
   const offset = 0.1; // Initial delay.
-  const randomDelay = +(Math.random() * 0.8 + 0.2).toFixed(2) + offset;
+  const randomDelay = +(Math.random() * 0.7 + 0.2).toFixed(2) + offset;
   let ctx;
 
   onMounted(() => {
     ctx = gsap.context(() => {
-      gsap.set(outerWrapperRef.value, {
-        visibility: 'hidden',
-      })
-      gsap.set(innerWrapperRef.value, {
-        visibility: 'hidden',
+      gsap.set([innerWrapperRef.value, '.reveal-grid rect'], {
         autoAlpha: 0,
       })
       gsap
@@ -49,35 +53,42 @@
             emit('done')
           }
         })
-        .to(outerWrapperRef.value, {
-          visibility: 'visible',
+        .to('.reveal-grid rect', {
           '--scaleBefore': "100%",
           duration: 1,
           ease: "power4.inOut",
           onStart: () => {
-            gsap.set(outerWrapperRef.value, {
+            gsap.set('.reveal-grid rect', {
               '--transformOrigin': "top",
+              autoAlpha: 1,
             })
           },
           onComplete: () => {
-            gsap.set(outerWrapperRef.value, {
+            gsap.set('.reveal-grid rect', {
               '--transformOrigin': "bottom",
             })
             gsap.set(innerWrapperRef.value, {
-              visibility: 'visible',
               autoAlpha: 1,
             })
           }
         })
-        .to(outerWrapperRef.value, {
+        .to('.reveal-grid rect', {
           delay: 0.2,
           '--scaleBefore': 0,
+          stagger: {
+            each: 0.03,
+            from: "random"
+          },
           duration: 0.8,
           ease: "power4.inOut",
+          onComplete: () => {
+            gsap.set('.reveal-grid', {
+              autoAlpha: 0,
+            })
+          }
         })
 
     }, outerWrapperRef.value);
-
   })
 
   onUnmounted(() => {
@@ -91,8 +102,9 @@
     --transformOrigin: 'top';
   }
 
-  .outer-wrapper::before {
+  .reveal-grid rect {
     transform: scaleY(var(--scaleBefore));
     transform-origin: var(--transformOrigin);
+    will-change: transform;
   }
 </style>
