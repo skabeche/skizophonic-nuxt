@@ -1,6 +1,6 @@
 <template>
   <div ref="outerWrapperRef" class="outer-wrapper relative w-fit">
-    <svg class="reveal-grid absolute z-100 inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
+    <svg class="reveal-grid absolute z-90 inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
       <rect width="21%" height="100%" x="0" y="0" />
       <rect width="22%" height="100%" x="20%" y="0" />
       <rect width="23%" height="100%" x="40%" y="0" />
