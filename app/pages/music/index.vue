@@ -1,7 +1,8 @@
 <template>
   <div>
+    <PreloaderPage v-if="!isPageLoaded" target=".albums-list" @done="isPageLoaded = true" />
     <h1 class="sr-only">{{ $t('pages.music.title') }}</h1>
-    <AlbumsList />
+    <AlbumsList :play="isPageLoaded" />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
   });
 
   const { t } = useI18n();
+  const isPageLoaded = ref(false);
 
   useSeoMeta({
     title: `${t('pages.music.meta.title')} | ${t('siteName')}`,

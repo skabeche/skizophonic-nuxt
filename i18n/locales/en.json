@@ -102,6 +102,10 @@
     },
     "bandcampEmbed": {
       "noPlayer": "Discontinued album. Not available for download or streaming."
+    },
+    "preloaderPage": {
+      "text1": "Loading albums",
+      "text2": "syncing waves"
     }
   },
   "footer": {

@@ -1,5 +1,5 @@
 <template>
-  <section ref="albumsListRef" class="flex items-center justify-end sm:justify-start h-dvh">
+  <section ref="albumsListRef" class="albums-list flex items-center justify-end sm:justify-start h-dvh">
     <div class="controls relative z-20 flex flex-col text-white mx-2 text-5xl lg:text-[4.4rem] 2xl:text-[7.4rem]">
       <button class="prev-slide cursor-pointer hover:text-[#ff0047]" :disabled="buttonDisabled" @click="handlePrevSlide">
         <Icon name="ion:arrow-up-a" />
@@ -23,7 +23,7 @@
             </div>
             <div class="w-2/3">
               <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
-                <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" width="1000" height="900" loading="lazy">
+                <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" width="1000" height="900">
               </NuxtLinkLocale>
             </div>
             <div class="1/3">
@@ -49,6 +49,14 @@
   import { SplitText } from "gsap/SplitText";
 
   gsap.registerPlugin(SplitText);
+
+  const props = defineProps({
+    play: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
+  });
 
   const albumsListRef = useTemplateRef('albumsListRef');
   const buttonDisabled = ref(false);
@@ -223,7 +231,9 @@
       .set(images[current.value], { yPercent: 0 });
   }
 
-  onMounted(() => {
+  onMounted(async () => {
+    await document.fonts.ready
+
     slides = document.querySelectorAll(".slide");
     images = document.querySelectorAll(".bg");
     headings = gsap.utils.toArray(".slide-heading");
@@ -232,7 +242,7 @@
 
     splitHeadings = headings.map((heading) =>
       SplitText.create(heading, {
-        type: "lines, chars",
+        type: "lines, words, chars",
         linesClass: "line",
       })
     );
@@ -258,7 +268,16 @@
         yoyo: true
       })
 
-      slideIn();
+      watch(
+        () => props.play,
+        (newVal) => {
+          if (newVal) {
+            slideIn();
+          }
+        },
+        { immediate: false }
+      )
+
     }, albumsListRef.value);
   });
 

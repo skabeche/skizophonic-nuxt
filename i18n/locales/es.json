@@ -102,6 +102,10 @@
     },
     "bandcampEmbed": {
       "noPlayer": "Álbum descatalogado. No disponible para descarga o escucha."
+    },
+    "preloaderPage": {
+      "text1": "Cargando álbumes",
+      "text2": "sincronizando ondas"
     }
   },
   "footer": {
