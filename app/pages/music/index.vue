@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PreloaderPage v-if="!isPageLoaded" target=".albums-list" @done="isPageLoaded = true" />
+    <PreloaderLight v-if="!isPageLoaded" target=".albums-list" :text1="$t('pages.music.preloader.text1')" :text2="$t('pages.music.preloader.text2')" @done="isPageLoaded = true" />
     <h1 class="sr-only">{{ $t('pages.music.title') }}</h1>
     <AlbumsList :play="isPageLoaded" />
   </div>
@@ -8,6 +8,7 @@
 
 <script setup>
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
+  import { disableScroll, enableScroll } from '~/utils/scrollLock.js';
 
   definePageMeta({
     // layout: 'full-screen',
@@ -26,14 +27,10 @@
   })
 
   onMounted(() => {
-    // Seems to be the only way to disable scroll and pull-to-refresh for this specific page.
-    document.body.classList.add('overflow-hidden', 'overscroll-none');
-    document.documentElement.classList.add('overflow-hidden', 'overscroll-none');
+    disableScroll();
   })
 
   onUnmounted(() => {
-    // Enable scroll and pull-to-refresh again on other pages.
-    document.body.classList.remove('overflow-hidden', 'overscroll-none');
-    document.documentElement.classList.remove('overflow-hidden', 'overscroll-none');
+    enableScroll();
   })
 </script>

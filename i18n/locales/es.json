@@ -12,9 +12,9 @@
   "preloader": {
     "text": [
       "Espiral de subliminal cadencia",
-      "Ascenso mecánico del sonido",
-      "Sinestesia de hipermúsica",
-      "Sucio caleidoscopio de ruido",
+      "Ascenso mecánico del ruido",
+      "Sinestesia por hipermúsica",
+      "Caleidoscopio de supersonidos",
       "Laberinto eléctrico de ondas",
       "Tangente de un ciudadano sónico"
     ]
@@ -31,6 +31,10 @@
       "meta": {
         "title": "Home",
         "description": "Banda de música formada entre Benicasim y Castellón, España"
+      },
+      "preloader": {
+        "text1": "cargando ondas",
+        "text2": "sincronizar espiral"
       }
     },
     "band": {
@@ -66,6 +70,10 @@
       "meta": {
         "title": "Música",
         "description": "Escucha su música"
+      },
+      "preloader": {
+        "text1": "cargando música",
+        "text2": "sincronizar ruido"
       }
     },
     "merch": {
@@ -102,10 +110,6 @@
     },
     "bandcampEmbed": {
       "noPlayer": "Álbum descatalogado. No disponible para descarga o escucha."
-    },
-    "preloaderPage": {
-      "text1": "Cargando álbumes",
-      "text2": "sincronizando ondas"
     }
   },
   "footer": {

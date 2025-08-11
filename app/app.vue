@@ -1,15 +1,12 @@
 <template>
   <NuxtRouteAnnouncer />
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,#ff0047 0%,#ffffff 50%,#00ffc7 100%)" />
-  <AppPreloader v-if="!isPageReady" @done="isPageReady = true" />
-  <div v-if="isPageReady">
-    <NuxtLayout :key="route => route.fullPath">
-      <VueLenis ref="lenisRef" :auto-raf="false" root>
-        <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
-        <NuxtPage :page-key="route => route.fullPath" />
-      </VueLenis>
-    </NuxtLayout>
-  </div>
+  <NuxtLayout :key="route => route.fullPath">
+    <VueLenis ref="lenisRef" :auto-raf="false" root>
+      <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
+      <NuxtPage :page-key="route => route.fullPath" />
+    </VueLenis>
+  </NuxtLayout>
   <PageTransitionOverlay />
 </template>
 
@@ -18,7 +15,6 @@
   import gsap from "gsap";
 
   const lenisRef = ref()
-  const isPageReady = ref(false)
   const head = useLocaleHead();
 
   // const lenis = useLenis(({ scroll }) => {

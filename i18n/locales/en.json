@@ -12,10 +12,10 @@
   "preloader": {
     "text": [
       "Spiral of subliminal cadence",
-      "Mechanical ascent of sound",
-      "Synesthesia of hypermusic",
-      "Dirty kaleidoscope of noise",
-      "Electric labyrinth of waves",
+      "Mechanical ascent of noise",
+      "Synesthesia by hypermusic",
+      "Kaleidoscope of supersounds",
+      "Electric maze of waves",
       "Tangent of a sonic citizen"
     ]
   },
@@ -31,6 +31,10 @@
       "meta": {
         "title": "Home",
         "description": "Music band based in Benicasim and Castellón, Spain"
+      },
+      "preloader": {
+        "text1": "loading waves",
+        "text2": "syncing spiral"
       }
     },
     "band": {
@@ -66,6 +70,10 @@
       "meta": {
         "title": "Music",
         "description": "Listen to their music"
+      },
+      "preloader": {
+        "text1": "loading music",
+        "text2": "syncing noise"
       }
     },
     "merch": {
@@ -102,10 +110,6 @@
     },
     "bandcampEmbed": {
       "noPlayer": "Discontinued album. Not available for download or streaming."
-    },
-    "preloaderPage": {
-      "text1": "Loading albums",
-      "text2": "syncing waves"
     }
   },
   "footer": {

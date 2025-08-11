@@ -1,9 +1,11 @@
 <template>
   <div ref="homeTimelineRef">
-    <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
+    <PreloaderFull v-if="!isPageLoaded" target=".timeline" :text1="$t('pages.home.preloader.text1')" :text2="$t('pages.home.preloader.text2')" @done="isPageLoaded = true" />
 
     <div ref="timelineRef" class="timeline relative z-10 top-0 left-0 w-screen min-h-dvh">
-      <HeroHypnotic class="hero z-40 overflow-hidden">
+      <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
+
+      <HeroHypnotic :play="isPageLoaded" class="hero z-40 overflow-hidden">
         <AppLogo class="logo fill-white" />
       </HeroHypnotic>
 
@@ -89,6 +91,7 @@
     },
   }
   const { t } = useI18n();
+  const isPageLoaded = ref(false);
   const homeTimelineRef = useTemplateRef('homeTimelineRef');
   const timelineRef = useTemplateRef('timelineRef');
   const block1Ref = useTemplateRef('block1Ref');

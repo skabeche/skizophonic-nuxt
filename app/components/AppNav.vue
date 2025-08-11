@@ -131,7 +131,8 @@
 
 <style scoped>
   .button-nav-icon {
-    animation: anim-icon-init .7s ease;
+    animation: anim-icon-init .7s .2s ease forwards;
+    transform: scaleX(0);
   }
 
   @keyframes anim-icon-init {

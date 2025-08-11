@@ -22,6 +22,14 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const props = defineProps({
+    play: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
+  });
+
   const heroHypnoticRef = useTemplateRef('heroHypnoticRef');
   const videoRef = useTemplateRef('videoRef');
   const slotRef = useTemplateRef('slotRef');
@@ -33,7 +41,7 @@
     const isFirefoxMobile = ua.includes('firefox') && /android|iphone|ipad|ipod|mobile/.test(ua);
 
     ctx = gsap.context(() => {
-      gsap
+      const tl = gsap
         .timeline({
           paused: true,
           defaults: {
@@ -67,7 +75,16 @@
           autoAlpha: 1,
           filter: 'blur(0px)',
         }, '<0.3')
-        .play();
+
+      watch(
+        () => props.play,
+        (newVal) => {
+          if (newVal) {
+            tl.play();
+          }
+        },
+        { immediate: false }
+      )
 
       gsap.to(scrollDownRef.value, {
         duration: .3,
