@@ -252,7 +252,7 @@
         .to(caseRef.value, {
           duration: 0.6,
           opacity: 0.6,
-          zIndex: -1,
+          zIndex: 0,
           x: -100,
           rotation: -10,
           scale: 0.8,
