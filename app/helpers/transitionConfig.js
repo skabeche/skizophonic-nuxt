@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 
 import { useTransition } from "#imports";
+import { disableScroll, enableScroll } from '~/utils/scrollLock.js';
 
 const { toggleTransitionComplete } = useTransition();
 
@@ -16,16 +17,19 @@ export const pageTransitionConfig = {
     done();
   },
   onLeave: (el, done) => {
+    disableScroll();
     toggleTransitionComplete(false);
 
     gsap
       .timeline({
         paused: true,
         onStart() {
-          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 1 })
+          gsap.set('#page-transition-overlay', { autoAlpha: 1 })
+          gsap.set('#page-transition-circles', { autoAlpha: 1 })
         },
         onComplete() {
-          gsap.set('#page-transition-overlay, #page-transition-overlay .inner', { autoAlpha: 0 })
+          gsap.set('#page-transition-overlay', { autoAlpha: 0 })
+          gsap.set('#page-transition-circles', { autoAlpha: 0 })
           toggleTransitionComplete(true);
           done();
         },
@@ -40,31 +44,35 @@ export const pageTransitionConfig = {
         scaleX: 0,
         ease: 'power4.in',
       }, '<')
-      .to('#page-transition-overlay', {
-        delay: 0.3,
-        clipPath: 'inset(0% 0% 0% 0%)',
+      .to('#page-transition-grid rect', {
+        '--scaleColumnsTransition': "100%",
+        delay: 0.1,
         duration: 1.2,
+        stagger: {
+          each: 0.04,
+          from: "random"
+        },
         ease: 'power4.inOut'
       }, '<')
-      .from('#page-transition-overlay .inner .center-ring', {
+      .from('#page-transition-circles .center-ring', {
         duration: 0.4,
         scale: 0,
         svgOrigin: "144.16 144.16",
         ease: 'back.out(2)',
       }, '-=.9')
-      .from('#page-transition-overlay .inner .middle-ring', {
+      .from('#page-transition-circles .middle-ring', {
         duration: 0.7,
         scale: 0,
         svgOrigin: "144.16 144.16",
         ease: 'back.out(2)',
       }, '<')
-      .from('#page-transition-overlay .inner .outer-ring', {
+      .from('#page-transition-circles .outer-ring', {
         duration: .9,
         scale: 0,
         svgOrigin: "144.16 144.16",
         ease: 'power1.out',
       }, '<')
-      .to('#page-transition-overlay .inner', {
+      .to('#page-transition-circles', {
         scale: 50,
         duration: 0.6,
         ease: 'power4.in'
@@ -89,6 +97,7 @@ export const pageTransitionFadeConfig = {
     done();
   },
   onLeave: (el, done) => {
+    disableScroll();
     toggleTransitionComplete(false);
 
     const children = el.querySelectorAll('div, h1, h2, h3, h4');
@@ -120,9 +129,11 @@ export const pageTransitionFadeConfig = {
 };
 
 const resetAnimations = () => {
-  gsap.set('#page-transition-overlay', { clipPath: 'inset(100% 0% 0% 0%)' })
-  gsap.set('#page-transition-overlay .inner', { scale: 1 })
+  gsap.set('#page-transition-overlay', { autoAlpha: 0 })
+  gsap.set('#page-transition-grid rect', { '--scaleColumnsTransition': 0 })
+  gsap.set('#page-transition-circles', { scale: 1 })
   if (document.querySelector('footer')) {
     gsap.set('footer', { autoAlpha: 1 })
   }
+  enableScroll();
 }

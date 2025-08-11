@@ -56,9 +56,8 @@
   let ctx = gsap.context(() => { });
 
   onMounted(async () => {
-    disableScroll();
-
     await nextTick();
+    disableScroll();
     await document.fonts.ready;
 
     if (routesAreLoaded.value.includes(route.path)) {

@@ -54,7 +54,7 @@
           }
         })
         .to('.reveal-grid rect', {
-          '--scaleBefore': "100%",
+          '--scaleColumnsReveal': "100%",
           duration: 1,
           ease: "power4.inOut",
           onStart: () => {
@@ -74,9 +74,9 @@
         })
         .to('.reveal-grid rect', {
           delay: 0.2,
-          '--scaleBefore': 0,
+          '--scaleColumnsReveal': 0,
           stagger: {
-            each: 0.03,
+            each: 0.035,
             from: "random"
           },
           duration: 0.8,
@@ -98,12 +98,12 @@
 
 <style scoped>
   ::root {
-    --scaleBefore: 0;
+    --scaleColumnsReveal: 0;
     --transformOrigin: 'top';
   }
 
   .reveal-grid rect {
-    transform: scaleY(var(--scaleBefore));
+    transform: scaleY(var(--scaleColumnsReveal));
     transform-origin: var(--transformOrigin);
     will-change: transform;
   }

@@ -54,6 +54,11 @@
 }
 
 @layer base {
+  html {
+    @apply bg-black;
+    scrollbar-gutter: stable;
+    scrollbar-color: #bbb black;
+  }
   body {
     @apply text-black bg-white font-bold scroll-smooth overflow-x-hidden;
   }
