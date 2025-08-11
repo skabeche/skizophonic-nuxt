@@ -351,14 +351,14 @@
     }, homeTimelineRef.value);
   })
 
+  onBeforeRouteLeave(() => {
+    ctx.kill();
+  });
+
   onUnmounted(() => {
     ctx.revert();
     block1Split.revert();
     block2Split.revert();
     block3Split.revert();
-  });
-
-  onBeforeRouteLeave(() => {
-    ctx.kill();
   });
 </script>

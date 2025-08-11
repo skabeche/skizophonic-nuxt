@@ -21,10 +21,11 @@
                 <source :src="`/videos/${album.bgVideo.hd}`" type="video/mp4">
               </video>
             </div>
-            <div class="w-2/3">
+            <div class="w-2/3 relative">
               <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
                 <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" width="1000" height="900">
               </NuxtLinkLocale>
+              <span class="absolute bottom-0 right-0 inline-block text-lg lg:text-xl xl:text-2xl p-3 font-bold text-white mix-blend-difference">{{ album.year }}</span>
             </div>
             <div class="1/3">
               <h2 class="slide-heading text-8xl">

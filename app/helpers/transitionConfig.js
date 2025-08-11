@@ -36,9 +36,9 @@ export const pageTransitionConfig = {
       })
       .to(el, {
         duration: 1.9,
-        y: '-100vh',
+        y: -80,
         overflow: 'hidden',
-        ease: 'power4.in',
+        ease: 'power4.inOut',
       })
       .to('.nav-icon', {
         scaleX: 0,
