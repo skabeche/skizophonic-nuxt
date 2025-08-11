@@ -357,4 +357,8 @@
     block2Split.revert();
     block3Split.revert();
   });
+
+  onBeforeRouteLeave(() => {
+    ctx.kill();
+  });
 </script>
