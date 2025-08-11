@@ -114,8 +114,6 @@
   overflow: hidden !important;
   overscroll-behavior: none !important;
   touch-action: none !important;
-  position: fixed;
-  width: 100%;
 }
 
 /* Lenis */
