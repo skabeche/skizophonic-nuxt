@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PreloaderLight v-if="!isPageLoaded" target=".albums-list" :text1="$t('pages.music.preloader.text1')" :text2="$t('pages.music.preloader.text2')" @done="isPageLoaded = true" />
+    <PreloaderLight v-if="!isPageLoaded" target=".albums-list" :text1="$t('pages.music.preloader.text1')" :text2="$t('pages.music.preloader.text2')" @done="isPageLoaded = true" @destroyed="disableScroll" />
     <h1 class="sr-only">{{ $t('pages.music.title') }}</h1>
     <AlbumsList :play="isPageLoaded" />
   </div>

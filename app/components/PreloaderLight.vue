@@ -14,7 +14,7 @@
 
   gsap.registerPlugin(SplitText);
 
-  const emit = defineEmits(['done']);
+  const emit = defineEmits(['done', 'destroyed']);
 
   const props = defineProps({
     target: {
@@ -106,5 +106,6 @@
   onUnmounted(() => {
     ctx.revert();
     enableScroll();
+    emit('destroyed');
   });
 </script>
