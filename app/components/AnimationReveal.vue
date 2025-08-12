@@ -105,6 +105,6 @@
   .reveal-grid rect {
     transform: scaleY(var(--scaleColumnsReveal));
     transform-origin: var(--transformOrigin);
-    will-change: transform;
+    will-change: auto;
   }
 </style>

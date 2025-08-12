@@ -26,6 +26,7 @@ export const pageTransitionConfig = {
         onStart() {
           gsap.set('#page-transition-overlay', { autoAlpha: 1 })
           gsap.set('#page-transition-circles', { autoAlpha: 1 })
+          gsap.set('.button-nav-icon-wrapper', { pointerEvents: 'none' });
         },
         onComplete() {
           gsap.set('#page-transition-overlay', { autoAlpha: 0 })
@@ -77,10 +78,6 @@ export const pageTransitionConfig = {
         duration: 0.6,
         ease: 'power4.in'
       })
-      .to('.nav-icon', {
-        scaleX: 1,
-        ease: 'power4.out'
-      }, '<85%')
       .play();
   },
 };
@@ -135,5 +132,10 @@ const resetAnimations = () => {
   if (document.querySelector('footer')) {
     gsap.set('footer', { autoAlpha: 1 })
   }
+  gsap.set('.button-nav-icon-wrapper', { pointerEvents: 'auto' });
+  gsap.to('.nav-icon', {
+    scaleX: 1,
+    ease: 'power4.out'
+  });
   enableScroll();
 }

@@ -58,7 +58,7 @@
   onMounted(async () => {
     await nextTick();
     disableScroll();
-    await document.fonts.ready;
+    // await document.fonts.ready;
 
     if (routesAreLoaded.value.includes(route.path)) {
       emit('done');
@@ -71,9 +71,12 @@
       mask: 'words'
     });
 
+    const buttonNavIconWrapper = document.querySelector('.button-nav-icon-wrapper');
+
     ctx = gsap.context(() => {
       gsap.set([dot1Ref.value, dot2Ref.value], { clipPath: 'circle(0% at 50% 50%)' })
       gsap.set(preloaderSubliminalTextRef.value, { opacity: 0, scale: 1.1 })
+      gsap.set(buttonNavIconWrapper, { scaleX: 0, pointerEvents: 'none' });
 
       const tlDot1 = gsap
         .timeline({
@@ -99,29 +102,23 @@
                 console.error(error);
               }
 
-              gsap.timeline({
-                onStart: () => {
-                  tlDot1.pause();
-                  tlDot1.revert();
-                },
-                onComplete: () => {
-                  tl2.play();
-                }
-              })
-                .to('.preloader-text span:first-child', {
+              gsap
+                .timeline({
+                  onStart: () => {
+                    tlDot1.pause();
+                    tlDot1.revert();
+                  },
+                  onComplete: () => {
+                    tl2.play();
+                  }
+                })
+                .to(preloaderTextRef.value, {
                   opacity: 0,
+                  rotate: 15,
                   duration: 0.6,
                   filter: "blur(3px)",
-                  x: -40,
                   ease: "power4.in",
                 })
-                .to('.preloader-text span:last-child', {
-                  opacity: 0,
-                  duration: 0.6,
-                  filter: "blur(3px)",
-                  x: 40,
-                  ease: "power4.in",
-                }, '<');
             }
           }
         })
@@ -158,6 +155,18 @@
         });
 
       tl2
+        .to(logoCirclesRef.value, {
+          duration: 0.5,
+          scale: 0.4,
+          ease: "back.out(1.7)",
+        })
+        .to('#logo-circles path', {
+          duration: 0.5,
+          scale: .8,
+          stagger: 0.1,
+          svgOrigin: "144.16 144.16",
+          ease: "back.out(1.7)",
+        }, '<')
         .to(dot1Ref.value, {
           duration: 0.8,
           clipPath: 'circle(100% at 50% 50%)',
@@ -178,6 +187,12 @@
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
         }, '<')
+        .to(buttonNavIconWrapper, {
+          scaleX: 1,
+          pointerEvents: 'auto',
+          duration: 0.6,
+          ease: 'power4.out',
+        }, '<0.4')
 
     }, preloaderFullRef.value);
   });

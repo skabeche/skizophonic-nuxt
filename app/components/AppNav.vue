@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed top-0 right-0 z-100 m-8 mix-blend-difference">
+    <div class="button-nav-icon-wrapper fixed top-0 right-0 z-100 m-8 mix-blend-difference">
       <button class="button-nav-icon focus:outline-none focus:ring-0 cursor-pointer" aria-label="Open menu" @click="handleClick">
         <NavIcon :is-open="isOpen" />
       </button>

@@ -30,6 +30,6 @@
   #page-transition-grid rect {
     transform: scaleY(var(--scaleColumnsTransition));
     transform-origin: bottom;
-    will-change: transform;
+    will-change: auto;
   }
 </style>
