@@ -170,11 +170,16 @@
           svgOrigin: "144.16 144.16",
           ease: "back.out(2)",
         }, '<')
+        .to(logoCirclesRef.value, {
+          duration: 0.5,
+          scale: 0.7,
+          ease: "power4.out",
+        }, '+=0.1')
         .to(dot1Ref.value, {
           duration: 0.8,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
-        }, '+=0.1')
+        }, '-=75%')
         .to(preloaderSubliminalTextRef.value, {
           scale: 1,
           duration: 1.4,
