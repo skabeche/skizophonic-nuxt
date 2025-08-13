@@ -24,8 +24,8 @@ export const images = [
     alt: 'Skizophonic 2011',
   },
   {
-    src: 'skizophonic_maletin.jpg',
-    alt: 'Skizophonic 2011',
+    src: 'skizophonic_duchas_2013.jpg',
+    alt: 'Skizophonic 2013',
   },
   {
     src: 'skizophonic2009.jpg',
@@ -40,28 +40,28 @@ export const images = [
     alt: 'Skizophonic 2011',
   },
   {
-    src: 'skizophonic_concierto.jpg',
-    alt: 'Gascón',
+    src: 'skizophonic_fecstival2016.jpg',
+    alt: 'Gascón & Fede & Nacho - Fecstival',
   },
   {
-    src: 'skizophonic_siluetas.jpg',
-    alt: 'Skizophonic 2011',
+    src: 'skizophonic_concierto.jpg',
+    alt: 'Gascón',
   },
   {
     src: 'SkizophonicWW006.jpg',
     alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
-    src: 'skizophonic_fecstival2016.jpg',
-    alt: 'Skizophonic - Fecstival',
+    src: 'skizonettes_fib2014.jpg',
+    alt: 'Sofia & Nuria & Sol - FIB',
   },
   {
     src: 'nacho_fib2014.jpg',
     alt: 'Nacho - FIB',
   },
   {
-    src: 'skizonettes_fib2014.jpg',
-    alt: 'Skizonettes - FIB',
+    src: 'skizophonic_siluetas.jpg',
+    alt: 'Skizophonic 2011',
   },
   {
     src: 'SkizophonicWW061.jpg',
@@ -72,20 +72,24 @@ export const images = [
     alt: 'Skizophonic 2008',
   },
   {
+    src: 'gascon_trombon_fib.jpg',
+    alt: 'Gascón - FIB',
+  },
+  {
     src: 'nacho_rec_summer.jpg',
     alt: 'Nacho - Rec Summer Festival',
   },
   {
+    src: 'eloy_fib2014.jpg',
+    alt: 'Eloy - FIB',
+  },
+  {
     src: 'nacho_gascon.jpg',
-    alt: 'Nacho - Gascón - Sixties Rock Weekend Festival',
+    alt: 'Nacho & Gascón - Sixties Rock Weekend Festival',
   },
   {
     src: 'deed_marc.jpg',
     alt: 'David Marco',
-  },
-  {
-    src: 'eloy_fib2014.jpg',
-    alt: 'Eloy - FIB',
   },
   {
     src: 'Fede_Trovam_Pro_Weekend.jpg',
@@ -96,12 +100,8 @@ export const images = [
     alt: 'Skizonettes',
   },
   {
-    src: 'skizophonic_duchas_2013.jpg',
-    alt: 'Skizophonic 2013',
-  },
-  {
-    src: 'gascon_trombon_fib.jpg',
-    alt: 'Gascón - FIB',
+    src: 'skizophonic_maletin.jpg',
+    alt: 'Skizophonic 2011',
   },
   {
     src: 'skizophonic_photocall_fib2014.jpg',
@@ -113,7 +113,7 @@ export const images = [
   },
   {
     src: 'SkizophonicWW014.jpg',
-    alt: 'Dan - Eloy - Wild Weekend Festival',
+    alt: 'Dan & Eloy - Wild Weekend Festival',
   },
   {
     src: 'skizophonic_smoke_darkness.jpg',
@@ -121,7 +121,7 @@ export const images = [
   },
   {
     src: 'skizophonic_nacho_fandos_2008.jpg',
-    alt: 'Skizophonic 2008',
+    alt: 'Skizophonic & Nacho Fandós - Bubble Studios 2008',
   },
   {
     src: 'nacho_suelo.jpg',
@@ -129,7 +129,7 @@ export const images = [
   },
   {
     src: 'charly_nacho.jpg',
-    alt: 'Charly - Nacho',
+    alt: 'Charly & Nacho',
   },
   {
     src: 'alamo_shock.jpg',

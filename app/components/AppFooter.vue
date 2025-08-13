@@ -31,7 +31,7 @@
   onMounted(() => {
     ctx = gsap.context(() => {
       gsap.from(footerContentRef.value, {
-        y: 35,
+        y: 40,
         ease: 'none',
         scrollTrigger: {
           trigger: footerMainRef.value,

@@ -25,7 +25,7 @@
       "title": "Home",
       "heading": "¿Qué es Skizophonic?",
       "block1": "La banda más lenta de la historia se formó en España entre Benicàssim y Castellón a finales del 2003 practicando una especie de rock alternativo con influencias de otros estilos del rock más clásico.",
-      "block2": "No obstante, en la búsqueda inquieta de ideas eclécticas, los miembros de la banda dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.",
+      "block2": "No obstante, en la búsqueda inquieta de ideas eclécticas, los miembros de Skizophonic dieron un giro a sonidos más garageros, soul y especialmente ácidos, con un toque de espíritu mod y pinceladas de electrónica.",
       "block3": "Actualmente sobreviven como soldados de fortuna. Si tiene buen gusto y los escucha, quizá pueda apreciarlos.",
       "buttonHypnotic": "Escucha su música",
       "meta": {
@@ -34,7 +34,7 @@
       },
       "preloader": {
         "text1": "cargando ondas",
-        "text2": "sincronizar espiral"
+        "text2": "sincroniza espiral"
       }
     },
     "band": {
@@ -73,7 +73,7 @@
       },
       "preloader": {
         "text1": "cargando música",
-        "text2": "sincronizar ruido"
+        "text2": "sincroniza ruido"
       }
     },
     "merch": {

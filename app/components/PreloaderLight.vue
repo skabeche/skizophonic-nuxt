@@ -1,6 +1,6 @@
 <template>
   <div ref="preloaderLightRef" class="preloader-light fixed inset-0 z-90 flex items-center justify-center w-screen h-dvh bg-white text-black">
-    <div ref="preloaderTextRef" class="preloader-text text-[1rem] md:text-2xl">
+    <div ref="preloaderTextRef" class="preloader-text text-[clamp(1rem,3vw,1.5rem)]">
       {{ text1 }} <span ref="preloaderDotRef" class="preloader-dot inline-block">·</span> {{ text2 }}
     </div>
   </div>
@@ -87,26 +87,26 @@
                 console.error(error);
               }
 
-              gsap
-                .timeline()
-                .to(preloaderTextRef.value, {
-                  opacity: 0,
-                  duration: 0.7,
-                  filter: "blur(3px)",
-                  y: -50,
-                  ease: "power4.in",
-                  onComplete: () => {
-                    emit('done');
-                    isPageLoaded.value = true;
-                    routesAreLoaded.value.push(route.path);
-                  }
-                })
-                .to(buttonNavIconWrapper, {
-                  scaleX: 1,
-                  pointerEvents: 'auto',
-                  duration: 0.6,
-                  ease: 'power4.out'
-                }, '<0.4');
+              // gsap
+              //   .timeline()
+              //   .to(preloaderTextRef.value, {
+              //     opacity: 0,
+              //     duration: 0.7,
+              //     filter: "blur(3px)",
+              //     y: -50,
+              //     ease: "power4.in",
+              //     onComplete: () => {
+              //       emit('done');
+              //       isPageLoaded.value = true;
+              //       routesAreLoaded.value.push(route.path);
+              //     }
+              //   })
+              //   .to(buttonNavIconWrapper, {
+              //     scaleX: 1,
+              //     pointerEvents: 'auto',
+              //     duration: 0.6,
+              //     ease: 'power4.out'
+              //   }, '<0.4');
 
             }
           }

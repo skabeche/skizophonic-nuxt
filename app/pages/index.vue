@@ -352,6 +352,9 @@
   })
 
   onBeforeRouteLeave(() => {
+    // GSAP timeline "goes blank" and nothing shows on screen when you click a link.
+    // Scrolling the document makes a trick and keeps the timeline while the page transition is running (hacky?).
+    window.scrollTo(0, 0);
     ctx.kill();
   });
 

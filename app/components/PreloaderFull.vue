@@ -5,10 +5,10 @@
     </div>
     <div ref="dot1Ref" class="dot1 fixed z-95 w-screen h-dvh bg-black will-change-[clip-path]" />
     <div ref="dot2Ref" class="dot2 fixed z-96 w-screen h-dvh bg-white will-change-[clip-path]" />
-    <div ref="preloaderSubliminalTextRef" class="preloader-subliminal-text fixed z-95 inset-0 flex items-center justify-center w-screen h-dvh text-[clamp(1.2rem,5vw,2.8rem)] font-bold uppercase">
+    <div ref="preloaderSubliminalTextRef" class="preloader-subliminal-text fixed z-95 inset-0 flex items-center justify-center w-screen h-dvh text-[clamp(1.1rem,5vw,2.8rem)] font-bold uppercase">
       {{ $t(`preloader.text[${Math.floor(Math.random() * 6)}]`) }}
     </div>
-    <div ref="preloaderTextRef" class="preloader-text fixed z-95 grid place-items-center grid-cols-2 gap-7 w-full h-full text-[1rem] sm:text-2xl">
+    <div ref="preloaderTextRef" class="preloader-text fixed z-95 grid place-items-center grid-cols-2 gap-7 w-full h-full text-[clamp(1rem,3vw,1.5rem)]">
       <span class="w-full inline-block text-right">
         {{ text1 }}
       </span>
@@ -53,6 +53,7 @@
   const preloaderSubliminalTextRef = useTemplateRef('preloaderSubliminalTextRef');
   const route = useRoute()
   const routesAreLoaded = useState('routesAreLoadedFull', () => []);
+  const isLargeDevice = window.matchMedia("(min-width: 1280px)").matches;
   let ctx = gsap.context(() => { });
 
   onMounted(async () => {
@@ -78,7 +79,7 @@
       gsap.set(preloaderSubliminalTextRef.value, { opacity: 0, scale: 1.1 })
       gsap.set(buttonNavIconWrapper, { scaleX: 0, pointerEvents: 'none' });
 
-      const tlDot1 = gsap
+      const tlLoadingPage = gsap
         .timeline({
           paused: true,
         })
@@ -90,6 +91,7 @@
           ease: "power4.inOut",
         })
 
+      // Timeline 1.
       const tl1 = gsap
         .timeline({
           delay: 2.5, // Align with logo animation.
@@ -105,8 +107,8 @@
               gsap
                 .timeline({
                   onStart: () => {
-                    tlDot1.pause();
-                    tlDot1.revert();
+                    tlLoadingPage.pause();
+                    tlLoadingPage.revert();
                   },
                   onComplete: () => {
                     tl2.play();
@@ -131,7 +133,7 @@
         })
         .to(dot1Ref.value, {
           duration: 0.8,
-          clipPath: 'circle(0.2% at 50% 50%)',
+          clipPath: isLargeDevice ? 'circle(0.2% at 50% 50%)' : 'circle(0.35% at 50% 50%)',
           ease: "power4.out",
         }, '<')
         .from(preloaderSplit.words, {
@@ -140,10 +142,11 @@
           stagger: 0.05,
           ease: "power4.out",
           onComplete: () => {
-            tlDot1.play()
+            tlLoadingPage.play()
           }
         }, '<')
 
+      // Timeline 2.
       const tl2 = gsap
         .timeline({
           paused: true,
@@ -165,13 +168,13 @@
           scale: .8,
           stagger: 0.1,
           svgOrigin: "144.16 144.16",
-          ease: "back.out(1.7)",
+          ease: "back.out(2)",
         }, '<')
         .to(dot1Ref.value, {
           duration: 0.8,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
-        })
+        }, '+=0.1')
         .to(preloaderSubliminalTextRef.value, {
           scale: 1,
           duration: 1.4,
