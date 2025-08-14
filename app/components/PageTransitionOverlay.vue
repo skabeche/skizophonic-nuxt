@@ -23,7 +23,7 @@
 </template>
 
 <style>
-  ::root {
+  :root {
     --scaleColumnsTransition: 0;
   }
 

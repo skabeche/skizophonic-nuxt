@@ -97,7 +97,7 @@
 </script>
 
 <style scoped>
-  ::root {
+  :root {
     --scaleColumnsReveal: 0;
     --transformOrigin: 'top';
   }

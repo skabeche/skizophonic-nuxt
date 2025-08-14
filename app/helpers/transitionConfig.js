@@ -46,15 +46,14 @@ export const pageTransitionConfig = {
         ease: 'power4.in',
       }, '<')
       .to('#page-transition-grid rect', {
-        '--scaleColumnsTransition': "100%",
-        delay: 0.1,
+        '--scaleColumnsTransition': '100%',
         duration: 1.2,
         stagger: {
           each: 0.04,
           from: "random"
         },
         ease: 'power4.inOut'
-      }, '<')
+      }, '<0.1')
       .from('#page-transition-circles .center-ring', {
         duration: 0.4,
         scale: 0,
