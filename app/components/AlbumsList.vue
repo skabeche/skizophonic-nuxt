@@ -7,7 +7,7 @@
       <button class="next-slide cursor-pointer hover:text-[#00ffc7]" :disabled="buttonDisabled" @click="handleNextSlide">
         <Icon name="ion:arrow-down-a" />
       </button>
-      <button class="swipe-slide md:hidden fixed z-20 bottom-0 p-4 text-3xl text-white" :disabled="buttonDisabled">
+      <button class="swipe-slide hidden touch:block hybrid-device:block fixed z-20 bottom-0 p-4 text-3xl text-white" :disabled="buttonDisabled">
         <Icon class="icon-swipe origin-right" name="ic:baseline-swipe-vertical" />
       </button>
     </div>
@@ -25,7 +25,7 @@
               <NuxtLinkLocale :to="{ name: 'music-slug', params: { slug: album.slug } }">
                 <img :src="`/albums/${album.slug}/${album.images.cover}`" :alt="album.title" width="1000" height="900">
               </NuxtLinkLocale>
-              <span class="absolute bottom-0 right-0 inline-block text-lg lg:text-xl xl:text-2xl p-3 font-bold text-white mix-blend-difference">{{ album.year }}</span>
+              <span class="album-year absolute bottom-0 right-0 inline-block text-lg lg:text-xl xl:text-2xl p-2 lg:p-3 font-bold text-white mix-blend-difference">{{ album.year }}</span>
             </div>
             <div class="1/3">
               <h2 class="slide-heading text-8xl">
@@ -48,8 +48,9 @@
 
   import gsap from "gsap";
   import { SplitText } from "gsap/SplitText";
+  import { Observer } from "gsap/Observer";
 
-  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(SplitText, Observer);
 
   const props = defineProps({
     play: {
@@ -61,113 +62,42 @@
 
   const albumsListRef = useTemplateRef('albumsListRef');
   const buttonDisabled = ref(false);
+
   let ctx;
-
   let isAnimating = false;
-  let direction = "down";
-  // Keep slide index between pages.
-  const current = useState('currentAlbumIndex', () => undefined);
-  let next = 0;
-
-  const touch = {
-    startX: 0,
-    startY: 0,
-    dx: 0,
-    dy: 0,
-    startTime: 0,
-    dt: 0
-  };
-
-  let slides, images, headings, outerWrappers, innerWrappers, splitHeadings;
-
-  const tlDefaults = {
-    ease: "power4.inOut",
-    duration: 1.2
-  };
-
-  function handleTouchStart(e) {
-    if (isAnimating) return;
-    const t = e.changedTouches[0];
-    touch.startX = t.pageX;
-    touch.startY = t.pageY;
-  }
-
-  function handleTouchMove(e) {
-    if (isAnimating) return;
-    // e.preventDefault();
-  }
-
-  function handleTouchEnd(e) {
-    if (isAnimating) return;
-    const t = e.changedTouches[0];
-    touch.dx = t.pageX - touch.startX;
-    touch.dy = t.pageY - touch.startY;
-
-    if (touch.dy >= -10 && touch.dy <= 10) {
-      if (e.target.closest("a") || e.target.closest("button")) return;
-    }
-
-    if (touch.dy > 10) direction = "up";
-    if (touch.dy < -10) direction = "down";
-    handleDirection();
-  }
-
-  function handleWheel(e) {
-    if (isAnimating) return;
-    direction = e.wheelDeltaY < 0 ? "down" : "up";
-    handleDirection();
-  }
+  let slides, images, headings, years, outerWrappers, innerWrappers, splitHeadings, splitYears, wrap;
+  const currentIndex = useState('currentAlbumIndex', () => undefined);
+  const startIndex = currentIndex.value === undefined ? 0 : currentIndex.value;
+  currentIndex.value = undefined;
 
   function handlePrevSlide() {
     if (isAnimating) return;
-    direction = "up";
-    handleDirection();
+    goToSlide(currentIndex.value - 1, -1)
   }
 
   function handleNextSlide() {
     if (isAnimating) return;
-    direction = "down";
-    handleDirection();
+    goToSlide(currentIndex.value + 1, 1)
   }
 
-  function handleDirection() {
-    isAnimating = true;
+  /**
+   * Go to a specific slide with an optional direction.
+   * @param {number} index - The index of the slide to go to.
+   * @param {number} direction - The direction of the animation. Use -1 for up and 1 for down.
+   * @returns {void}
+   */
+  function goToSlide(index, direction = 1) {
+    // Ensure the index is always in range.
+    index = wrap(index);
 
-    if (direction === "down") {
-      next = current.value + 1;
-      if (next >= slides.length) next = 0;
-      slideIn();
-    }
-
-    if (direction === "up") {
-      next = current.value - 1;
-      if (next < 0) next = slides.length - 1;
-      slideOut();
-    }
-  }
-
-  function revealSectionHeading() {
-    return gsap.to(splitHeadings[next].chars, {
-      autoAlpha: 1,
-      yPercent: 0,
-      duration: 1.2,
-      ease: "power4.inOut",
-      stagger: 0.02
-    });
-  }
-
-  function slideIn() {
-    if (current.value !== undefined) gsap.set(slides[current.value], { zIndex: 0 });
-
-    gsap.set(slides[next], { autoAlpha: 1, zIndex: 1, pointerEvents: "auto" });
-    gsap.set(images[next], { yPercent: 0 });
-    gsap.set(splitHeadings[next].lines, { clipPath: "inset(0% 0% 0% 0%)" });
-    gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
-
+    gsap.set(splitHeadings[index].lines, { clipPath: "inset(0% 0% 0% 0%)" });
     const tl = gsap
       .timeline({
         paused: true,
-        defaults: tlDefaults,
+        defaults: {
+          duration: 1.24,
+          ease: "power4.inOut"
+        },
         onStart: () => {
           isAnimating = true;
           buttonDisabled.value = true;
@@ -175,61 +105,52 @@
         onComplete: () => {
           isAnimating = false;
           buttonDisabled.value = false;
-          current.value = next;
-          gsap.set(splitHeadings[next].lines, { clipPath: "none" });
+          currentIndex.value = index;
+          gsap.set(splitHeadings[index].lines, { clipPath: "none" });
         }
-      })
-      .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
-      .from(images[next], { yPercent: 15 }, 0)
-      .add(revealSectionHeading(), 0);
+      });
 
-    if (current.value !== undefined) {
-      tl.add(
-        gsap.to(images[current.value], {
-          yPercent: -15,
-          ...tlDefaults
-        }),
-        0
-      ).add(
-        gsap
-          .timeline()
-          .set(outerWrappers[current.value], { yPercent: 100 })
-          .set(innerWrappers[current.value], { yPercent: -100 })
-          .set(images[current.value], { yPercent: 0 })
-          .set(slides[current.value], { autoAlpha: 0 })
-      );
+    if (currentIndex.value !== undefined) {
+      gsap.set(slides[currentIndex.value], { zIndex: 0 });
+      tl
+        .to(images[currentIndex.value], {
+          yPercent: -15 * direction
+        })
+        .set(slides[currentIndex.value], {
+          autoAlpha: 0
+        });
     }
 
+    gsap.set(slides[index], { autoAlpha: 1, zIndex: 1 });
+    tl
+      .fromTo([outerWrappers[index], innerWrappers[index]], {
+        yPercent: i => i ? -100 * direction : 100 * direction
+      }, {
+        yPercent: 0
+      }, 0)
+      .fromTo(images[index], {
+        yPercent: 15 * direction
+      }, {
+        yPercent: 0
+      }, '<')
+      .fromTo(splitHeadings[index].chars, {
+        autoAlpha: 0,
+        yPercent: 150 * direction
+      }, {
+        autoAlpha: 1,
+        yPercent: 0,
+        stagger: 0.02
+      }, '<')
+      .fromTo(splitYears[index].chars, {
+        autoAlpha: 0,
+        yPercent: 150 * direction
+      }, {
+        autoAlpha: 1,
+        yPercent: 0,
+        stagger: 0.02
+      }, '<0.24');
+
     tl.play(0);
-  }
-
-  function slideOut() {
-    gsap.set(slides[current.value], { zIndex: 1, pointerEvents: "none" });
-    gsap.set(slides[next], { autoAlpha: 1, zIndex: 0 });
-    gsap.set(splitHeadings[next].lines, { clipPath: "inset(0% 0% 0% 0%)" });
-    gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
-    gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
-    gsap.set(images[next], { yPercent: 0 });
-
-    gsap
-      .timeline({
-        defaults: tlDefaults,
-        onStart: () => {
-          buttonDisabled.value = true;
-        },
-        onComplete: () => {
-          buttonDisabled.value = false;
-          isAnimating = false;
-          current.value = next;
-          gsap.set(splitHeadings[next].lines, { clipPath: "none" });
-        }
-      })
-      .to(outerWrappers[current.value], { yPercent: 100 }, 0)
-      .to(innerWrappers[current.value], { yPercent: -100 }, 0)
-      .to(images[current.value], { yPercent: 15 }, 0)
-      .from(images[next], { yPercent: -15 }, 0)
-      .add(revealSectionHeading(), ">-1")
-      .set(images[current.value], { yPercent: 0 });
   }
 
   onMounted(async () => {
@@ -238,6 +159,7 @@
     slides = document.querySelectorAll(".slide");
     images = document.querySelectorAll(".bg");
     headings = gsap.utils.toArray(".slide-heading");
+    years = gsap.utils.toArray(".album-year");
     outerWrappers = gsap.utils.toArray(".outer-wrapper");
     innerWrappers = gsap.utils.toArray(".inner-wrapper");
 
@@ -247,33 +169,41 @@
         linesClass: "line",
       })
     );
+    splitYears = years.map((year) =>
+      SplitText.create(year, {
+        type: "words, chars",
+        mask: "words",
+      })
+    );
+
+    wrap = gsap.utils.wrap(0, slides.length);
 
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
-
-    // Keep slide index between pages.
-    next = current.value === undefined ? 0 : current.value;
-    current.value = undefined;
-
-    document.addEventListener("wheel", handleWheel);
-    document.addEventListener("touchstart", handleTouchStart);
-    document.addEventListener("touchmove", handleTouchMove);
-    document.addEventListener("touchend", handleTouchEnd);
 
     ctx = gsap.context(() => {
       gsap.to('.icon-swipe', {
         rotate: 10,
         repeat: -1,
-        duration: 1.2,
+        duration: 1.3,
         ease: 'power2.inOut',
         yoyo: true
       })
+
+      Observer.create({
+        type: "wheel,touch,pointer",
+        wheelSpeed: -1,
+        onDown: () => !isAnimating && goToSlide(currentIndex.value - 1, -1),
+        onUp: () => !isAnimating && goToSlide(currentIndex.value + 1, 1),
+        tolerance: 10,
+        preventDefault: true
+      });
 
       watch(
         () => props.play,
         (newVal) => {
           if (newVal) {
-            slideIn();
+            goToSlide(startIndex);
           }
         },
         { immediate: false }
@@ -284,16 +214,5 @@
 
   onUnmounted(() => {
     ctx.revert();
-
-    document.removeEventListener("wheel", handleWheel);
-    document.removeEventListener("touchstart", handleTouchStart);
-    document.removeEventListener("touchmove", handleTouchMove);
-    document.removeEventListener("touchend", handleTouchEnd);
   });
 </script>
-
-<style scoped>
-  :deep(.line:hover) {
-    clip-path: none !important;
-  }
-</style>

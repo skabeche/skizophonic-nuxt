@@ -21,6 +21,25 @@
   --background-image-colibri-anim: url("/images/colibri_anim.png");
 }
 
+/* Touch-only devices: coarse pointer and no hover (primary input or any) */
+@custom-variant touch {
+  @media (any-hover: none) and (any-pointer: coarse) {
+    @slot;
+  }
+}
+/* Non-touch devices: fine pointer and hover capability */
+@custom-variant no-touch {
+  @media (hover: hover) and (pointer: fine) and (any-pointer: fine) {
+    @slot;
+  }
+}
+/* Hybrid devices: both coarse and fine pointers present */
+@custom-variant hybrid-device {
+  @media (any-hover: hover) and (any-pointer: coarse) and (any-pointer: fine) {
+    @slot;
+  }
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 1.2rem;
