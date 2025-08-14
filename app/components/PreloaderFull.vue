@@ -173,13 +173,13 @@
         .to(logoCirclesRef.value, {
           duration: 0.5,
           scale: 0.7,
-          ease: "power4.out",
+          ease: "expo.out",
         }, '+=0.1')
         .to(dot1Ref.value, {
           duration: 0.8,
           clipPath: 'circle(100% at 50% 50%)',
           ease: "power4.inOut",
-        }, '-=75%')
+        }, '-=80%')
         .to(preloaderSubliminalTextRef.value, {
           scale: 1,
           duration: 1.4,
