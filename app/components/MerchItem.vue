@@ -1,7 +1,7 @@
 <template>
   <div class="merch-items grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-18">
     <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center">
-      <AnimationReveal class="w-full" :refresh-scroll-trigger="true">
+      <AnimationReveal class="w-full" @start="isAnimationRevealStarted = true">
         <div class="item relative overflow-hidden">
           <NuxtImg class="item-img relative z-30 w-full h-auto object-cover transition-all duration-400 ease-in-out cursor-crosshair drop-shadow-md/70 will-change-[filter]" :src="`/images/merch/${item.image}`" :alt="`Merch item - ${item.name}`" />
           <video ref="videoRef" class="item-bg-video absolute z-20 inset-0 w-full h-full object-cover transition-all duration-500 [clip-path:circle(46%_at_50%_50%)] mix-blend-darken" preload="auto" autoplay muted loop playsinline disableremoteplayback aria-hidden="true">
@@ -22,12 +22,28 @@
 </template>
 
 <script setup>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
   defineProps({
     items: {
       type: Object,
       required: true
     },
   })
+
+  const isAnimationRevealStarted = ref(false);
+
+  watch(
+    isAnimationRevealStarted,
+    (newValue) => {
+      if (newValue) {
+        // Sometimes elements loose their scroll position, so we have to refresh it.
+        ScrollTrigger.refresh();
+      }
+    })
 </script>
 
 <style scoped>

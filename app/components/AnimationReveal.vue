@@ -19,15 +19,7 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const emit = defineEmits(['done'])
-
-  const props = defineProps({
-    refreshScrollTrigger: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  })
+  const emit = defineEmits(['start', 'done'])
 
   const outerWrapperRef = useTemplateRef('outerWrapperRef');
   const innerWrapperRef = useTemplateRef('innerWrapperRef');
@@ -44,10 +36,7 @@
         .timeline({
           delay: randomDelay,
           onStart: () => {
-            // Sometimes elements loose their scroll position, so we have to refresh it manually.
-            if (props.refreshScrollTrigger) {
-              ScrollTrigger.refresh();
-            }
+            emit('start')
           },
           onComplete: () => {
             emit('done')
