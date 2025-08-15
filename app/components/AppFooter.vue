@@ -18,6 +18,10 @@
 </template>
 
 <script setup>
+  const currentYear = new Date().getFullYear();
+</script>
+
+<!-- <script setup>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -34,6 +38,7 @@
         y: 40,
         ease: 'none',
         scrollTrigger: {
+          id: 'footer-trigger',
           trigger: footerMainRef.value,
           start: 'top bottom',
           end: 'bottom bottom',
@@ -47,4 +52,4 @@
   onUnmounted(() => {
     ctx.revert();
   });
-</script>
+</script> -->
