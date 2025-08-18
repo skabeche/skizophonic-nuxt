@@ -68,16 +68,17 @@
   let ctx;
 
   onMounted(async () => {
+    gsap.set('.merch-filter', { autoAlpha: 0 });
     await document.fonts.ready;
 
     ctx = gsap.context(() => {
-      // Only desktop.
       const filterSplit = SplitText.create(".merch-filter li button", {
         type: 'lines, words, chars',
         mask: 'lines',
         charsClass: 'char'
       });
 
+      gsap.set('.merch-filter', { autoAlpha: 1 });
       gsap.set(filterSplit.lines, { y: 60, });
       gsap
         .timeline(
@@ -126,6 +127,8 @@
               start: 'bottom center',
               end: 'bottom top',
               scrub: 0,
+              preventOverlaps: true,
+              fastScrollEnd: true,
               // markers: true,
             }
           })
@@ -159,9 +162,11 @@
             defaults: { ease: 'none' },
             scrollTrigger: {
               trigger: item,
-              start: 'top bottom-=130',
+              start: 'top bottom-=20%',
               end: 'bottom bottom',
               scrub: 0,
+              preventOverlaps: true,
+              fastScrollEnd: true,
               // markers: true,
             }
           })

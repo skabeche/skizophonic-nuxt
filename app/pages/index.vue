@@ -212,9 +212,9 @@
         .from(block1Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(2px)',
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
-          stagger: 0.01,
+          stagger: 0.015,
         }, '<0.3')
         .to('.circle0', {
           clipPath: 'circle(64% at 50% 50%)',
@@ -244,6 +244,7 @@
           autoAlpha: 0,
           stagger: 0.02,
           yPercent: -200,
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
         }, '<')
         .to('.circle0, .circle1, .circle2, .circle3, .circle4', {
@@ -271,13 +272,14 @@
         .from(block2Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(2px)',
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
           stagger: 0.01,
         }, '<')
         .to(block2Split.lines, {
           yPercent: -200,
           autoAlpha: 0,
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
           stagger: 0.03,
         }, '<.8')
@@ -320,13 +322,14 @@
         .from(block3Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(2px)',
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
           stagger: 0.01,
         }, '<0.6')
         .to(block3Split.lines, {
           yPercent: -200,
           autoAlpha: 0,
+          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
           stagger: 0.03,
         }, '<0.6')

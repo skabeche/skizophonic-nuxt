@@ -172,8 +172,9 @@
         }, '<')
         .to(logoCirclesRef.value, {
           duration: 0.5,
-          scale: 0.7,
+          scale: 0.6,
           ease: "expo.out",
+          zIndex: -1,
         }, '+=0.1')
         .to(dot1Ref.value, {
           duration: 0.8,
