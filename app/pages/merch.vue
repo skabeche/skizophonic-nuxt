@@ -67,7 +67,9 @@
   const merchRef = useTemplateRef('merchRef');
   let ctx;
 
-  onMounted(() => {
+  onMounted(async () => {
+    await document.fonts.ready;
+
     ctx = gsap.context(() => {
       // Only desktop.
       const filterSplit = SplitText.create(".merch-filter li button", {
@@ -107,41 +109,80 @@
         const image = item.querySelector('img');
         const header = item.querySelector('h3');
         const text = item.querySelector('span');
-        // Items disappear as it scrolls out (from top).
-        gsap.fromTo([image, header, text],
-          {
-            filter: 'blur(0px)',
-          },
-          {
-            filter: 'blur(8px)',
-            ease: 'none',
+
+        const headerSplit = SplitText.create(header, {
+          type: 'chars',
+        });
+        const textSplit = SplitText.create(text, {
+          type: 'chars',
+        });
+
+        // Items disappear as it scrolls out (to top).
+        gsap
+          .timeline({
+            defaults: { ease: 'none' },
             scrollTrigger: {
               trigger: item,
-              start: 'bottom center-=10%',
+              start: 'bottom center',
               end: 'bottom top',
-              scrub: true,
+              scrub: 0,
               // markers: true,
             }
-          }
-        );
+          })
+          .fromTo(image,
+            {
+              borderRadius: 12,
+              filter: 'blur(0px) contrast(1) saturate(1)',
+            },
+            {
+              borderRadius: 20,
+              filter: 'blur(6px) contrast(2.5) saturate(0)',
+            })
+          .fromTo([headerSplit.chars, textSplit.chars],
+            {
+              filter: 'blur(0px)',
+              fontWeight: 800,
+              textShadow: '0px 0px 0px rgba(0,0,0,0), 0px 0px 0px rgba(0,0,0,0),0px 0px 0px rgba(0,0,0,0), 0px 0px 0px rgba(0,0,0,0)',
+            },
+            {
+              filter: 'blur(6px)',
+              fontWeight: 900,
+              color: '#000',
+              textShadow: '3px 0px 2px rgba(0,0,0,1), -3px 0px 2px rgba(0,0,0,1), 0px 3px 2px rgba(0,0,0,1), 0px -3px 2px rgba(0,0,0,1)',
+              stagger: 0.02,
+            }, '<');
+
         // Items appear as it scrolls in (from bottom).
-        gsap.set([image, header, text], { filter: 'blur(8px)' });
-        gsap.fromTo([image, header, text],
-          {
-            filter: 'blur(8px)',
-          },
-          {
-            filter: 'blur(0px)',
-            ease: 'none',
+        gsap.set(image, { filter: 'blur(6px) contrast(2.5) saturate(0)' });
+        gsap
+          .timeline({
+            defaults: { ease: 'none' },
             scrollTrigger: {
               trigger: item,
-              start: 'top bottom',
-              end: 'top center+=20%',
-              scrub: true,
+              start: 'top bottom-=130',
+              end: 'bottom bottom',
+              scrub: 0,
               // markers: true,
             }
-          }
-        );
+          })
+          .fromTo(image,
+            {
+              borderRadius: 20,
+              filter: 'blur(6px) contrast(2.5) saturate(0)',
+            },
+            {
+              borderRadius: 12,
+              filter: 'blur(0px) contrast(1) saturate(1)',
+            })
+          .fromTo([headerSplit.chars, textSplit.chars],
+            {
+              filter: 'blur(6px)',
+            },
+            {
+              filter: 'blur(0px)',
+              stagger: 0.02,
+            }, '<');
+
       });
 
     }, merchRef.value);

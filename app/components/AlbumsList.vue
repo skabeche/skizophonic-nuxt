@@ -190,7 +190,7 @@
         yoyo: true
       })
 
-      Observer.create({
+      const observer = Observer.create({
         type: "wheel,touch,pointer",
         wheelSpeed: -1,
         onDown: () => !isAnimating && goToSlide(currentIndex.value - 1, -1),
@@ -198,11 +198,13 @@
         tolerance: 10,
         preventDefault: true
       });
+      observer.disable();
 
       watch(
         () => props.play,
         (newVal) => {
           if (newVal) {
+            observer.enable();
             goToSlide(startIndex);
           }
         },
