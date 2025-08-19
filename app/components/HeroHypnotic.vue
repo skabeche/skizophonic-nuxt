@@ -1,5 +1,5 @@
 <template>
-  <div ref="heroHypnoticRef" class="hero-hypnotic relative w-screen h-dvh">
+  <div ref="heroHypnoticRef" class="hero-hypnotic relative w-screen h-lvh">
     <div class="bg-wrapper absolute top-0 left-0 w-full h-full">
       <video ref="videoRef" class="w-full h-full object-cover" preload="auto" autoplay muted loop playsinline disableremoteplayback>
         <source src="/videos/spiral_large.mp4" type="video/mp4" media="(min-width: 2560px)">

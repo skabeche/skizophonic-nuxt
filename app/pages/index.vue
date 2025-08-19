@@ -2,7 +2,7 @@
   <div ref="homeTimelineRef">
     <PreloaderFull v-if="!isPageLoaded" target=".timeline" :text1="$t('pages.home.preloader.text1')" :text2="$t('pages.home.preloader.text2')" @done="isPageLoaded = true" />
 
-    <div ref="timelineRef" class="timeline relative z-10 top-0 left-0 w-screen min-h-dvh">
+    <div ref="timelineRef" class="timeline relative z-10 top-0 left-0 w-screen min-h-lvh">
       <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
 
       <HeroHypnotic :play="isPageLoaded" class="hero z-40 overflow-hidden">
@@ -11,7 +11,7 @@
 
       <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
 
-      <section ref="block1Ref" class="block1 absolute z-10 inset-0 flex flex-col items-center justify-center w-screen h-dvh">
+      <section ref="block1Ref" class="block1 absolute z-10 inset-0 flex flex-col items-center justify-center w-screen h-lvh">
         <div v-for="(video, index) in videos" :key="video.small" class="circles absolute top-0 left-0 w-full h-full" :class="`circle${index}`">
           <video class="w-full h-full object-cover rotate-180 brightness-70 will-change-[clip-path]" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
             <source :src="`/videos/${video.large}`" type="video/mp4" media="(min-width: 1280px)">
@@ -23,7 +23,7 @@
         </div>
       </section>
 
-      <section ref="block2Ref" class="block2 absolute z-20 inset-0 flex flex-col items-center justify-center w-screen h-dvh">
+      <section ref="block2Ref" class="block2 absolute z-20 inset-0 flex flex-col items-center justify-center w-screen h-lvh">
         <div class="absolute z-10 top-0 left-0 w-full h-full">
           <video ref="showreelRef" class="showreel absolute top-0 left-0 w-full h-full object-cover mask-[url(/images/circles_mask.svg)] mask-type-alpha mask-cover mask-no-repeat mask-center brightness-80 will-change-[mask]" aria-hidden="true" preload="auto" autoplay muted loop playsinline disableremoteplayback>
             <source src="/videos/showreel_skizophonic_1080p.mp4" type="video/mp4" media="(min-width: 1920px)">
@@ -37,7 +37,7 @@
         </div>
       </section>
 
-      <section class="block3 absolute z-30 inset-0 flex flex-col items-center justify-center w-screen h-dvh overflow-hidden">
+      <section class="block3 absolute z-30 inset-0 flex flex-col items-center justify-center w-screen h-lvh overflow-hidden">
         <div class="animation-circles absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full origin-center">
           <AnimationCircles class="object-cover w-full h-full" />
         </div>
