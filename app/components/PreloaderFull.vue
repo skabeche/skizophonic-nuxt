@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!isPageLoaded" ref="preloaderFullRef" class="preloader-full fixed inset-0 z-90 flex items-center justify-center w-screen h-dvh text-black">
+  <div v-if="!isPageLoaded" ref="preloaderFullRef" class="preloader-full fixed inset-0 z-90 flex items-center justify-center w-screen h-dvh bg-white text-black">
     <div ref="logoCirclesRef" class="logo-circles w-40 h-40">
       <LogoCircles />
     </div>
     <div ref="dot1Ref" class="dot1 fixed z-95 w-screen h-dvh bg-black will-change-[clip-path]" />
     <div ref="dot2Ref" class="dot2 fixed z-96 w-screen h-dvh bg-white will-change-[clip-path]" />
-    <div ref="preloaderSubliminalTextRef" class="preloader-subliminal-text fixed z-95 inset-0 flex items-center justify-center w-screen h-dvh text-[clamp(1.1rem,5vw,2.8rem)] font-bold uppercase">
+    <div ref="preloaderSubliminalTextRef" class="preloader-subliminal-text fixed z-95 inset-0 flex items-center justify-center w-screen h-dvh text-[clamp(1.1rem,5vw,2.8rem)] text-white font-bold uppercase mix-blend-difference">
       {{ $t(`preloader.text[${Math.floor(Math.random() * 6)}]`) }}
     </div>
     <div ref="preloaderTextRef" class="preloader-text fixed z-95 grid place-items-center grid-cols-2 gap-7 w-full h-full text-[clamp(1rem,3vw,1.5rem)]">
@@ -59,7 +59,7 @@
   onMounted(async () => {
     await nextTick();
     disableScroll();
-    // await document.fonts.ready;
+    await document.fonts.ready;
 
     if (routesAreLoaded.value.includes(route.path)) {
       emit('done');

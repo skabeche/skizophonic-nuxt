@@ -74,7 +74,6 @@
 
 @layer base {
   html {
-    @apply bg-black;
     scrollbar-gutter: stable;
     scrollbar-color: #bbb black;
   }

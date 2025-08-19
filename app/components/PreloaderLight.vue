@@ -42,7 +42,7 @@
   onMounted(async () => {
     await nextTick();
     disableScroll();
-    // await document.fonts.ready;
+    await document.fonts.ready;
 
     if (routesAreLoaded.value.includes(route.path)) {
       emit('done');
