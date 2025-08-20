@@ -36,8 +36,8 @@ export const images = [
     alt: 'Sala El Loco',
   },
   {
-    src: 'skizophonic_trajes_mod2.jpg',
-    alt: 'Skizophonic 2011',
+    src: 'skizonettes_fib2014.jpg',
+    alt: 'Sofia & Nuria & Sol - FIB',
   },
   {
     src: 'skizophonic_fecstival2016.jpg',
@@ -52,8 +52,8 @@ export const images = [
     alt: 'Skizophonic - Wild Weekend Festival',
   },
   {
-    src: 'skizonettes_fib2014.jpg',
-    alt: 'Sofia & Nuria & Sol - FIB',
+    src: 'skizophonic_trajes_mod2.jpg',
+    alt: 'Skizophonic 2011',
   },
   {
     src: 'nacho_fib2014.jpg',
@@ -72,20 +72,16 @@ export const images = [
     alt: 'Skizophonic 2008',
   },
   {
-    src: 'gascon_trombon_fib.jpg',
-    alt: 'Gascón - FIB',
+    src: 'eloy_fib2014.jpg',
+    alt: 'Eloy - FIB',
   },
   {
     src: 'nacho_rec_summer.jpg',
     alt: 'Nacho - Rec Summer Festival',
   },
   {
-    src: 'eloy_fib2014.jpg',
-    alt: 'Eloy - FIB',
-  },
-  {
-    src: 'nacho_gascon.jpg',
-    alt: 'Nacho & Gascón - Sixties Rock Weekend Festival',
+    src: 'gascon_trombon_fib.jpg',
+    alt: 'Gascón - FIB',
   },
   {
     src: 'deed_marc.jpg',
@@ -100,6 +96,10 @@ export const images = [
     alt: 'Skizonettes',
   },
   {
+    src: 'nacho_gascon.jpg',
+    alt: 'Nacho & Gascón - Sixties Rock Weekend Festival',
+  },
+  {
     src: 'skizophonic_maletin.jpg',
     alt: 'Skizophonic 2011',
   },
@@ -112,16 +112,16 @@ export const images = [
     alt: 'Skizophonic 2013 - Velodrome',
   },
   {
+    src: 'skizophonic_nacho_fandos_2008.jpg',
+    alt: 'Skizophonic & Nacho Fandós - Bubble Studios 2008',
+  },
+  {
     src: 'SkizophonicWW014.jpg',
     alt: 'Dan & Eloy - Wild Weekend Festival',
   },
   {
     src: 'skizophonic_smoke_darkness.jpg',
     alt: 'Skizophonic - Smoke & Darkness',
-  },
-  {
-    src: 'skizophonic_nacho_fandos_2008.jpg',
-    alt: 'Skizophonic & Nacho Fandós - Bubble Studios 2008',
   },
   {
     src: 'nacho_suelo.jpg',
@@ -132,12 +132,12 @@ export const images = [
     alt: 'Charly & Nacho',
   },
   {
-    src: 'alamo_shock.jpg',
-    alt: 'Álamo Shock',
-  },
-  {
     src: 'carlos_cruz.jpg',
     alt: 'Carlos',
+  },
+  {
+    src: 'alamo_shock.jpg',
+    alt: 'Álamo Shock',
   },
   {
     src: 'skizophonic_puente_2008.jpg',
@@ -150,5 +150,9 @@ export const images = [
   {
     src: 'promo_sala_blood.jpg',
     alt: 'Skizophonic 2006 - Sala Blood',
+  },
+  {
+    src: 'velodrome_premios_benicassim_pop.jpg',
+    alt: 'Velodrome - Benicàssim.pop',
   },
 ]
