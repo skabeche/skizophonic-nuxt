@@ -130,7 +130,6 @@
 
 .scroll-lock {
   position: fixed !important;
-  inset: 0 !important;
   overflow: hidden !important;
   overscroll-behavior: none !important;
   touch-action: none !important;

@@ -35,7 +35,7 @@ export const pageTransitionConfig = {
           done();
         },
       })
-      .to(el, {
+      .to('main', {
         duration: 1.9,
         y: -80,
         overflow: 'hidden',
@@ -128,6 +128,7 @@ const resetAnimations = () => {
   gsap.set('#page-transition-overlay', { autoAlpha: 0 })
   gsap.set('#page-transition-grid rect', { '--scaleColumnsTransition': 0 })
   gsap.set('#page-transition-circles', { scale: 1 })
+  gsap.set('main', { clearProps: "all" })
   if (document.querySelector('footer')) {
     gsap.set('footer', { autoAlpha: 1 })
   }

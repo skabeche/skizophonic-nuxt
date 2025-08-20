@@ -2,7 +2,7 @@
   <section ref="merchRef" class="container relative flex gap-16 justify-end pt-[60px]">
     <h1 class="sr-only">{{ $t('pages.merch.title') }}</h1>
 
-    <aside class="fixed top-16 left-4 lg:inset-20 md:block" aria-label="Merch filter options" role="complementary">
+    <aside ref="filterRef" class="merch-filter-wrapper fixed top-16 left-4 lg:top-20 lg:left-20 md:block" aria-label="Merch filter options" role="complementary">
       <nav aria-label="Merch filter navigation">
         <ul class="merch-filter">
           <li v-for="(item, index) in filterSections" :key="item.key" class="relative">
@@ -65,6 +65,7 @@
   ];
   const activeFilterSection = ref(null);
   const merchRef = useTemplateRef('merchRef');
+  const filterRef = useTemplateRef('filterRef');
   let ctx;
 
   onMounted(async () => {
@@ -196,6 +197,12 @@
   onUnmounted(() => {
     ctx.revert();
   });
+
+  onBeforeRouteLeave(() => {
+    // When leaving the page, we need to reset the filter position
+    // because the scroll is locked with "position: fixed "until the page transition is complete.
+    filterRef.value.style.top = `${window.scrollY + filterRef.value.offsetTop}px`;
+  })
 
   const setActiveSection = (index) => {
     const nextSection = filterSections[index].key;
