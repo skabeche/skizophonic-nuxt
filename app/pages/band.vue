@@ -16,6 +16,16 @@
         </ul>
       </div>
       <figure v-for="(image, index) in images" :key="image.src" :class="`figure-${index}`" class="relative flex-auto overflow-hidden">
+        <div class="reveal-columns absolute z-90 inset-0 w-full h-full">
+          <!-- <DynamicColumns :num-columns="5" /> -->
+          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
+            <rect width="21%" height="100%" x="0" y="0" />
+            <rect width="22%" height="100%" x="20%" y="0" />
+            <rect width="23%" height="100%" x="40%" y="0" />
+            <rect width="24%" height="100%" x="60%" y="0" />
+            <rect width="25%" height="100%" x="80%" y="0" />
+          </svg>
+        </div>
         <div class="relative">
           <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110" sizes="400px md:640px xl:1920px" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
         </div>
@@ -102,11 +112,9 @@
       linesClass: 'line',
       wordsClass: 'word',
     });
-    const figures = gsap.utils.toArray('figure');
 
     gsap.set(sectionBandRef.value, { clipPath: 'inset(100% 0% 0% 0%)' });
     gsap.set(membersRef.value.querySelectorAll('.word'), { y: 200 });
-    gsap.set(figures, { clipPath: 'inset(0% 0% 100% 0%)' });
 
     ctx = gsap.context(() => {
       gsap
@@ -136,11 +144,26 @@
       function figuresReveal() {
         ScrollTrigger.batch('figure', {
           onEnter: (figures) => {
-            gsap.to(figures, {
-              clipPath: 'inset(0% 0% 0% 0%)',
+            const rect = figures.map((figure) => {
+              return figure.querySelectorAll('rect')
+            })
+
+            gsap.to(rect, {
+              '--scaleDynamicColumnsReveal': '0%',
+              stagger: {
+                each: 0.03,
+                from: "random"
+              },
               duration: 1,
-              stagger: 0.25,
-              ease: 'power3.inOut',
+              ease: "power4.inOut",
+              onStart: () => {
+                gsap.set(rect, {
+                  '--scaleDynamicColumnsReveal': "100%",
+                })
+                gsap.set('.reveal-columns', {
+                  pointerEvents: 'none'
+                })
+              },
             })
           },
         });
@@ -152,3 +175,15 @@
     ctx.revert();
   });
 </script>
+
+<style>
+  :root {
+    --scaleDynamicColumnsReveal: 100%;
+  }
+
+  .reveal-columns rect {
+    transform: scaleY(var(--scaleDynamicColumnsReveal));
+    transform-origin: bottom;
+    will-change: auto;
+  }
+</style>
