@@ -143,6 +143,9 @@
 
       function figuresReveal() {
         ScrollTrigger.batch('figure', {
+          start: 'top bottom-=8%',
+          once: true,
+          // markers: true,
           onEnter: (figures) => {
             const rect = figures.map((figure) => {
               return figure.querySelectorAll('rect')
@@ -151,7 +154,7 @@
             gsap.to(rect, {
               '--scaleDynamicColumnsReveal': '0%',
               stagger: {
-                each: 0.03,
+                each: 0.035,
                 from: "random"
               },
               duration: 1,

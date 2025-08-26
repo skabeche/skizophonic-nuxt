@@ -1,6 +1,6 @@
 <template>
-  <footer ref="footerMainRef" class="relative z-50 footer-main bg-black">
-    <div class="relative z-50 bg-white mt-40 lg:mt-50 rounded-b-3xl">
+  <footer ref="footerMainRef" class="footer-main bg-black">
+    <div class="bg-white mt-40 lg:mt-50 rounded-b-3xl">
       <AppLogo class="relative z-20 fill-black mx-auto lg:mx-0 w-3/4 xl:w-1/2" />
     </div>
     <div class="relative z-20 bg-black h-[250px] [clip-path:inset(0_0_0_0)]">
