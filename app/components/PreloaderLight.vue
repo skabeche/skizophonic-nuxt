@@ -39,10 +39,8 @@
   const routesAreLoaded = useState('routesAreLoadedLight', () => []);
   let ctx = gsap.context(() => { });
 
-  onMounted(async () => {
-    await nextTick();
+  onMounted(() => {
     disableScroll();
-    await document.fonts.ready;
 
     if (routesAreLoaded.value.includes(route.path)) {
       emit('done');
