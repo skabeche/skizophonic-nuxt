@@ -1,15 +1,24 @@
 <template>
   <div class="anim-glitch w-full h-full overflow-hidden pointer-events-none">
     <div class="relative w-full h-full">
-      <div v-for="n in 4" :key="n" class="glitch absolute inset-0 w-full h-full will-change[clip-path]" />
+      <div v-for="n in 3" :key="n" class="glitch absolute inset-0 w-full h-full will-change[clip-path]" />
     </div>
   </div>
 </template>
 
 <style scoped>
   .anim-glitch {
-    --gap-x: -50px;
-    --gap-y: 50px;
+    --gap-x: -15px;
+    --gap-y: 15px;
+
+    @media (width >=768px) {
+      --gap-x: -50px;
+      --gap-y: 50px;
+    }
+  }
+
+  .anim-glitch {
+    animation: anim-rotate 6s 1s steps(1) infinite;
   }
 
   .glitch {
@@ -21,17 +30,17 @@
   }
 
   .glitch:nth-child(1) {
-    background-color: #ff0047;
+    background-color: var(--color-primary);
     animation-name: anim-glitch-1;
   }
 
   .glitch:nth-child(2) {
-    background-color: #00ffc7;
+    background-color: var(--color-secondary);
     animation-name: anim-glitch-2;
   }
 
   .glitch:nth-child(3) {
-    background-color: #888;
+    background-color: var(--color-gray-500);
     animation-name: anim-glitch-3;
   }
 
@@ -41,8 +50,23 @@
   } */
 
   @media (prefers-reduced-motion: reduce) {
+    .anim-glitch,
     .glitch {
       animation: none;
+    }
+  }
+
+  @keyframes anim-rotate {
+    0% {
+      rotate: 0deg;
+    }
+
+    50% {
+      rotate: 180deg;
+    }
+
+    100% {
+      rotate: 0deg;
     }
   }
 
