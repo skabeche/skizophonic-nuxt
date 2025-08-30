@@ -52,15 +52,30 @@ export const stickers = [
     name: 'Subliminal',
     image: 'sticker_subliminal.jpg',
   },
-  // {
-  //   id: 2,
-  //   name: 'Star',
-  //   image: 'sticker_star.jpg',
-  // },
   {
-    id: 3,
+    id: 2,
     name: 'Retrogame',
     image: 'sticker_retrogame.png',
+  },
+  {
+    id: 3,
+    name: 'Velodrome',
+    image: 'sticker_velodrome.jpg',
+  },
+  {
+    id: 4,
+    name: 'No-light men',
+    image: 'sticker_nolightmen.jpg',
+  },
+  {
+    id: 5,
+    name: 'Psychedelic',
+    image: 'sticker_psychedelic.jpg',
+  },
+  {
+    id: 6,
+    name: 'Star',
+    image: 'sticker_star.jpg',
   },
 ]
 
@@ -70,9 +85,19 @@ export const posters = [
     name: 'Black & white',
     image: 'poster_skizophonic_black_white.jpg',
   },
+  {
+    id: 2,
+    name: 'Velodrome',
+    image: 'poster_velodrome_disc.jpg',
+  },
   // {
-  //   id: 2,
-  //   name: 'Velodrome',
-  //   image: 'poster_velodrome.jpg',
+  //   id: 3,
+  //   name: 'Shapes',
+  //   image: 'poster_shapes.jpg',
+  // },
+  // {
+  //   id: 4,
+  //   name: 'Benicàssim.pop',
+  //   image: 'poster_benicassim_pop_octubre2013.jpg',
   // },
 ]

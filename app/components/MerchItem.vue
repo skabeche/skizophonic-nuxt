@@ -1,6 +1,6 @@
 <template>
   <div class="merch-items grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-18">
-    <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center">
+    <div v-for="item in items" :key="item.id" class="merch-item flex flex-col items-center justify-end">
       <AnimationReveal class="w-full" @start="isAnimationRevealStarted = true">
         <div class="item relative overflow-hiddenx">
           <div class="mask relative z-30 transition-all duration-400 ease-in-out rounded-xl">
