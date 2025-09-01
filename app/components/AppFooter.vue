@@ -4,10 +4,10 @@
       <AppLogo class="relative z-20 fill-black mx-auto lg:mx-0 w-3/4 xl:w-1/2" />
     </div>
     <div class="relative z-20 bg-black h-[250px] [clip-path:inset(0_0_0_0)]">
-      <div ref="footerContentRef" class="footer-content fixed left-0 bottom-0 h-[250px] bg-black w-full flex flex-col items-center lg:items-start text-center lg:text-left gap-6 p-14 md:py-40 text-white">
+      <div ref="footerContentRef" class="footer-content fixed left-0 bottom-0 h-[250px] w-full flex flex-col items-center lg:items-start text-center lg:text-left gap-6 py-14 md:py-40 md:px-14 bg-black text-white">
         <SocialLinks class="text-4xl" />
-        <div class="copyright flex flex-col lg:flex-row gap-2 [&_a]:anim-underline-white">
-          <p>&copy; {{ currentYear }} Skizophonic</p>
+        <div class="copyright flex flex-col lg:flex-row gap-2.5 [&_a]:anim-underline-white">
+          <p>&copy; {{ currentYear }} Skizophonic <span class="inline-block ml-2.5">&pi; <NuxtLinkLocale to="/privacy">{{ $t('footer.privacy') }}</NuxtLinkLocale></span></p>
           <p>&infin; {{ $t('footer.siteBy') }} <a href="https://www.danalcaide.com">danalcaide.com</a>
             <DanHummingbird />
           </p>

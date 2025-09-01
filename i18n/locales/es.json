@@ -100,6 +100,19 @@
         "title": "Merch",
         "description": "Skizophonic merchandise"
       }
+    },
+    "privacy": {
+      "name": "Privacidad",
+      "title": "Política de privacidad y cookies",
+      "p1": "Nos importa tu privacidad (y la nuestra). Por eso no utilizamos cookies en este sitio web, ni tenemos intención de hacerlo. No nos interesa rastrear a los visitantes ni recopilar datos sobre ti, simplemente no queremos hacerlo.",
+      "p2": "Nuestro único propósito es compartir nuestra música contigo. Nada más, nada menos.",
+      "p3": "Dicho esto, nuestro sitio web está alojado por un proveedor externo y puede que ellos utilicen sus propias cookies para cosas como la seguridad o el rendimiento básico del sitio. Esa parte está fuera de nuestro control pero por nuestra parte mantenemos todo lo más libre de cookies posible.",
+      "p4": "Tampoco vendemos comida pero nuestro consejo es que comas más verduras para mantenerte sano. También te animamos a que apoyes los productos españoles; nuestro jamón ibérico y aceite de oliva forman parte de las maravillas del mundo.",
+      "p5": "Hoy, salva tu fin de semana. Mañana, salva tu alma.",
+      "meta": {
+        "title": "Política de privacidad y cookies",
+        "description": "Política de privacidad e información sobre cookies"
+      }
     }
   },
   "components": {
@@ -113,6 +126,7 @@
     }
   },
   "footer": {
-    "siteBy": "Sitio por"
+    "siteBy": "Sitio por",
+    "privacy": "Política privacidad"
   }
 }

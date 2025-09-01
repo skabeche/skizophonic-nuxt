@@ -100,6 +100,19 @@
         "title": "Merch",
         "description": "Skizophonic merchandise"
       }
+    },
+    "privacy": {
+      "name": "Privacy",
+      "title": "Privacy policy & cookies",
+      "p1": "We care about your (and our) privacy. That’s why we don’t use cookies on this website, and we’re not planning to. We’re not interested in tracking visitors or collecting data about you, that’s just not what we do.",
+      "p2": "Our only goal is to share our music with you. Nothing more, nothing less.",
+      "p3": "That said, our website is hosted by a third-party provider, and they might use their own cookies for things like security or basic site performance. That part is outside of our control, but from our side, we keep things as cookie-free as possible.",
+      "p4": "We don't sell food either, but our advice is to eat more vegetables to stay healthy. We also encourage you to support Spanish products; our Ibérico ham and olive oil are among the wonders of the world.",
+      "p5": "Today, save your weekend. Tomorrow, save your soul.",
+      "meta": {
+        "title": "Privacy policy & cookies",
+        "description": "Privacy policy & cookies information"
+      }
     }
   },
   "components": {
@@ -113,6 +126,7 @@
     }
   },
   "footer": {
-    "siteBy": "Site by"
+    "siteBy": "Site by",
+    "privacy": "Privacy policy"
   }
 }
