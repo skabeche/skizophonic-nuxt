@@ -108,7 +108,9 @@
     ogDescription: t('pages.home.meta.description'),
   })
 
-  onMounted(() => {
+  onMounted(async () => {
+    await document.fonts.ready;
+
     const isPortrait = window.matchMedia("(orientation: portrait)").matches;
     const ua = navigator.userAgent.toLowerCase();
     const isFirefoxMobile = ua.includes('firefox') && /android|iphone|ipad|ipod|mobile/.test(ua);
