@@ -72,6 +72,10 @@ export default defineNuxtConfig({
         en: '/music/[slug]',
         es: '/musica/[slug]'
       },
+      privacy: {
+        en: '/privacy',
+        es: '/privacidad'
+      },
     },
   },
   app: {
