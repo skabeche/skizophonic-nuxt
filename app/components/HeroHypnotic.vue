@@ -10,7 +10,7 @@
     <div ref="slotRef" class="relative z-10 flex justify-center items-center w-full h-full overflow-hidden text-9xl bg-black text-white mix-blend-difference">
       <slot />
     </div>
-    <div ref="scrollDownRef" class="scroll-down absolute bottom-2 w-full text-4xl sm:text-5xl text-center text-white mix-blend-difference">
+    <div ref="scrollDownRef" class="scroll-down fixed inset-0 w-full h-svh place-content-end text-4xl sm:text-5xl text-center text-white mix-blend-difference pointer-events-none">
       <Icon class="animate-bounce" name="ion:arrow-down-a" />
     </div>
   </div>
