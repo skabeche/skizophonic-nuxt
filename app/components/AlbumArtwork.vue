@@ -148,7 +148,7 @@
         ease: "power4.inOut"
       })
       .to(disc.value, {
-        position: "relative",
+        position: "static",
         opacity: 1,
         duration: 0.6,
         yPercent: 9,

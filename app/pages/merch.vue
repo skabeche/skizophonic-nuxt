@@ -98,13 +98,19 @@
         filterSections.forEach((section, index) => {
           ScrollTrigger.create({
             trigger: `#${section.key}`,
-            start: 'top-=200 top',
-            end: 'bottom-=100 top',
+            // iOS Safari has some issues providing correct scroll positions.
+            start: 'top top+=25%',
+            end: 'bottom top+=25%',
+            endTrigger: `#${section.key}`,
+            invalidateOnRefresh: true, // Safari needs this.
             // markers: true,
             onEnter: () => setActiveSection(index),
             onEnterBack: () => setActiveSection(index),
           });
         });
+
+        // Safari needs this.
+        ScrollTrigger.refresh();
       }
 
       gsap.utils.toArray('.merch-items .merch-item').forEach((item) => {

@@ -5,8 +5,8 @@
     <div ref="timelineRef" class="timeline relative z-10 top-0 left-0 w-screen min-h-lvh">
       <h1 class="sr-only">{{ $t('pages.home.title') }}</h1>
 
-      <HeroHypnotic :play="isPageLoaded" class="hero z-40 overflow-hidden">
-        <AppLogo class="logo fill-white" />
+      <HeroHypnotic :play="isPageLoaded" class="hero">
+        <AppLogo class="logo w-full h-full fill-white" />
       </HeroHypnotic>
 
       <h2 class="sr-only">{{ $t('pages.home.heading') }}</h2>
