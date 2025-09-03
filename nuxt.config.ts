@@ -22,6 +22,14 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
   ],
+  components: [
+    {
+      path: '~/components',
+      extensions: ['.vue'],
+      pathPrefix: false,
+      global: true
+    }
+  ],
   content: {
     renderer: {
       anchorLinks: { h2: false, h3: false, h4: false }
