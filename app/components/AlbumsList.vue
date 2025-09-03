@@ -45,6 +45,7 @@
 
 <script setup>
   import { albums } from "~/data/albums";
+  import { isSafari } from "#imports";
 
   import gsap from "gsap";
   import { SplitText } from "gsap/SplitText";
@@ -140,7 +141,7 @@
         autoAlpha: 1,
         yPercent: 0,
         stagger: 0.02
-      }, '<')
+      }, isSafari() ? '<+=0.1' : '<') // Fix painting issue on Safari.
       .fromTo(splitYears[index].chars, {
         autoAlpha: 0,
         yPercent: 150 * direction

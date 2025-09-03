@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+  import { isFirefoxMobile } from "#imports";
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -37,9 +38,6 @@
   let ctx;
 
   onMounted(() => {
-    const ua = navigator.userAgent.toLowerCase();
-    const isFirefoxMobile = ua.includes('firefox') && /android|iphone|ipad|ipod|mobile/.test(ua);
-
     ctx = gsap.context(() => {
       const tl = gsap
         .timeline({
@@ -63,7 +61,7 @@
         .fromTo(slotRef.value, {
           autoAlpha: 0,
           scale: 1.1,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
         }, {
           duration: .5,
           autoAlpha: 1,
@@ -89,7 +87,7 @@
       gsap.to(scrollDownRef.value, {
         duration: .3,
         autoAlpha: 0,
-        filter: isFirefoxMobile ? 'blur(0px)' : 'blur(3px)',
+        filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(3px)',
         scrollTrigger: {
           trigger: heroHypnoticRef.value,
           start: '5% top',

@@ -56,6 +56,7 @@
 </template>
 
 <script setup>
+  import { isFirefoxMobile } from "#imports";
   import { pageTransitionConfig } from '~/helpers/transitionConfig';
 
   import gsap from "gsap";
@@ -112,8 +113,6 @@
     await document.fonts.ready;
 
     const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-    const ua = navigator.userAgent.toLowerCase();
-    const isFirefoxMobile = ua.includes('firefox') && /android|iphone|ipad|ipod|mobile/.test(ua);
 
     ctx = gsap.context(() => {
       block1Split = SplitText.create(".block1 p", {
@@ -134,7 +133,7 @@
         maskSize: '100% 100%',
       });
       gsap.set('.animation-circles', {
-        scale: isFirefoxMobile ? 4 : 10,
+        scale: isFirefoxMobile() ? 4 : 10,
         autoAlpha: 0,
       });
 
@@ -214,7 +213,7 @@
         .from(block1Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
           stagger: 0.015,
         }, '<0.3')
@@ -246,7 +245,7 @@
           autoAlpha: 0,
           stagger: 0.02,
           yPercent: -200,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
         }, '<')
         .to('.circle0, .circle1, .circle2, .circle3, .circle4', {
@@ -274,14 +273,14 @@
         .from(block2Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
           stagger: 0.01,
         }, '<')
         .to(block2Split.lines, {
           yPercent: -200,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
           stagger: 0.03,
         }, '<.8')
@@ -324,14 +323,14 @@
         .from(block3Split.words, {
           yPercent: 100,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.out',
           stagger: 0.01,
         }, '<0.6')
         .to(block3Split.lines, {
           yPercent: -200,
           autoAlpha: 0,
-          filter: isFirefoxMobile ? 'blur(0px)' : 'blur(4px)',
+          filter: isFirefoxMobile() ? 'blur(0px)' : 'blur(4px)',
           ease: 'power4.in',
           stagger: 0.03,
         }, '<0.6')
