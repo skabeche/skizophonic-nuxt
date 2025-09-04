@@ -123,6 +123,9 @@
     },
     "bandcampEmbed": {
       "noPlayer": "Álbum descatalogado. No disponible para descarga o escucha."
+    },
+    "albumArtwork": {
+      "moreInfo": "Click en álbum or “+” para ver más"
     }
   },
   "footer": {

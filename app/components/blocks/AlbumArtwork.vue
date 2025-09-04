@@ -22,7 +22,7 @@
     </section>
   </AnimationReveal>
   <AnimationReveal class="hidden touch:block hybrid-device:block">
-    <div ref="moreInfoRef" class="more-info w-full left-0 bottom-0 text-xs pt-2 lowercase">[Click artwork or “+” to see more]</div>
+    <div ref="moreInfoRef" class="more-info w-full left-0 bottom-0 text-xs pt-2 lowercase">[{{ t('components.albumArtwork.moreInfo') }}]</div>
   </AnimationReveal>
 </template>
 
