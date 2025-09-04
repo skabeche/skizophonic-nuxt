@@ -16,10 +16,13 @@
           </div>
         </div>
       </div>
-      <div ref="discRef" class="disc absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform" aria-label="Album disc">
+      <div ref="discRef" class="disc z-5 absolute top-1/2 -translate-y-1/2 right-0 w-[65%] drop-shadow-md/50 will-change-transform" aria-label="Album disc">
         <img ref="galletaRef" class="galleta [clip-path:_circle(50%_at_50%_50%)]" :class="{ 'cursor-pointer': !expandedArtwork }" :src="`/albums/${content.slug}/${content.images.galleta}`" :alt="`${content.title} - disc`" :data-cursor-text="$t('components.cursor.zoom')" @click="handleClickGalleta">
       </div>
     </section>
+  </AnimationReveal>
+  <AnimationReveal class="hidden touch:block hybrid-device:block">
+    <div ref="moreInfoRef" class="more-info w-full left-0 bottom-0 text-xs pt-2 lowercase">[Click artwork or “+” to see more]</div>
   </AnimationReveal>
 </template>
 
@@ -39,6 +42,7 @@
   const disc = useTemplateRef('discRef')
   const caseInner = useTemplateRef('caseInnerRef')
   const galleta = useTemplateRef('galletaRef')
+  const moreInfoRef = useTemplateRef('moreInfoRef')
   const expandedArtwork = ref(false);
   const flippedCase = ref(false);
   const zoomedGalleta = ref(false);
@@ -120,6 +124,15 @@
           buttonDisabled.value = false
         }
       })
+      .to(moreInfoRef.value, {
+        y: -30,
+        ease: "power4.in",
+        onComplete: () => {
+          gsap.set(moreInfoRef.value, {
+            autoAlpha: 0,
+          })
+        }
+      })
       .to(galleta.value, {
         xPercent: -50,
         rotate: 0,
@@ -132,7 +145,7 @@
             width: "95%",
           })
         }
-      })
+      }, '<0.2')
       .to(caseRef.value, {
         width: '95%',
         duration: 0.6,
@@ -217,6 +230,15 @@
         onStart: () => {
           gsap.set(disc.value, {
             opacity: 1,
+          })
+        }
+      })
+      .to(moreInfoRef.value, {
+        y: 0,
+        ease: "power4.out",
+        onStart: () => {
+          gsap.set(moreInfoRef.value, {
+            autoAlpha: 1,
           })
         }
       })
