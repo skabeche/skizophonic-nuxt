@@ -59,21 +59,26 @@ export const stickers = [
   },
   {
     id: 3,
-    name: 'Velodrome',
-    image: 'sticker_velodrome.jpg',
+    name: 'Novio caballo',
+    image: 'sticker_novio_caballo.jpg',
   },
   {
     id: 4,
-    name: 'No-light men',
-    image: 'sticker_nolightmen.jpg',
-  },
-  {
-    id: 5,
     name: 'Psychedelic',
     image: 'sticker_psychedelic.jpg',
   },
   {
+    id: 5,
+    name: 'Velodrome',
+    image: 'sticker_velodrome.jpg',
+  },
+  {
     id: 6,
+    name: 'No-light men',
+    image: 'sticker_nolightmen.jpg',
+  },
+  {
+    id: 7,
     name: 'Star',
     image: 'sticker_star.jpg',
   },
