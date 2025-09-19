@@ -55,7 +55,7 @@
   const membersRef = useTemplateRef('membersRef');
   const prevImage = ref(null);
   const currentImage = ref(null);
-  const isLargeDevice = window.matchMedia("(min-width: 1024px)");
+  let isLargeDevice;
   let ctx;
 
   useSeoMeta({
@@ -106,6 +106,8 @@
   }
 
   onMounted(() => {
+    isLargeDevice = window.matchMedia("(min-width: 1024px)");
+
     SplitText.create(membersRef.value, {
       type: 'lines, words',
       mask: 'lines',

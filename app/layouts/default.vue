@@ -13,13 +13,16 @@
   import gsap from "gsap";
 
   const route = useRoute();
-  const html = document.documentElement;
 
-  gsap.to(html, {
-    backgroundColor: '#000000',
-    duration: 1,
-    ease: 'power4.in',
-  });
+  onMounted(() => {
+    const html = document.documentElement;
+
+    gsap.to(html, {
+      backgroundColor: '#000000',
+      duration: 1,
+      ease: 'power4.in',
+    });
+  })
 
   // onMounted(() => {
   //   // <video> do not autoplay in the <NuxtLayout> using <Transition> component.
