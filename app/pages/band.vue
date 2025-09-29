@@ -17,14 +17,7 @@
       </div>
       <figure v-for="(image, index) in images" :key="image.src" :class="`figure-${index}`" class="relative flex-auto overflow-hidden">
         <div class="reveal-columns absolute z-90 inset-0 w-full h-full">
-          <!-- <DynamicColumns :num-columns="5" /> -->
-          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
-            <rect width="21%" height="100%" x="0" y="0" />
-            <rect width="22%" height="100%" x="20%" y="0" />
-            <rect width="23%" height="100%" x="40%" y="0" />
-            <rect width="24%" height="100%" x="60%" y="0" />
-            <rect width="25%" height="100%" x="80%" y="0" />
-          </svg>
+          <DynamicColumns :min="5" :max="6" />
         </div>
         <div class="relative">
           <NuxtImg class="max-lg:h-auto h-[50dvh] w-full object-cover transition-all duration-500 ease-in-out cursor-pointer will-change-transform lg:scale-105 hover:scale-110" sizes="400px md:640px xl:1920px" :alt="image.alt" :src="`/images/band/${image.src}`" @click="handleClick" @mousemove="handleMouseMove" />
@@ -145,7 +138,7 @@
 
       function figuresReveal() {
         ScrollTrigger.batch('figure', {
-          start: 'top bottom-=8%',
+          start: 'top bottom-=9%',
           once: true,
           // markers: true,
           onEnter: (figures) => {
@@ -154,7 +147,7 @@
             })
 
             gsap.to(rect, {
-              '--scaleDynamicColumnsReveal': '0%',
+              '--scaleYBandColumnsReveal': '0%',
               stagger: {
                 each: 0.035,
                 from: "random"
@@ -163,7 +156,7 @@
               ease: "power4.inOut",
               onStart: () => {
                 gsap.set(rect, {
-                  '--scaleDynamicColumnsReveal': "100%",
+                  '--scaleYBandColumnsReveal': "100%",
                 })
                 gsap.set('.reveal-columns', {
                   pointerEvents: 'none'
@@ -183,11 +176,11 @@
 
 <style>
   :root {
-    --scaleDynamicColumnsReveal: 100%;
+    --scaleYBandColumnsReveal: 100%;
   }
 
   .reveal-columns rect {
-    transform: scaleY(var(--scaleDynamicColumnsReveal));
+    transform: scaleY(var(--scaleYBandColumnsReveal));
     transform-origin: bottom;
     will-change: auto;
   }

@@ -45,8 +45,8 @@ export const pageTransitionConfig = {
         scaleX: 0,
         ease: 'power4.in',
       }, '<')
-      .to('#page-transition-grid rect', {
-        '--scaleColumnsTransition': '100%',
+      .to('#page-transition-columns rect', {
+        '--scaleYColumnsTransition': '100%',
         duration: 1.2,
         stagger: {
           each: 0.04,
@@ -126,7 +126,7 @@ export const pageTransitionFadeConfig = {
 
 const resetAnimations = () => {
   gsap.set('#page-transition-overlay', { autoAlpha: 0 })
-  gsap.set('#page-transition-grid rect', { '--scaleColumnsTransition': 0 })
+  gsap.set('#page-transition-columns rect', { '--scaleYColumnsTransition': 0 })
   gsap.set('#page-transition-circles', { scale: 1 })
   gsap.set('main', { clearProps: "all" })
   if (document.querySelector('footer')) {

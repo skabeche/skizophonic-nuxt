@@ -1,12 +1,8 @@
 <template>
   <div ref="outerWrapperRef" class="outer-wrapper relative w-fit">
-    <svg class="reveal-grid absolute z-90 inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
-      <rect width="21%" height="100%" x="0" y="0" />
-      <rect width="22%" height="100%" x="20%" y="0" />
-      <rect width="23%" height="100%" x="40%" y="0" />
-      <rect width="24%" height="100%" x="60%" y="0" />
-      <rect width="25%" height="100%" x="80%" y="0" />
-    </svg>
+    <div class="anim-reveal-columns absolute z-90 inset-0 w-full h-full">
+      <DynamicColumns :min="5" :max="7" />
+    </div>
     <div ref="innerWrapperRef" class="inner-wrapper">
       <slot />
     </div>
@@ -29,7 +25,7 @@
 
   onMounted(() => {
     ctx = gsap.context(() => {
-      gsap.set([innerWrapperRef.value, '.reveal-grid rect'], {
+      gsap.set([innerWrapperRef.value, '.anim-reveal-columns rect'], {
         autoAlpha: 0,
       })
       gsap
@@ -42,18 +38,18 @@
             emit('done')
           }
         })
-        .to('.reveal-grid rect', {
-          '--scaleColumnsReveal': "100%",
+        .to('.anim-reveal-columns rect', {
+          '--scaleYColumnsReveal': "100%",
           duration: 1,
           ease: "power4.inOut",
           onStart: () => {
-            gsap.set('.reveal-grid rect', {
+            gsap.set('.anim-reveal-columns rect', {
               '--transformOrigin': "top",
               autoAlpha: 1,
             })
           },
           onComplete: () => {
-            gsap.set('.reveal-grid rect', {
+            gsap.set('.anim-reveal-columns rect', {
               '--transformOrigin': "bottom",
             })
             gsap.set(innerWrapperRef.value, {
@@ -61,9 +57,9 @@
             })
           }
         })
-        .to('.reveal-grid rect', {
+        .to('.anim-reveal-columns rect', {
           delay: 0.2,
-          '--scaleColumnsReveal': 0,
+          '--scaleYColumnsReveal': 0,
           stagger: {
             each: 0.035,
             from: "random"
@@ -71,7 +67,7 @@
           duration: 0.8,
           ease: "power4.inOut",
           onComplete: () => {
-            gsap.set('.reveal-grid', {
+            gsap.set('.anim-reveal-columns', {
               autoAlpha: 0,
             })
           }
@@ -85,14 +81,14 @@
   });
 </script>
 
-<style scoped>
+<style>
   :root {
-    --scaleColumnsReveal: 0;
+    --scaleYColumnsReveal: 0;
     --transformOrigin: 'top';
   }
 
-  .reveal-grid rect {
-    transform: scaleY(var(--scaleColumnsReveal));
+  .anim-reveal-columns rect {
+    transform: scaleY(var(--scaleYColumnsReveal));
     transform-origin: var(--transformOrigin);
     will-change: auto;
   }

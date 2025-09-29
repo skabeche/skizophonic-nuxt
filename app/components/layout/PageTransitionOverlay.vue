@@ -1,13 +1,7 @@
 <template>
   <div id="page-transition-overlay" class="fixed z-90 inset-0 w-screen h-dvh opacity-0 invisible">
-    <div id="page-transition-grid" class="absolute z-95 inset-0 w-full h-full">
-      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" fill="black">
-        <rect width="21%" height="100%" x="0" y="0" />
-        <rect width="22%" height="100%" x="20%" y="0" />
-        <rect width="23%" height="100%" x="40%" y="0" />
-        <rect width="24%" height="100%" x="60%" y="0" />
-        <rect width="25%" height="100%" x="80%" y="0" />
-      </svg>
+    <div id="page-transition-columns" class="absolute z-95 inset-0 w-full h-full">
+      <DynamicColumns :min="5" :max="8" />
     </div>
 
     <div class="absolute z-96 inset-0 w-full h-full flex items-center justify-center">
@@ -24,11 +18,11 @@
 
 <style>
   :root {
-    --scaleColumnsTransition: 0;
+    --scaleYColumnsTransition: 0;
   }
 
-  #page-transition-grid rect {
-    transform: scaleY(var(--scaleColumnsTransition));
+  #page-transition-columns rect {
+    transform: scaleY(var(--scaleYColumnsTransition));
     transform-origin: bottom;
     will-change: auto;
   }
