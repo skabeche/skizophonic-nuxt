@@ -112,6 +112,18 @@ export const images = [
     alt: 'Skizophonic 2013 - Velodrome',
   },
   {
+    src: 'carlos_sala_zero.jpg',
+    alt: 'Carlos - Sala Zero',
+  },
+  {
+    src: 'skizophonic_pixel_art.png',
+    alt: 'Skizophonic 2025',
+  },
+  {
+    src: 'nacho_sala_zero.jpg',
+    alt: 'Nacho - Sala Zero',
+  },
+  {
     src: 'skizophonic_nacho_fandos_2008.jpg',
     alt: 'Skizophonic & Nacho Fandós - Bubble Studios 2008',
   },
