@@ -1,12 +1,15 @@
 # Skizophonic website
 
 Music band based in Benicasim and Castellón, Spain.
-_Banda de música formada entre Benicasim y Castellón, España._
+_Banda de música formada entre Benicàssim y Castellón, España._
 
 [www.skizophonic.com](https://www.skizophonic.com)
 
 Made with Nuxt, Tailwind, GSAP, CSS/SVG animations, chocolate and coffee.
 _Hecho con Nuxt, Tailwind, GSAP, animaciones CSS/SVG, chorizo y paella._
+
+This website has been shortlisted for an awwwards nomination at
+[www.awwwards.com/sites/skizophonic](https://www.awwwards.com/sites/skizophonic)
 
 ## Overview
 
