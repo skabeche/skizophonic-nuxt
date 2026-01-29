@@ -77,6 +77,9 @@
   })
 
   const content = albums.find(album => album.slug === slug)
+  if (!content) {
+    throw createError({ statusCode: 404, statusMessage: 'Album not found' })
+  }
   const contentRef = ref(null)
   const currentActiveSectionId = ref('#music')
 
