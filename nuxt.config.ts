@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   modules: [
-    "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/fonts",
     "@nuxt/icon",
@@ -19,6 +18,7 @@ export default defineNuxtConfig({
     "lenis/nuxt",
     "@nuxtjs/i18n",
     "@nuxtjs/sitemap",
+    "@nuxt/content",
   ],
   components: [
     {
@@ -32,6 +32,10 @@ export default defineNuxtConfig({
     renderer: {
       anchorLinks: { h2: false, h3: false, h4: false },
     },
+  },
+  site: {
+    url: process.env.APP_URL,
+    name: "Skizophonic website",
   },
   i18n: {
     baseUrl: process.env.APP_URL,
